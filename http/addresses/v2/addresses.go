@@ -18,5 +18,5 @@ package v2
 
 const (
 	Auth     = "/api/auth"
-	VNetBase = "api/v2/vnet"
+	VNetBase = "/api/v2/vnet"
 )
