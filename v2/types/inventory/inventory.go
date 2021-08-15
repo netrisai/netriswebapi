@@ -17,6 +17,7 @@ limitations under the License.
 package inventory
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -76,4 +77,19 @@ func (c *InventoryClient) GetByID(id int) (*HW, error) {
 		return nil, fmt.Errorf("{GetByID} %s", err)
 	}
 	return hw, nil
+}
+
+func (c *InventoryClient) Add(hw *HWAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(hw)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.InventorySwitch
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }

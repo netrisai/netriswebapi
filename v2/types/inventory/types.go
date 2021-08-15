@@ -48,13 +48,13 @@ type HW struct {
 	OpenstackVersion interface{}   `json:"openstackVersion"`
 	Platform         string        `json:"platform"`
 	PortCount        int64         `json:"portCount"`
-	Profile          HWProfile     `json:"profile"`
+	Profile          IDName        `json:"profile"`
 	ProxmoxVersion   interface{}   `json:"proxmoxVersion"`
 	Rangecut         int64         `json:"rangecut"`
 	Routes           int64         `json:"routes"`
-	Site             HWSite        `json:"site"`
+	Site             IDName        `json:"site"`
 	Status           string        `json:"status"`
-	Tenant           HWTenant      `json:"tenant"`
+	Tenant           IDName        `json:"tenant"`
 	Timezone         string        `json:"timezone"`
 	Type             string        `json:"type"`
 	Uptime           string        `json:"uptime"`
@@ -103,17 +103,31 @@ type HWNOS struct {
 	Tag  string `json:"tag"`
 }
 
-type HWProfile struct {
+type IDName struct {
 	ID   int64  `json:"id"`
 	Name string `json:"name"`
 }
 
-type HWSite struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+/*
+VNet Structure for POST requests
+*/
+
+type HWAdd struct {
+	Asn         string      `json:"asn"`
+	Description string      `json:"description"`
+	Links       []HWAddLink `json:"links"`
+	MacAddress  string      `json:"macAddress"`
+	MainAddress string      `json:"mainAddress"`
+	MgmtAddress string      `json:"mgmtAddress"`
+	Name        string      `json:"name"`
+	Nos         string      `json:"nos"`
+	PortCount   int64       `json:"portCount"`
+	Profile     IDName      `json:"profile"`
+	Site        IDName      `json:"site"`
+	Tenant      IDName      `json:"tenant"`
 }
 
-type HWTenant struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+type HWAddLink struct {
+	Local  IDName `json:"local"`
+	Remote IDName `json:"remote"`
 }
