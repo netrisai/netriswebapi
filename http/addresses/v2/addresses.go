@@ -35,5 +35,5 @@ package v2
 const (
 	Auth          = "/api/auth"
 	VNetBase      = "/api/v2/vnet"
-	InventoryBase = "api/v2/hw"
+	InventoryBase = "/api/v2/hw"
 )
