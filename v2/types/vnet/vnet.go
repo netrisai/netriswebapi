@@ -67,7 +67,6 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 
 func (c *VNetClient) GetByID(id int) (*VNetDetailed, error) {
 	address := c.client.URL.String() + v2address.VNetBase + "/" + strconv.Itoa(id)
-	fmt.Println(address)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetByID} %s", err)

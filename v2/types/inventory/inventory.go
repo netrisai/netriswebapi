@@ -66,7 +66,6 @@ func (c *InventoryClient) Get() ([]*HW, error) {
 
 func (c *InventoryClient) GetByID(id int) (*HW, error) {
 	address := c.client.URL.String() + v2address.InventoryBase + "/" + strconv.Itoa(id)
-	fmt.Println(address)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetByID} %s", err)
