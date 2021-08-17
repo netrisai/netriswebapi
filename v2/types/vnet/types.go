@@ -181,7 +181,7 @@ type VNetAdd struct {
 
 type VNetAddGateway struct {
 	Prefix string `json:"prefix"`
-	Vlan   int    `json:"vlan"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetAddTenant struct {
