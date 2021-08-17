@@ -231,6 +231,7 @@ type VNetUpdateGuestTenant struct {
 
 type VNetUpdatePort struct {
 	Access bool   `json:"access"`
+	Name   int    `json:"name"`
 	ID     int    `json:"id"`
 	Lacp   string `json:"lacp"`
 	State  string `json:"state"`
