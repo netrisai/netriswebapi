@@ -189,6 +189,7 @@ type VNetAddTenant struct {
 }
 
 type VNetAddPort struct {
+	Name   string `json:"name"`
 	Access bool   `json:"access"`
 	ID     int64  `json:"id"`
 	Lacp   string `json:"lacp"`
