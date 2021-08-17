@@ -221,7 +221,7 @@ type VNetUpdate struct {
 
 type VNetUpdateGateway struct {
 	Prefix string `json:"prefix"`
-	Vlan   int    `json:"vlan"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetUpdateGuestTenant struct {
