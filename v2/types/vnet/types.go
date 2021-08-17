@@ -77,6 +77,7 @@ type VNetDetailed struct {
 
 type VNetDetailedGateway struct {
 	Prefix string `json:"prefix"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetDetailedGuestTenant struct {
