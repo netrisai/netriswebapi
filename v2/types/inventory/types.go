@@ -21,37 +21,37 @@ Inventory Structure for GET requests
 */
 
 type HW struct {
-	Asn              int64         `json:"asn"`
-	AsnID            int64         `json:"asnID"`
+	Asn              int           `json:"asn"`
+	AsnID            int           `json:"asnID"`
 	AsnNumber        HWASNNumber   `json:"asnNumber"`
 	ConductorVersion string        `json:"conductorVersion"`
-	CreatedDate      int64         `json:"createdDate"`
+	CreatedDate      int           `json:"createdDate"`
 	CumulusVersion   interface{}   `json:"cumulusVersion"`
 	Description      string        `json:"description"`
 	HardwareHealth   []interface{} `json:"hardwareHealth"`
 	Health           struct{}      `json:"health"`
-	ID               int64         `json:"id"`
-	IngressAcls      int64         `json:"ingressAcls"`
-	LastSeen         int64         `json:"lastSeen"`
+	ID               int           `json:"id"`
+	IngressAcls      int           `json:"ingressAcls"`
+	LastSeen         int           `json:"lastSeen"`
 	Links            []interface{} `json:"links"`
-	MacAddrUbit      int64         `json:"macAddrUbit"`
+	MacAddrUbit      int           `json:"macAddrUbit"`
 	MacAddress       string        `json:"macAddress"`
-	Macs             int64         `json:"macs"`
+	Macs             int           `json:"macs"`
 	MainAddress      string        `json:"mainAddress"`
 	MainIP           HWMainIP      `json:"mainIP"`
 	MaintenanceMode  bool          `json:"maintenanceMode"`
 	MgmtAddress      string        `json:"mgmtAddress"`
 	MgmtIP           HWMgmtIP      `json:"mgmtIP"`
-	ModifiedDate     int64         `json:"modifiedDate"`
+	ModifiedDate     int           `json:"modifiedDate"`
 	Name             string        `json:"name"`
 	Nos              HWNOS         `json:"nos"`
 	OpenstackVersion interface{}   `json:"openstackVersion"`
 	Platform         string        `json:"platform"`
-	PortCount        int64         `json:"portCount"`
+	PortCount        int           `json:"portCount"`
 	Profile          IDName        `json:"profile"`
 	ProxmoxVersion   interface{}   `json:"proxmoxVersion"`
-	Rangecut         int64         `json:"rangecut"`
-	Routes           int64         `json:"routes"`
+	Rangecut         int           `json:"rangecut"`
+	Routes           int           `json:"routes"`
 	Site             IDName        `json:"site"`
 	Status           string        `json:"status"`
 	Tenant           IDName        `json:"tenant"`
@@ -61,19 +61,19 @@ type HW struct {
 }
 
 type HWASNNumber struct {
-	Asn int64 `json:"asn"`
-	ID  int64 `json:"id"`
+	Asn int `json:"asn"`
+	ID  int `json:"id"`
 }
 
 type HWMainIP struct {
 	Address     string       `json:"address"`
 	Description interface{}  `json:"description"`
-	ID          int64        `json:"id"`
+	ID          int          `json:"id"`
 	IPFamily    string       `json:"ipFamily"`
 	Meta        HWMainIPMeta `json:"meta"`
 	Name        string       `json:"name"`
 	Readonly    string       `json:"readonly"`
-	SubnetID    int64        `json:"subnetID"`
+	SubnetID    int          `json:"subnetID"`
 	Type        string       `json:"type"`
 }
 
@@ -84,12 +84,12 @@ type HWMainIPMeta struct {
 type HWMgmtIP struct {
 	Address     string       `json:"address"`
 	Description interface{}  `json:"description"`
-	ID          int64        `json:"id"`
+	ID          int          `json:"id"`
 	IPFamily    string       `json:"ipFamily"`
 	Meta        HWMgmtIPMeta `json:"meta"`
 	Name        string       `json:"name"`
 	Readonly    string       `json:"readonly"`
-	SubnetID    int64        `json:"subnetID"`
+	SubnetID    int          `json:"subnetID"`
 	Type        string       `json:"type"`
 }
 
@@ -98,13 +98,13 @@ type HWMgmtIPMeta struct {
 }
 
 type HWNOS struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 	Tag  string `json:"tag"`
 }
 
 type IDName struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -121,7 +121,7 @@ type HWAdd struct {
 	MgmtAddress string      `json:"mgmtAddress"`
 	Name        string      `json:"name"`
 	Nos         string      `json:"nos"`
-	PortCount   int64       `json:"portCount"`
+	PortCount   int         `json:"portCount"`
 	Profile     IDName      `json:"profile"`
 	Site        IDName      `json:"site"`
 	Tenant      IDName      `json:"tenant"`
