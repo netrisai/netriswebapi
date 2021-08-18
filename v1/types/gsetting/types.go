@@ -14,9 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1
+package gsetting
 
-const (
-	Sites     = "/api/sites"
-	GSettings = "/api/general"
-)
+// GlobalSetting .
+type GlobalSetting struct {
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Value       string `json:"value"`
+	Description string `json:"description"`
+}
