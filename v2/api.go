@@ -19,6 +19,7 @@ package v2
 import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
+	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
@@ -30,6 +31,7 @@ type Clientset struct {
 	inventory *inventory.InventoryClient
 	site      *site.SiteClient
 	gsetting  *gsetting.GSettingClient
+	l4lb      *l4lb.LBClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -58,6 +60,13 @@ func (c *Clientset) GlobalSettings() *gsetting.GSettingClient {
 		c.gsetting = gsetting.New(c.Client)
 	}
 	return c.gsetting
+}
+
+func (c *Clientset) L4LB() *l4lb.LBClient {
+	if c.l4lb == nil {
+		c.l4lb = l4lb.New(c.Client)
+	}
+	return c.l4lb
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
