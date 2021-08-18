@@ -42,7 +42,7 @@ func parse(APIResult *http.APIResponse) ([]*Subnet, error) {
 }
 
 func (c *SubnetClient) Get() ([]*Subnet, error) {
-	address := c.client.URL.String() + v1address.L4LB
+	address := c.client.URL.String() + v1address.Subnets
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{Get} %s", err)
@@ -61,7 +61,7 @@ func (c *SubnetClient) Add(site *SubnetAdd) (reply http.HTTPReply, err error) {
 		return reply, err
 	}
 
-	address := c.client.URL.String() + v1address.L4LB
+	address := c.client.URL.String() + v1address.Subnets
 	reply, err = c.client.Post(address, js)
 	if err != nil {
 		return reply, err
@@ -75,7 +75,7 @@ func (c *SubnetClient) Update(id int, vnet *Subnet) (reply http.HTTPReply, err e
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)
 	}
-	address := c.client.URL.String() + v1address.L4LB
+	address := c.client.URL.String() + v1address.Subnets
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{Update} %s", err)
