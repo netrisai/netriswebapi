@@ -74,9 +74,6 @@ func Client(address, login, password string, timeout int) (*Clientset, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := client.LoginUser(); err != nil {
-		return nil, err
-	}
 	return &Clientset{
 		Client: client,
 	}, nil
