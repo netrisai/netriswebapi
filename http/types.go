@@ -85,11 +85,11 @@ func (r *HTTPReply) String() (string, error) {
 
 // APIResponse .
 type APIResponse struct {
-	Data      map[string]interface{} `json:"data"`
-	Errors    APIResponseErrors      `json:"errors"`
-	Message   string                 `json:"message"`
-	IsSuccess bool                   `json:"isSuccess"`
-	Meta      APIResponseMeta        `json:"meta"`
+	Data      interface{}       `json:"data"`
+	Errors    APIResponseErrors `json:"errors"`
+	Message   string            `json:"message"`
+	IsSuccess bool              `json:"isSuccess"`
+	Meta      APIResponseMeta   `json:"meta"`
 }
 
 // APIResponseErrors .

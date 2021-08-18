@@ -18,12 +18,14 @@ package v2
 
 import (
 	"github.com/netrisai/netriswebapi/http"
+	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 )
 
 type Clientset struct {
-	Client *http.HTTPCred
-	vnet   *vnet.VNetClient
+	Client    *http.HTTPCred
+	vnet      *vnet.VNetClient
+	inventory *inventory.InventoryClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -31,6 +33,13 @@ func (c *Clientset) VNet() *vnet.VNetClient {
 		c.vnet = vnet.New(c.Client)
 	}
 	return c.vnet
+}
+
+func (c *Clientset) Inventory() *inventory.InventoryClient {
+	if c.inventory == nil {
+		c.inventory = inventory.New(c.Client)
+	}
+	return c.inventory
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {

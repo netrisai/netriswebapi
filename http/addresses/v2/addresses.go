@@ -33,6 +33,8 @@ limitations under the License.
 package v2
 
 const (
-	Auth     = "/api/auth"
-	VNetBase = "/api/v2/vnet"
+	Auth            = "/api/auth"
+	VNetBase        = "/api/v2/vnet"
+	InventoryBase   = "/api/v2/hw"
+	InventorySwitch = "/api/v2/hw/switch"
 )

@@ -21,27 +21,27 @@ VNet Structure for GET requests
 */
 
 type VNet struct {
-	CreatedDate  int64         `json:"createdDate"`
+	CreatedDate  int           `json:"createdDate"`
 	Gateways     []VNetGateway `json:"gateways"`
-	ID           int64         `json:"id"`
-	Internal     int64         `json:"internal"`
+	ID           int           `json:"id"`
+	Internal     int           `json:"internal"`
 	MacAddress   string        `json:"macAddress"`
-	ModifiedDate int64         `json:"modifiedDate"`
+	ModifiedDate int           `json:"modifiedDate"`
 	Name         string        `json:"name"`
-	NativeVlan   int64         `json:"nativeVlan"`
-	PortsCount   int64         `json:"portsCount"`
+	NativeVlan   int           `json:"nativeVlan"`
+	PortsCount   int           `json:"portsCount"`
 	Provisioning bool          `json:"provisioning"`
 	State        string        `json:"state"`
 	Status       VNetStatus    `json:"status"`
 	VlanAware    bool          `json:"vlanAware"`
 	Vlans        string        `json:"vlans"`
-	VxlanID      int64         `json:"vxlanID"`
+	VxlanID      int           `json:"vxlanID"`
 }
 
 type VNetGateway struct {
 	IPFamily string `json:"ipFamily"`
 	Prefix   string `json:"prefix"`
-	Vlan     int64  `json:"vlan"`
+	Vlan     int    `json:"vlan"`
 }
 
 type VNetStatus struct {
@@ -54,17 +54,17 @@ VNet Structure for GET by id request
 */
 
 type VNetDetailed struct {
-	CreatedDate  int64                     `json:"createdDate"`
+	CreatedDate  int                       `json:"createdDate"`
 	Gateways     []VNetDetailedGateway     `json:"gateways"`
 	GuestTenants []VNetDetailedGuestTenant `json:"guestTenants"`
-	ID           int64                     `json:"id"`
-	Internal     int64                     `json:"internal"`
+	ID           int                       `json:"id"`
+	Internal     int                       `json:"internal"`
 	MacAddress   string                    `json:"macAddress"`
-	ModifiedDate int64                     `json:"modifiedDate"`
+	ModifiedDate int                       `json:"modifiedDate"`
 	Name         string                    `json:"name"`
-	NativeVlan   int64                     `json:"nativeVlan"`
+	NativeVlan   int                       `json:"nativeVlan"`
 	Ports        []VNetDetailedPort        `json:"ports"`
-	PortsCount   int64                     `json:"portsCount"`
+	PortsCount   int                       `json:"portsCount"`
 	Provisioning bool                      `json:"provisioning"`
 	Sites        []VNetDetailedSite        `json:"sites"`
 	State        string                    `json:"state"`
@@ -72,25 +72,26 @@ type VNetDetailed struct {
 	Tenant       VNetDetailedTenant        `json:"tenant"`
 	VlanAware    bool                      `json:"vlanAware"`
 	Vlans        string                    `json:"vlans"`
-	VxlanID      int64                     `json:"vxlanID"`
+	VxlanID      int                       `json:"vxlanID"`
 }
 
 type VNetDetailedGateway struct {
 	Prefix string `json:"prefix"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetDetailedGuestTenant struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type VNetDetailedSite struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type VNetDetailedTenant struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -98,20 +99,20 @@ type VNetDetailedPort struct {
 	Access           bool                             `json:"access"`
 	AdminDown        string                           `json:"adminDown"`
 	AutoNeg          string                           `json:"autoNeg"`
-	Breakout         int64                            `json:"breakout"`
-	CreatedDate      int64                            `json:"createdDate"`
+	Breakout         int                              `json:"breakout"`
+	CreatedDate      int                              `json:"createdDate"`
 	Description      string                           `json:"description"`
 	DesiredSpeed     interface{}                      `json:"desiredSpeed"`
 	Duplex           string                           `json:"duplex"`
-	Extension        int64                            `json:"extension"`
-	ID               int64                            `json:"id"`
+	Extension        int                              `json:"extension"`
+	ID               int                              `json:"id"`
 	IfName           interface{}                      `json:"ifName"`
 	Lacp             string                           `json:"lacp"`
-	MacCount         int64                            `json:"macCount"`
-	ModifiedDate     int64                            `json:"modifiedDate"`
-	Mtu              int64                            `json:"mtu"`
+	MacCount         int                              `json:"macCount"`
+	ModifiedDate     int                              `json:"modifiedDate"`
+	Mtu              int                              `json:"mtu"`
 	Name             string                           `json:"name"`
-	ParentPort       int64                            `json:"parentPort"`
+	ParentPort       int                              `json:"parentPort"`
 	Port             string                           `json:"port"`
 	Site             VNetDetailedPortSite             `json:"site"`
 	SlavePorts       []interface{}                    `json:"slavePorts"`
@@ -129,7 +130,7 @@ type VNetDetailedPort struct {
 }
 
 type VNetDetailedPortSite struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -140,23 +141,23 @@ type VNetDetailedPortState struct {
 }
 
 type VNetDetailedPortStateInHierarchy struct {
-	Aggregated       bool  `json:"aggregated"`
-	Breakout         bool  `json:"breakout"`
-	BreakoutChild    int64 `json:"breakoutChild"`
-	Extended         int64 `json:"extended"`
-	ExtensionsParent int64 `json:"extensionsParent"`
-	LagMember        bool  `json:"lagMember"`
+	Aggregated       bool `json:"aggregated"`
+	Breakout         bool `json:"breakout"`
+	BreakoutChild    int  `json:"breakoutChild"`
+	Extended         int  `json:"extended"`
+	ExtensionsParent int  `json:"extensionsParent"`
+	LagMember        bool `json:"lagMember"`
 }
 
 type VNetDetailedPortSwitch struct {
-	ID          int64  `json:"id"`
+	ID          int    `json:"id"`
 	MainAddress string `json:"mainAddress"`
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 }
 
 type VNetDetailedPortTenant struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -169,7 +170,7 @@ type VNetAdd struct {
 	Sites        []VNetAddSite    `json:"sites"`
 	Gateways     []VNetAddGateway `json:"gateways"`
 	GuestTenants []VNetAddTenant  `json:"guestTenants"`
-	NativeVlan   int64            `json:"nativeVlan"`
+	NativeVlan   int              `json:"nativeVlan"`
 	Ports        []VNetAddPort    `json:"ports"`
 	Provisioning bool             `json:"provisioning"`
 	State        string           `json:"state"`
@@ -180,24 +181,25 @@ type VNetAdd struct {
 
 type VNetAddGateway struct {
 	Prefix string `json:"prefix"`
-	Vlan   int64  `json:"vlan"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetAddTenant struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type VNetAddPort struct {
+	Name   string `json:"name"`
 	Access bool   `json:"access"`
-	ID     int64  `json:"id"`
+	ID     int    `json:"id"`
 	Lacp   string `json:"lacp"`
 	State  string `json:"state"`
 	Vlan   string `json:"vlan"`
 }
 
 type VNetAddSite struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -209,7 +211,7 @@ type VNetUpdate struct {
 	Gateways     []VNetUpdateGateway     `json:"gateways"`
 	GuestTenants []VNetUpdateGuestTenant `json:"guestTenants"`
 	Name         string                  `json:"name"`
-	NativeVlan   int64                   `json:"nativeVlan"`
+	NativeVlan   int                     `json:"nativeVlan"`
 	Ports        []VNetUpdatePort        `json:"ports"`
 	Provisioning bool                    `json:"provisioning"`
 	Sites        []VNetUpdateSite        `json:"sites"`
@@ -219,23 +221,24 @@ type VNetUpdate struct {
 
 type VNetUpdateGateway struct {
 	Prefix string `json:"prefix"`
-	Vlan   int64  `json:"vlan"`
+	Vlan   string `json:"vlan"`
 }
 
 type VNetUpdateGuestTenant struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type VNetUpdatePort struct {
 	Access bool   `json:"access"`
-	ID     int64  `json:"id"`
+	Name   string `json:"name"`
+	ID     int    `json:"id"`
 	Lacp   string `json:"lacp"`
 	State  string `json:"state"`
 	Vlan   string `json:"vlan"`
 }
 
 type VNetUpdateSite struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
