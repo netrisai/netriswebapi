@@ -18,6 +18,7 @@ package v1
 
 import (
 	"github.com/netrisai/netriswebapi/http"
+	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
@@ -38,6 +39,7 @@ type Clientset struct {
 	vnet      *vnet.VNetClient
 	port      *port.PortClient
 	tenant    *tenant.TenantClient
+	bgp       *bgp.BGPClient
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -94,6 +96,13 @@ func (c *Clientset) Tenant() *tenant.TenantClient {
 		c.tenant = tenant.New(c.Client)
 	}
 	return c.tenant
+}
+
+func (c *Clientset) BGP() *bgp.BGPClient {
+	if c.bgp == nil {
+		c.bgp = bgp.New(c.Client)
+	}
+	return c.bgp
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {

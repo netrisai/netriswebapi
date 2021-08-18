@@ -28,4 +28,13 @@ const (
 	VNetValidate     = "/api/v-net/validate"
 	Ports            = "/api/switchports"
 	Tenants          = "/api/tenants"
+
+	BGP               = "/api/ebgp"
+	BGPSites          = "/api/ebgp/sites"
+	BGPVNets          = "/api/ebgp/v-nets"
+	BGPRouteMaps      = "/api/ebgp/routemaps"
+	BGPOffloaders     = "/api/ebgp/offloaders"
+	BGPPorts          = "/api/ebgp/ports"
+	BGPSwitches       = "/api/ebgp/switches"
+	BGPUpdatedSources = "/api/ebgp/updatesources"
 )
