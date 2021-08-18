@@ -18,10 +18,14 @@ package v2
 
 import (
 	"github.com/netrisai/netriswebapi/http"
+	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
+	"github.com/netrisai/netriswebapi/v1/types/port"
+	"github.com/netrisai/netriswebapi/v1/types/route"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
+	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 )
@@ -34,6 +38,10 @@ type Clientset struct {
 	gsetting  *gsetting.GSettingClient
 	l4lb      *l4lb.LBClient
 	subnet    *subnet.SubnetClient
+	port      *port.PortClient
+	tenant    *tenant.TenantClient
+	bgp       *bgp.BGPClient
+	route     *route.RouteClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -76,6 +84,34 @@ func (c *Clientset) Subnet() *subnet.SubnetClient {
 		c.subnet = subnet.New(c.Client)
 	}
 	return c.subnet
+}
+
+func (c *Clientset) Port() *port.PortClient {
+	if c.port == nil {
+		c.port = port.New(c.Client)
+	}
+	return c.port
+}
+
+func (c *Clientset) Tenant() *tenant.TenantClient {
+	if c.tenant == nil {
+		c.tenant = tenant.New(c.Client)
+	}
+	return c.tenant
+}
+
+func (c *Clientset) BGP() *bgp.BGPClient {
+	if c.bgp == nil {
+		c.bgp = bgp.New(c.Client)
+	}
+	return c.bgp
+}
+
+func (c *Clientset) Route() *route.RouteClient {
+	if c.route == nil {
+		c.route = route.New(c.Client)
+	}
+	return c.route
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
