@@ -14,18 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1
+package tenant
 
-const (
-	Sites            = "/api/sites"
-	GSettings        = "/api/general"
-	L4LB             = "/api/l4lb"
-	Subnets          = "/api/subnets"
-	Inventory        = "/api/inventory"
-	InventoryUsedIPs = "/api/inventory/usedips"
-	VNet             = "/api/v-net"
-	VNetInfo         = "/api/v-net/info"
-	VNetValidate     = "/api/v-net/validate"
-	Ports            = "/api/switchports"
-	Tenants          = "/api/tenants"
-)
+type Tenant struct {
+	CreateDate   int    `json:"create_date"`
+	Description  string `json:"description"`
+	ID           int    `json:"id"`
+	ModifiedDate int    `json:"modified_date"`
+	Name         string `json:"name"`
+	TenantID     int    `json:"tenant_id"`
+}

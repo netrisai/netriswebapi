@@ -24,6 +24,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/port"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
+	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
 )
 
@@ -36,6 +37,7 @@ type Clientset struct {
 	inventory *inventory.InventoryClient
 	vnet      *vnet.VNetClient
 	port      *port.PortClient
+	tenant    *tenant.TenantClient
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -85,6 +87,13 @@ func (c *Clientset) Port() *port.PortClient {
 		c.port = port.New(c.Client)
 	}
 	return c.port
+}
+
+func (c *Clientset) Tenant() *tenant.TenantClient {
+	if c.tenant == nil {
+		c.tenant = tenant.New(c.Client)
+	}
+	return c.tenant
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
