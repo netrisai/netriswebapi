@@ -22,6 +22,7 @@ import (
 
 	"github.com/netrisai/netriswebapi/http"
 	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
+	"github.com/netrisai/netriswebapi/v1/types/site"
 )
 
 type InventoryClient struct {
@@ -51,7 +52,15 @@ func parseUsedIPs(APIResult *http.APIResponse) ([]*InventoryUsedIPs, error) {
 }
 
 func (c *InventoryClient) Get() ([]*Inventory, error) {
-	address := c.client.URL.String() + v1address.Inventory
+	sites, err := site.New(c.client).Get()
+	if err != nil {
+		return nil, err
+	}
+	siteList := ""
+	for _, s := range sites {
+		siteList += fmt.Sprintf("selectedSites[]=%d&", s.ID)
+	}
+	address := c.client.URL.String() + v1address.Inventory + "?" + siteList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{Get} %s", err)
