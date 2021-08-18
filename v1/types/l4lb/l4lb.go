@@ -83,3 +83,21 @@ func (c *LBClient) Update(l4lb *LoadBalancerUpdate) (reply http.HTTPReply, err e
 
 	return reply, nil
 }
+
+func (c *LBClient) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID int `json:"id"`
+	}{id}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.L4LB
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
