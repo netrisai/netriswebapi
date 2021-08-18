@@ -26,4 +26,5 @@ const (
 	VNet             = "/api/v-net"
 	VNetInfo         = "/api/v-net/info"
 	VNetValidate     = "/api/v-net/validate"
+	Ports            = "/api/switchports"
 )
