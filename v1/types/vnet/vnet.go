@@ -41,8 +41,8 @@ func parse(APIResult *http.APIResponse) ([]*VNet, error) {
 	return sites, nil
 }
 
-func parseInfo(APIResult *http.APIResponse) (*VNetInfo, error) {
-	var sites *VNetInfo
+func parseInfo(APIResult *http.APIResponse) ([]*VNetInfo, error) {
+	var sites []*VNetInfo
 	err := http.Decode(APIResult.Data, &sites)
 	if err != nil {
 		return sites, fmt.Errorf("{parseInfo} %s", err)
@@ -64,7 +64,7 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 	return items, nil
 }
 
-func (c *VNetClient) GetByID(id int) (*VNetInfo, error) {
+func (c *VNetClient) GetByID(id int) ([]*VNetInfo, error) {
 	address := c.client.URL.String() + v1address.VNetInfo + fmt.Sprintf("?ids=%d", id)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
