@@ -120,3 +120,22 @@ func (c *VNetClient) Validate(vnet *VNetUpdate) (reply http.HTTPReply, err error
 
 	return reply, nil
 }
+
+func (c *VNetClient) Delete(id int, circuitTenants []int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID             int   `json:"id"`
+		CircuitTenants []int `json:"circuitTenants"`
+	}{ID: id, CircuitTenants: circuitTenants}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.VNet
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
