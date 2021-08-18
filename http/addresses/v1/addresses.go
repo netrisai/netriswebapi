@@ -17,17 +17,20 @@ limitations under the License.
 package v1
 
 const (
-	Sites            = "/api/sites"
-	GSettings        = "/api/general"
-	L4LB             = "/api/l4lb"
-	Subnets          = "/api/subnets"
+	Sites     = "/api/sites"
+	GSettings = "/api/general"
+	L4LB      = "/api/l4lb"
+	Subnets   = "/api/subnets"
+
 	Inventory        = "/api/inventory"
 	InventoryUsedIPs = "/api/inventory/usedips"
-	VNet             = "/api/v-net"
-	VNetInfo         = "/api/v-net/info"
-	VNetValidate     = "/api/v-net/validate"
-	Ports            = "/api/switchports"
-	Tenants          = "/api/tenants"
+
+	VNet         = "/api/v-net"
+	VNetInfo     = "/api/v-net/info"
+	VNetValidate = "/api/v-net/validate"
+
+	Ports   = "/api/switchports"
+	Tenants = "/api/tenants"
 
 	BGP               = "/api/ebgp"
 	BGPSites          = "/api/ebgp/sites"
@@ -37,4 +40,6 @@ const (
 	BGPPorts          = "/api/ebgp/ports"
 	BGPSwitches       = "/api/ebgp/switches"
 	BGPUpdatedSources = "/api/ebgp/updatesources"
+
+	Routes = "/api/routes"
 )
