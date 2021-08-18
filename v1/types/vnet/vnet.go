@@ -112,7 +112,7 @@ func (c *VNetClient) Validate(vnet *VNetUpdate) (reply http.HTTPReply, err error
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)
 	}
-	address := c.client.URL.String() + v1address.VNet
+	address := c.client.URL.String() + v1address.VNetValidate
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{Update} %s", err)
