@@ -102,7 +102,7 @@ func (c *InventoryClient) Add(site *InventoryAdd) (reply http.HTTPReply, err err
 	return reply, nil
 }
 
-func (c *InventoryClient) Update(id int, vnet *Inventory) (reply http.HTTPReply, err error) {
+func (c *InventoryClient) Update(vnet *Inventory) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(vnet)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)

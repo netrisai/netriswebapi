@@ -70,7 +70,7 @@ func (c *LBClient) Add(site *LoadBalancerAdd) (reply http.HTTPReply, err error) 
 	return reply, nil
 }
 
-func (c *LBClient) Update(id int, vnet *LoadBalancerUpdate) (reply http.HTTPReply, err error) {
+func (c *LBClient) Update(vnet *LoadBalancerUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(vnet)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)
