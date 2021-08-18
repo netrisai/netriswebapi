@@ -14,48 +14,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v2
+package v1
 
 import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
+	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/port"
 	"github.com/netrisai/netriswebapi/v1/types/route"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
-	"github.com/netrisai/netriswebapi/v2/types/inventory"
-	"github.com/netrisai/netriswebapi/v2/types/vnet"
+	"github.com/netrisai/netriswebapi/v1/types/vnet"
 )
 
 type Clientset struct {
 	Client    *http.HTTPCred
-	vnet      *vnet.VNetClient
-	inventory *inventory.InventoryClient
 	site      *site.SiteClient
 	gsetting  *gsetting.GSettingClient
 	l4lb      *l4lb.LBClient
 	subnet    *subnet.SubnetClient
+	inventory *inventory.InventoryClient
+	vnet      *vnet.VNetClient
 	port      *port.PortClient
 	tenant    *tenant.TenantClient
 	bgp       *bgp.BGPClient
 	route     *route.RouteClient
-}
-
-func (c *Clientset) VNet() *vnet.VNetClient {
-	if c.vnet == nil {
-		c.vnet = vnet.New(c.Client)
-	}
-	return c.vnet
-}
-
-func (c *Clientset) Inventory() *inventory.InventoryClient {
-	if c.inventory == nil {
-		c.inventory = inventory.New(c.Client)
-	}
-	return c.inventory
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -84,6 +70,20 @@ func (c *Clientset) Subnet() *subnet.SubnetClient {
 		c.subnet = subnet.New(c.Client)
 	}
 	return c.subnet
+}
+
+func (c *Clientset) Inventory() *inventory.InventoryClient {
+	if c.inventory == nil {
+		c.inventory = inventory.New(c.Client)
+	}
+	return c.inventory
+}
+
+func (c *Clientset) VNet() *vnet.VNetClient {
+	if c.vnet == nil {
+		c.vnet = vnet.New(c.Client)
+	}
+	return c.vnet
 }
 
 func (c *Clientset) Port() *port.PortClient {
