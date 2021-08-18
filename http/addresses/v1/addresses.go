@@ -23,4 +23,7 @@ const (
 	Subnets          = "/api/subnets"
 	Inventory        = "/api/inventory"
 	InventoryUsedIPs = "/api/inventory/usedips"
+	VNet             = "/api/v-net"
+	VNetInfo         = "/api/v-net/info"
+	VNetValidate     = "/api/v-net/validate"
 )
