@@ -55,8 +55,8 @@ func (c *LBClient) Get() ([]*LoadBalancer, error) {
 	return items, nil
 }
 
-func (c *LBClient) Add(site *LoadBalancerAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(site)
+func (c *LBClient) Add(l4lb *LoadBalancerAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(l4lb)
 	if err != nil {
 		return reply, err
 	}

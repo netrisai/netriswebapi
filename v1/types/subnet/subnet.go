@@ -55,8 +55,8 @@ func (c *SubnetClient) Get() ([]*Subnet, error) {
 	return items, nil
 }
 
-func (c *SubnetClient) Add(site *SubnetAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(site)
+func (c *SubnetClient) Add(subnet *SubnetAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(subnet)
 	if err != nil {
 		return reply, err
 	}

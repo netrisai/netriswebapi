@@ -78,8 +78,8 @@ func (c *VNetClient) GetByID(id int) ([]*VNetInfo, error) {
 	return vnet, nil
 }
 
-func (c *VNetClient) Add(site *VNetAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(site)
+func (c *VNetClient) Add(vnet *VNetAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(vnet)
 	if err != nil {
 		return reply, err
 	}

@@ -87,8 +87,8 @@ func (c *InventoryClient) GetUsedIPs() ([]*InventoryUsedIPs, error) {
 	return items, nil
 }
 
-func (c *InventoryClient) Add(site *InventoryAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(site)
+func (c *InventoryClient) Add(inventory *InventoryAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(inventory)
 	if err != nil {
 		return reply, err
 	}
