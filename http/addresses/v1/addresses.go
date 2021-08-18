@@ -17,8 +17,10 @@ limitations under the License.
 package v1
 
 const (
-	Sites     = "/api/sites"
-	GSettings = "/api/general"
-	L4LB      = "/api/l4lb"
-	Subnets   = "/api/subnets"
+	Sites            = "/api/sites"
+	GSettings        = "/api/general"
+	L4LB             = "/api/l4lb"
+	Subnets          = "/api/subnets"
+	Inventory        = "/api/inventory"
+	InventoryUsedIPs = "/api/inventory/usedips"
 )
