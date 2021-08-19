@@ -17,6 +17,7 @@ limitations under the License.
 package port
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,18 @@ func (c *PortClient) Get() ([]*Port, error) {
 		return nil, fmt.Errorf("{Get} %s", err)
 	}
 	return items, nil
+}
+
+func (c *PortClient) Update(id int, ports []*PortUpdate) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(ports)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdatePort} %s", err)
+	}
+	address := c.client.URL.String() + v2address.Ports
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdatePort} %s", err)
+	}
+
+	return reply, nil
 }

@@ -16,23 +16,27 @@ limitations under the License.
 
 package port
 
+/*
+Port Structure for GET requests
+*/
+
 type Port struct {
 	AdminDown        string               `json:"adminDown"`
 	AutoNeg          string               `json:"autoNeg"`
 	BGP              PortBGP              `json:"bgp"`
-	Breakout         int64                `json:"breakout"`
-	CreatedDate      int64                `json:"createdDate"`
+	Breakout         int                  `json:"breakout"`
+	CreatedDate      int                  `json:"createdDate"`
 	Description      string               `json:"description"`
 	DesiredSpeed     string               `json:"desiredSpeed"`
 	Duplex           string               `json:"duplex"`
-	Extension        int64                `json:"extension"`
-	ID               int64                `json:"id"`
+	Extension        int                  `json:"extension"`
+	ID               int                  `json:"id"`
 	IfName           interface{}          `json:"ifName"`
 	Lacp             string               `json:"lacp"`
-	ModifiedDate     int64                `json:"modifiedDate"`
-	Mtu              int64                `json:"mtu"`
+	ModifiedDate     int                  `json:"modifiedDate"`
+	Mtu              int                  `json:"mtu"`
 	Name             string               `json:"name"`
-	ParentPort       int64                `json:"parentPort"`
+	ParentPort       int                  `json:"parentPort"`
 	Port             string               `json:"port"`
 	ShortName        string               `json:"shortName"`
 	Site             IDName               `json:"site"`
@@ -50,7 +54,7 @@ type Port struct {
 }
 
 type IDName struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -61,12 +65,12 @@ type PortBGP struct {
 }
 
 type PortStateInHierarchy struct {
-	Aggregated       bool  `json:"aggregated"`
-	Breakout         bool  `json:"breakout"`
-	BreakoutChild    int64 `json:"breakoutChild"`
-	Extended         int64 `json:"extended"`
-	ExtensionsParent int64 `json:"extensionsParent"`
-	LagMember        bool  `json:"lagMember"`
+	Aggregated       bool `json:"aggregated"`
+	Breakout         bool `json:"breakout"`
+	BreakoutChild    int  `json:"breakoutChild"`
+	Extended         int  `json:"extended"`
+	ExtensionsParent int  `json:"extensionsParent"`
+	LagMember        bool `json:"lagMember"`
 }
 
 type PortStatus struct {
@@ -75,7 +79,31 @@ type PortStatus struct {
 }
 
 type PortSwitch struct {
-	ID   int64  `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 	Type string `json:"type"`
+}
+
+/*
+Port Structure for PUT requests
+*/
+
+type PortUpdate struct {
+	AdminDown   string               `json:"adminDown"`
+	AutoNeg     string               `json:"autoNeg"`
+	Breakout    string               `json:"breakout"`
+	Description string               `json:"description"`
+	Duplex      string               `json:"duplex"`
+	Extension   PortUpdateExtenstion `json:"extension"`
+	ID          int                  `json:"id"`
+	Mtu         int                  `json:"mtu"`
+	Speed       string               `json:"speed"`
+	Tenant      IDName               `json:"tenant"`
+}
+
+type PortUpdateExtenstion struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	VLANFrom int    `json:"vlanFrom"`
+	VLANTo   int    `json:"vlanTo"`
 }
