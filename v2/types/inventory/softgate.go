@@ -25,7 +25,7 @@ import (
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
 )
 
-func (c *InventoryClient) AddSpftgate(hw *HWSoftgate) (reply http.HTTPReply, err error) {
+func (c *InventoryClient) AddSoftgate(hw *HWSoftgate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(hw)
 	if err != nil {
 		return reply, err
