@@ -26,6 +26,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
+	"github.com/netrisai/netriswebapi/v2/types/ipam"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 )
@@ -42,6 +43,7 @@ type Clientset struct {
 	tenant    *tenant.TenantClient
 	bgp       *bgp.BGPClient
 	route     *route.RouteClient
+	ipam      *ipam.IPAMClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -112,6 +114,13 @@ func (c *Clientset) Route() *route.RouteClient {
 		c.route = route.New(c.Client)
 	}
 	return c.route
+}
+
+func (c *Clientset) IPAM() *ipam.IPAMClient {
+	if c.ipam == nil {
+		c.ipam = ipam.New(c.Client)
+	}
+	return c.ipam
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
