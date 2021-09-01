@@ -48,6 +48,7 @@ const (
 
 	IPAMBase    = "/api/v2/ipam"
 	IPAMSubnets = "/api/v2/ipam/subnets"
+	IPAMHosts   = "/api/v2/ipam/hosts"
 
 	Ports = "/api/v2/ports"
 )

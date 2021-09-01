@@ -55,3 +55,19 @@ type Utilization struct {
 	Percent int    `json:"percent"`
 	Type    string `json:"type"`
 }
+
+type Host struct {
+	Address     string      `json:"address"`
+	Description string      `json:"description"`
+	ID          int         `json:"id"`
+	IPFamily    string      `json:"ipFamily"`
+	Meta        HostAnycast `json:"meta"`
+	Name        string      `json:"name"`
+	Readonly    string      `json:"readonly"`
+	SubnetID    int         `json:"subnetID"`
+	Type        string      `json:"type"`
+}
+
+type HostAnycast struct {
+	Anycast bool `json:"anycast"`
+}

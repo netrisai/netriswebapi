@@ -18,6 +18,7 @@ package ipam
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -58,12 +59,27 @@ func (c *IPAMClient) GetSubnets() ([]*IPAM, error) {
 	address := c.client.URL.String() + v2address.IPAMSubnets
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetSubnets} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetSubnets} %s", err)
+	}
+	return items, nil
+}
+
+func (c *IPAMClient) GetHosts(id int) ([]*Host, error) {
+	address := c.client.URL.String() + v2address.IPAMHosts + "/" + strconv.Itoa(id)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetHosts} %s", err)
+	}
+
+	var items []*Host
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetHosts} %s", err)
 	}
 	return items, nil
 }
