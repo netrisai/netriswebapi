@@ -127,3 +127,17 @@ func (c *IPAMClient) Delete(kind string, id int) (reply http.HTTPReply, err erro
 
 	return reply, nil
 }
+
+func (c *IPAMClient) DeleteByPrefix(kind, prefix string) (reply http.HTTPReply, err error) {
+	if !(kind == "allocation" || kind == "subnet") {
+		return reply, fmt.Errorf("Invalid hardware type. Available values: allocation, subnet")
+	}
+
+	address := c.client.URL.String() + v2address.IPAMBase + "/" + kind + "/" + prefix
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
