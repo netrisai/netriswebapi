@@ -53,3 +53,17 @@ func (c *IPAMClient) Get() ([]*IPAM, error) {
 	}
 	return items, nil
 }
+
+func (c *IPAMClient) GetSubnets() ([]*IPAM, error) {
+	address := c.client.URL.String() + v2address.IPAMSubnets
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{Get} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{Get} %s", err)
+	}
+	return items, nil
+}

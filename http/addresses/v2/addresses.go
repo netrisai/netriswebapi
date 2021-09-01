@@ -46,7 +46,8 @@ const (
 	InventorySubnets    = "/api/v2/hw/subnets"
 	InventoryNOS        = "/api/v2/hw/nos"
 
-	IPAMBase = "/api/v2/ipam"
+	IPAMBase    = "/api/v2/ipam"
+	IPAMSubnets = "/api/v2/ipam/subnets"
 
 	Ports = "/api/v2/ports"
 )
