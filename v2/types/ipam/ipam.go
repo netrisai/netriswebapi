@@ -17,6 +17,7 @@ limitations under the License.
 package ipam
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -82,4 +83,33 @@ func (c *IPAMClient) GetHosts(id int) ([]*Host, error) {
 		return items, fmt.Errorf("{GetHosts} %s", err)
 	}
 	return items, nil
+}
+
+func (c *IPAMClient) AddAllocation(allocation *Allocation) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(allocation)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.IPAMAllocation
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *IPAMClient) UpdateAllocation(id int, allocation *Allocation) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(allocation)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdateAllocation} %s", err)
+	}
+	address := c.client.URL.String() + v2address.IPAMAllocation + "/" + strconv.Itoa(id)
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdateAllocation} %s", err)
+	}
+
+	return reply, nil
 }

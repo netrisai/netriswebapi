@@ -21,34 +21,32 @@ IPAM Structure for GET requests
 */
 
 type IPAM struct {
-	AllocationID   int         `json:"allocationID"`
-	Children       []IPAM      `json:"children"`
-	DefaultGateway string      `json:"defaultGateway"`
-	Description    string      `json:"description"`
-	FullName       string      `json:"fullName"`
-	HasHosts       bool        `json:"hasHosts"`
-	ID             int         `json:"id"`
-	IPFamily       string      `json:"ipFamily"`
-	Name           string      `json:"name"`
-	ParentID       int         `json:"parentID"`
-	Prefix         string      `json:"prefix"`
-	Purpose        string      `json:"purpose"`
-	Readonly       string      `json:"readonly"`
-	Sites          []IDName    `json:"sites"`
-	Subnet         Subnet      `json:"subnet"`
-	Tenant         IDName      `json:"tenant"`
-	Type           string      `json:"type"`
-	Utilization    Utilization `json:"utilization"`
+	AllocationID   int      `json:"allocationID"`
+	Children       []IPAM   `json:"children"`
+	DefaultGateway string   `json:"defaultGateway"`
+	Description    string   `json:"description"`
+	FullName       string   `json:"fullName"`
+	HasHosts       bool     `json:"hasHosts"`
+	ID             int      `json:"id"`
+	IPFamily       string   `json:"ipFamily"`
+	Name           string   `json:"name"`
+	ParentID       int      `json:"parentID"`
+	Prefix         string   `json:"prefix"`
+	Purpose        string   `json:"purpose"`
+	Readonly       string   `json:"readonly"`
+	Sites          []IDName `json:"sites"`
+	Subnet         struct {
+		Length int    `json:"length"`
+		Prefix string `json:"prefix"`
+	} `json:"subnet"`
+	Tenant      IDName      `json:"tenant"`
+	Type        string      `json:"type"`
+	Utilization Utilization `json:"utilization"`
 }
 
 type IDName struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
-}
-
-type Subnet struct {
-	Length int    `json:"length"`
-	Prefix string `json:"prefix"`
 }
 
 type Utilization struct {
@@ -70,4 +68,15 @@ type Host struct {
 
 type HostAnycast struct {
 	Anycast bool `json:"anycast"`
+}
+
+/*
+IPAM Allocation Structure for POST requests
+*/
+
+type Allocation struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Prefix      string `json:"prefix"`
+	Tenant      IDName `json:"tenant"`
 }
