@@ -114,6 +114,35 @@ func (c *IPAMClient) UpdateAllocation(id int, allocation *Allocation) (reply htt
 	return reply, nil
 }
 
+func (c *IPAMClient) AddSubnet(subnet *Subnet) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(subnet)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.IPAMSubnet
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *IPAMClient) UpdateSubnetn(id int, subnet *Allocation) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(subnet)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdateSubnetn} %s", err)
+	}
+	address := c.client.URL.String() + v2address.IPAMSubnet + "/" + strconv.Itoa(id)
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdateSubnetn} %s", err)
+	}
+
+	return reply, nil
+}
+
 func (c *IPAMClient) Delete(kind string, id int) (reply http.HTTPReply, err error) {
 	if !(kind == "allocation" || kind == "subnet") {
 		return reply, fmt.Errorf("Invalid hardware type. Available values: allocation, subnet")

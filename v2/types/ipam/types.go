@@ -80,3 +80,17 @@ type Allocation struct {
 	Prefix      string `json:"prefix"`
 	Tenant      IDName `json:"tenant"`
 }
+
+/*
+IPAM Subnet Structure for POST requests
+*/
+
+type Subnet struct {
+	DefaultGateway string   `json:"defaultGateway"`
+	Description    string   `json:"description"`
+	Name           string   `json:"name"`
+	Prefix         string   `json:"prefix"`
+	Purpose        string   `json:"purpose"`
+	Sites          []IDName `json:"sites"`
+	Tenant         IDName   `json:"tenant"`
+}
