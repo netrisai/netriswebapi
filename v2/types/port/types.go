@@ -38,6 +38,8 @@ type Port struct {
 	Name             string               `json:"name"`
 	ParentPort       int                  `json:"parentPort"`
 	Port             string               `json:"port"`
+	Port_            string               `json:"_port"`
+	PortIndex        string               `json:"portIndex"`
 	ShortName        string               `json:"shortName"`
 	Site             IDName               `json:"site"`
 	SlavePorts       []interface{}        `json:"slavePorts"`

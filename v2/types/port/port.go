@@ -56,6 +56,21 @@ func (c *PortClient) Get() ([]*Port, error) {
 	return items, nil
 }
 
+func (c *PortClient) GetByID(id int) (*Port, error) {
+	address := c.client.URL.String() + v2address.Ports + "/" + strconv.Itoa(id)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetByID} %s", err)
+	}
+
+	var port *Port
+	err = http.Decode(APIResult.Data, &port)
+	if err != nil {
+		return port, fmt.Errorf("{GetByID} %s", err)
+	}
+	return port, nil
+}
+
 func (c *PortClient) Update(id int, ports []*PortUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(ports)
 	if err != nil {
