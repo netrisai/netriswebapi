@@ -85,6 +85,21 @@ func (c *PortClient) UpdateList(ports []*PortUpdate) (reply http.HTTPReply, err 
 	return reply, nil
 }
 
+func (c *PortClient) DeleteList(ports []*IDName) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(ports)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{DeleteList} %s", err)
+	}
+
+	address := c.client.URL.String() + v2address.Ports
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
 func (c *PortClient) Update(id int, port *PortUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(port)
 	if err != nil {
