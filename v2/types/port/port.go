@@ -85,6 +85,20 @@ func (c *PortClient) UpdateList(ports []*PortUpdate) (reply http.HTTPReply, err 
 	return reply, nil
 }
 
+func (c *PortClient) Update(id int, port *PortUpdate) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(port)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)
+	}
+	address := c.client.URL.String() + v2address.Ports + "/" + strconv.Itoa(id)
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Update} %s", err)
+	}
+
+	return reply, nil
+}
+
 func (c *PortClient) GetExtenstion() ([]*PortExtension, error) {
 	address := c.client.URL.String() + v2address.PortExtensions
 	APIResult, err := c.client.Get(address)
