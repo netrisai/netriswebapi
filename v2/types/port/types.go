@@ -107,3 +107,15 @@ type PortUpdateExtenstion struct {
 	VLANFrom int    `json:"vlanFrom"`
 	VLANTo   int    `json:"vlanTo"`
 }
+
+/*
+Port Extenstion structure for GET requests
+*/
+
+type PortExtension struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	VlanFrom int    `json:"vlanFrom"`
+	VlanTo   int    `json:"vlanTo"`
+}

@@ -19,6 +19,7 @@ package port
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -64,6 +65,31 @@ func (c *PortClient) Update(id int, ports []*PortUpdate) (reply http.HTTPReply, 
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{UpdatePort} %s", err)
+	}
+
+	return reply, nil
+}
+
+func (c *PortClient) GetExtenstion() ([]*PortExtension, error) {
+	address := c.client.URL.String() + v2address.PortExtensions
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetExtenstion} %s", err)
+	}
+
+	var items []*PortExtension
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetExtenstion} %s", err)
+	}
+	return items, nil
+}
+
+func (c *PortClient) DeleteExtension(id int) (reply http.HTTPReply, err error) {
+	address := c.client.URL.String() + v2address.PortExtensions + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
 	}
 
 	return reply, nil

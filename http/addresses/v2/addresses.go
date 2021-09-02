@@ -52,5 +52,6 @@ const (
 	IPAMAllocation = "/api/v2/ipam/allocation"
 	IPAMSubnet     = "/api/v2/ipam/subnet"
 
-	Ports = "/api/v2/ports"
+	Ports          = "/api/v2/ports"
+	PortExtensions = "/api/v2/ports/extensions"
 )
