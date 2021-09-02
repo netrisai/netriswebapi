@@ -100,6 +100,16 @@ func (c *PortClient) DeleteList(ports []*IDName) (reply http.HTTPReply, err erro
 	return reply, nil
 }
 
+func (c *PortClient) Delete(id int) (reply http.HTTPReply, err error) {
+	address := c.client.URL.String() + v2address.Ports + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
 func (c *PortClient) Update(id int, port *PortUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(port)
 	if err != nil {
