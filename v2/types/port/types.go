@@ -119,3 +119,23 @@ type PortExtension struct {
 	VlanFrom int    `json:"vlanFrom"`
 	VlanTo   int    `json:"vlanTo"`
 }
+
+/*
+Port LAG structure for POST requests
+*/
+
+type PortLAG struct {
+	AggregatedPort IDName           `json:"aggregatedPort"`
+	Description    string           `json:"description"`
+	Extension      PortLAGExtension `json:"extension"`
+	Mtu            int              `json:"mtu"`
+	Ports          []IDName         `json:"ports"`
+	Tenant         IDName           `json:"tenant"`
+}
+
+type PortLAGExtension struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	VlanFrom int    `json:"vlanFrom"`
+	VlanTo   int    `json:"vlanTo"`
+}

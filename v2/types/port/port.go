@@ -94,3 +94,18 @@ func (c *PortClient) DeleteExtension(id int) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *PortClient) AddToLAG(port *PortLAG) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(port)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.PortLAG
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
