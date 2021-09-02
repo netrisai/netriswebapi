@@ -74,12 +74,12 @@ func (c *PortClient) GetByID(id int) (*Port, error) {
 func (c *PortClient) UpdateList(ports []*PortUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(ports)
 	if err != nil {
-		return http.HTTPReply{}, fmt.Errorf("{UpdatePort} %s", err)
+		return http.HTTPReply{}, fmt.Errorf("{UpdateList} %s", err)
 	}
 	address := c.client.URL.String() + v2address.Ports
 	reply, err = c.client.Put(address, js)
 	if err != nil {
-		return reply, fmt.Errorf("{UpdatePort} %s", err)
+		return reply, fmt.Errorf("{UpdateList} %s", err)
 	}
 
 	return reply, nil
