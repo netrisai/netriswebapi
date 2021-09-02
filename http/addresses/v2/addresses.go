@@ -55,4 +55,5 @@ const (
 	Ports          = "/api/v2/ports"
 	PortExtensions = "/api/v2/ports/extensions"
 	PortLAG        = "/api/v2/ports/lag"
+	PortFreeUP     = "/api/v2/ports/freeup"
 )
