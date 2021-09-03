@@ -46,12 +46,12 @@ func (c *IPAMClient) Get() ([]*IPAM, error) {
 	address := c.client.URL.String() + v2address.IPAMBase
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetIPAM} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetIPAM} %s", err)
 	}
 	return items, nil
 }

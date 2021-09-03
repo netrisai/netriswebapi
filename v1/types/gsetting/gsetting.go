@@ -43,12 +43,12 @@ func (c *GSettingClient) Get() ([]*GlobalSetting, error) {
 	address := c.client.URL.String() + v1address.GSettings
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetGlobalSettings} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetGlobalSettings} %s", err)
 	}
 	return items, nil
 }

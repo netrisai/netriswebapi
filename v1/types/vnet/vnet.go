@@ -54,12 +54,12 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 	address := c.client.URL.String() + v1address.VNet
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNet} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNet} %s", err)
 	}
 	return items, nil
 }
@@ -68,12 +68,12 @@ func (c *VNetClient) GetByID(id int) ([]*VNetInfo, error) {
 	address := c.client.URL.String() + v1address.VNetInfo + fmt.Sprintf("?ids=%d", id)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNetByID} %s", err)
 	}
 
 	vnet, err := parseInfo(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNetByID} %s", err)
 	}
 	return vnet, nil
 }

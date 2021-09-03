@@ -55,12 +55,12 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 	address := c.client.URL.String() + v2address.VNetBase
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNet} %s", err)
 	}
 
 	items, err := parseAPIVnets(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetVNet} %s", err)
 	}
 	return items, nil
 }

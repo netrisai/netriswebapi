@@ -231,16 +231,16 @@ func Decode(input interface{}, output interface{}) error {
 func (cred *HTTPCred) Get(address string) (*APIResponse, error) {
 	data, err := cred.GetRequest(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{http.Get} %s", err)
 	}
 
 	if data.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("{Get} %s", data.Data)
+		return nil, fmt.Errorf("{http.Get} %s", data.Data)
 	}
 
 	result, err := ParseAPIResponse(data.Data)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{http.Get} %s", err)
 	}
 	return result, nil
 }
@@ -253,7 +253,7 @@ func (cred *HTTPCred) GetRequest(address string) (reply HTTPReply, err error) {
 func (cred *HTTPCred) getRequest(address string, redirectCounter int) (reply HTTPReply, err error) {
 	request, err := http.NewRequest("GET", address, nil)
 	if err != nil {
-		return reply, fmt.Errorf("{Get} [%s] %s", address, err)
+		return reply, fmt.Errorf("{http.get} [%s] %s", address, err)
 	}
 
 	request.Header.Set("Content-type", "application/json")
@@ -267,7 +267,7 @@ func (cred *HTTPCred) getRequest(address string, redirectCounter int) (reply HTT
 
 	resp, err := client.Do(request)
 	if err != nil {
-		return reply, fmt.Errorf("{Get} [%s] %s", address, err)
+		return reply, fmt.Errorf("{http.get} [%s] %s", address, err)
 	}
 
 	if resp.StatusCode == 301 && redirectCounter > 0 {
@@ -281,7 +281,7 @@ func (cred *HTTPCred) getRequest(address string, redirectCounter int) (reply HTT
 	defer resp.Body.Close()
 	reply.Data, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return reply, fmt.Errorf("{Get} [%s] %s", address, err)
+		return reply, fmt.Errorf("{http.get} [%s] %s", address, err)
 	}
 	return reply, err
 }
