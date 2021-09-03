@@ -92,7 +92,7 @@ type VNetInfo struct {
 
 // VNetInfoMember .
 type VNetInfoMember struct {
-	AdminDown          int         `json:"admin_down"`
+	AdminDown          interface{} `json:"admin_down"`
 	ChildPort          int         `json:"childPort"`
 	ID                 int         `json:"id"`
 	Lacp               string      `json:"lacp"`
