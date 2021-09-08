@@ -143,13 +143,13 @@ func (c *InventoryClient) GetSubnets(siteID int) ([]*HWSubnet, error) {
 	address := c.client.URL.String() + v2address.InventorySubnets + "?siteID=" + strconv.Itoa(siteID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{GetSubnets} %s", err)
+		return nil, fmt.Errorf("{GetInventorySubnets} %s", err)
 	}
 
 	var items []*HWSubnet
 	err = http.Decode(APIResult.Data, &items)
 	if err != nil {
-		return items, fmt.Errorf("{GetSubnets} %s", err)
+		return items, fmt.Errorf("{GetInventorySubnets} %s", err)
 	}
 	return items, nil
 }
