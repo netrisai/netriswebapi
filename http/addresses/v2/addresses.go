@@ -56,4 +56,13 @@ const (
 	PortExtensions = "/api/v2/ports/extensions"
 	PortLAG        = "/api/v2/ports/lag"
 	PortFreeUP     = "/api/v2/ports/freeup"
+
+	BGP               = "/api/v2/ebgp"
+	BGPSites          = "/api/v2/ebgp/sites"
+	BGPVNets          = "/api/v2/ebgp/v-nets"
+	BGPRouteMaps      = "/api/v2/ebgp/routemaps"
+	BGPOffloaders     = "/api/v2/ebgp/offloaders"
+	BGPPorts          = "/api/v2/ebgp/ports"
+	BGPSwitches       = "/api/v2/ebgp/switches"
+	BGPUpdatedSources = "/api/v2/ebgp/updatesources"
 )
