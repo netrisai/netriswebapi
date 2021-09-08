@@ -200,33 +200,33 @@ type EBGPOffloader struct {
 		ID  interface{} `json:"id"`
 	} `json:"asnNumber"`
 	ConductorVersion interface{}   `json:"conductorVersion"`
-	CreatedDate      int64         `json:"createdDate"`
+	CreatedDate      int           `json:"createdDate"`
 	CumulusVersion   interface{}   `json:"cumulusVersion"`
 	Description      string        `json:"description"`
 	HardwareHealth   []interface{} `json:"hardwareHealth"`
 	Health           struct{}      `json:"health"`
-	ID               int64         `json:"id"`
-	IngressAcls      int64         `json:"ingressAcls"`
-	LastSeen         int64         `json:"lastSeen"`
+	ID               int           `json:"id"`
+	IngressAcls      int           `json:"ingressAcls"`
+	LastSeen         int           `json:"lastSeen"`
 	Links            []struct {
 		Local  IDName `json:"local"`
 		Remote IDName `json:"remote"`
 	} `json:"links"`
-	MacAddrUbit int64       `json:"macAddrUbit"`
+	MacAddrUbit int         `json:"macAddrUbit"`
 	MacAddress  interface{} `json:"macAddress"`
-	Macs        int64       `json:"macs"`
+	Macs        int         `json:"macs"`
 	MainAddress string      `json:"mainAddress"`
 	MainIP      struct {
 		Address     string      `json:"address"`
 		Description interface{} `json:"description"`
-		ID          int64       `json:"id"`
+		ID          int         `json:"id"`
 		IPFamily    string      `json:"ipFamily"`
 		Meta        struct {
 			Tag string `json:"tag"`
 		} `json:"meta"`
 		Name     string `json:"name"`
 		Readonly string `json:"readonly"`
-		SubnetID int64  `json:"subnetID"`
+		SubnetID int    `json:"subnetID"`
 		Type     string `json:"type"`
 	} `json:"mainIP"`
 	MaintenanceMode bool   `json:"maintenanceMode"`
@@ -234,17 +234,17 @@ type EBGPOffloader struct {
 	MgmtIP          struct {
 		Address     string      `json:"address"`
 		Description interface{} `json:"description"`
-		ID          int64       `json:"id"`
+		ID          int         `json:"id"`
 		IPFamily    string      `json:"ipFamily"`
 		Meta        struct {
 			Tag string `json:"tag"`
 		} `json:"meta"`
 		Name     string `json:"name"`
 		Readonly string `json:"readonly"`
-		SubnetID int64  `json:"subnetID"`
+		SubnetID int    `json:"subnetID"`
 		Type     string `json:"type"`
 	} `json:"mgmtIP"`
-	ModifiedDate int64  `json:"modifiedDate"`
+	ModifiedDate int    `json:"modifiedDate"`
 	Name         string `json:"name"`
 	Nos          struct {
 		ID   interface{} `json:"id"`
@@ -253,11 +253,11 @@ type EBGPOffloader struct {
 	} `json:"nos"`
 	OpenstackVersion interface{} `json:"openstackVersion"`
 	Platform         string      `json:"platform"`
-	PortCount        int64       `json:"portCount"`
+	PortCount        int         `json:"portCount"`
 	Profile          IDName      `json:"profile"`
 	ProxmoxVersion   interface{} `json:"proxmoxVersion"`
-	Rangecut         int64       `json:"rangecut"`
-	Routes           int64       `json:"routes"`
+	Rangecut         int         `json:"rangecut"`
+	Routes           int         `json:"routes"`
 	Site             IDName      `json:"site"`
 	Status           string      `json:"status"`
 	Tenant           IDName      `json:"tenant"`
