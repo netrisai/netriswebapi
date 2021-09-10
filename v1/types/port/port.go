@@ -53,12 +53,12 @@ func (c *PortClient) Get() ([]*Port, error) {
 	address := c.client.URL.String() + v1address.Ports + "?" + siteList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetPorts} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetPorts} %s", err)
 	}
 	return items, nil
 }

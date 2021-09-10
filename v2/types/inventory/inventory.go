@@ -17,7 +17,6 @@ limitations under the License.
 package inventory
 
 import (
-	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -55,12 +54,12 @@ func (c *InventoryClient) Get() ([]*HW, error) {
 	address := c.client.URL.String() + v2address.InventoryBase
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
 
 	items, err := parseInventories(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
 	return items, nil
 }
@@ -69,27 +68,103 @@ func (c *InventoryClient) GetByID(id int) (*HW, error) {
 	address := c.client.URL.String() + v2address.InventoryBase + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{GetByID} %s", err)
+		return nil, fmt.Errorf("{GetInventoryByID} %s", err)
 	}
 
 	hw, err := parseInventory(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{GetByID} %s", err)
+		return nil, fmt.Errorf("{GetInventoryByID} %s", err)
 	}
 	return hw, nil
 }
 
-func (c *InventoryClient) Add(hw *HWAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(hw)
-	if err != nil {
-		return reply, err
+func (c *InventoryClient) Delete(kind string, id int) (reply http.HTTPReply, err error) {
+	if !(kind == "switch" || kind == "controller" || kind == "softgate") {
+		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate")
 	}
 
-	address := c.client.URL.String() + v2address.InventorySwitch
-	reply, err = c.client.Post(address, js)
+	address := c.client.URL.String() + v2address.InventoryBase + "/" + kind + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
 	if err != nil {
 		return reply, err
 	}
 
 	return reply, nil
+}
+
+func (c *InventoryClient) DeleteByName(kind, name string) (reply http.HTTPReply, err error) {
+	if !(kind == "switch" || kind == "controller" || kind == "softgate") {
+		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate")
+	}
+
+	address := c.client.URL.String() + v2address.InventoryBase + "/" + kind + "/" + name
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *InventoryClient) GetUsedIPs() ([]*UsedIP, error) {
+	address := c.client.URL.String() + v2address.InventoryUsedIPs
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetUsedIPs} %s", err)
+	}
+
+	var items []*UsedIP
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetUsedIPs} %s", err)
+	}
+	return items, nil
+}
+
+func (c *InventoryClient) GetProfiles() ([]*Profile, error) {
+	address := c.client.URL.String() + v2address.InventoryProfiles
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetProfiles} %s", err)
+	}
+
+	var items []*Profile
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetProfiles} %s", err)
+	}
+	return items, nil
+}
+
+func (c *InventoryClient) GetSubnets(siteID int) ([]*HWSubnet, error) {
+	if !(siteID > 0) {
+		return nil, fmt.Errorf("Specify site ID")
+	}
+	address := c.client.URL.String() + v2address.InventorySubnets + "?siteID=" + strconv.Itoa(siteID)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetInventorySubnets} %s", err)
+	}
+
+	var items []*HWSubnet
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetInventorySubnets} %s", err)
+	}
+	return items, nil
+}
+
+func (c *InventoryClient) GetNOS() ([]*NOS, error) {
+	address := c.client.URL.String() + v2address.InventoryNOS
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetNOS} %s", err)
+	}
+
+	var items []*NOS
+	err = http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{GetNOS} %s", err)
+	}
+	return items, nil
 }

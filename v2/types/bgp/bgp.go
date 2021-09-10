@@ -21,7 +21,7 @@ import (
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
-	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
+	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 )
 
@@ -42,7 +42,7 @@ func (c *BGPClient) Get() ([]*EBGP, error) {
 	for _, s := range sites {
 		siteList += fmt.Sprintf("selectedSites[]=%d&", s.ID)
 	}
-	address := c.client.URL.String() + v1address.BGP + "?" + siteList
+	address := c.client.URL.String() + v2address.BGP + "?" + siteList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetBGP} %s", err)
@@ -56,7 +56,7 @@ func (c *BGPClient) Get() ([]*EBGP, error) {
 }
 
 func (c *BGPClient) GetSites() ([]*EBGPSite, error) {
-	address := c.client.URL.String() + v1address.BGPSites
+	address := c.client.URL.String() + v2address.BGPSites
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetSites} %s", err)
@@ -70,7 +70,7 @@ func (c *BGPClient) GetSites() ([]*EBGPSite, error) {
 }
 
 func (c *BGPClient) GetVNets() ([]*EBGPVNet, error) {
-	address := c.client.URL.String() + v1address.BGPVNets
+	address := c.client.URL.String() + v2address.BGPVNets
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetVNets} %s", err)
@@ -84,7 +84,7 @@ func (c *BGPClient) GetVNets() ([]*EBGPVNet, error) {
 }
 
 func (c *BGPClient) GetRouteMaps() ([]*EBGPRouteMap, error) {
-	address := c.client.URL.String() + v1address.BGPRouteMaps
+	address := c.client.URL.String() + v2address.BGPRouteMaps
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetRouteMaps} %s", err)
@@ -98,7 +98,7 @@ func (c *BGPClient) GetRouteMaps() ([]*EBGPRouteMap, error) {
 }
 
 func (c *BGPClient) GetOffloaders(siteID int) ([]*EBGPOffloader, error) {
-	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v1address.BGPOffloaders, siteID)
+	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v2address.BGPOffloaders, siteID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetOffloaders} %s", err)
@@ -112,7 +112,7 @@ func (c *BGPClient) GetOffloaders(siteID int) ([]*EBGPOffloader, error) {
 }
 
 func (c *BGPClient) GetPorts(siteID int) ([]*EBGPPort, error) {
-	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v1address.BGPPorts, siteID)
+	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v2address.BGPPorts, siteID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPorts} %s", err)
@@ -126,7 +126,7 @@ func (c *BGPClient) GetPorts(siteID int) ([]*EBGPPort, error) {
 }
 
 func (c *BGPClient) GetSwitches(siteID int) ([]*EBGPSwitch, error) {
-	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v1address.BGPSwitches, siteID)
+	address := c.client.URL.String() + fmt.Sprintf("%s?id=%d", v2address.BGPSwitches, siteID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetSwitches} %s", err)
@@ -140,7 +140,7 @@ func (c *BGPClient) GetSwitches(siteID int) ([]*EBGPSwitch, error) {
 }
 
 func (c *BGPClient) GetUpdateSources() ([]*EBGPUpdatedSource, error) {
-	address := c.client.URL.String() + v1address.BGPUpdatedSources
+	address := c.client.URL.String() + v2address.BGPUpdatedSources
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetUpdateSources} %s", err)
@@ -159,7 +159,7 @@ func (c *BGPClient) Add(bgp *EBGPAdd) (reply http.HTTPReply, err error) {
 		return reply, err
 	}
 
-	address := c.client.URL.String() + v1address.BGP
+	address := c.client.URL.String() + v2address.BGP
 	reply, err = c.client.Post(address, js)
 	if err != nil {
 		return reply, err
@@ -173,7 +173,7 @@ func (c *BGPClient) Update(bgp *EBGPUpdate) (reply http.HTTPReply, err error) {
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateBGP} %s", err)
 	}
-	address := c.client.URL.String() + v1address.BGP
+	address := c.client.URL.String() + v2address.BGP
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{UpdateBGP} %s", err)
@@ -191,7 +191,7 @@ func (c *BGPClient) Delete(id int) (reply http.HTTPReply, err error) {
 		return reply, err
 	}
 
-	address := c.client.URL.String() + v1address.BGP
+	address := c.client.URL.String() + v2address.BGP
 	reply, err = c.client.Delete(address, js)
 	if err != nil {
 		return reply, err

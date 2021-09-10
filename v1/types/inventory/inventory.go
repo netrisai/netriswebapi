@@ -63,12 +63,12 @@ func (c *InventoryClient) Get() ([]*Inventory, error) {
 	address := c.client.URL.String() + v1address.Inventory + "?" + siteList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
 	return items, nil
 }
@@ -77,12 +77,12 @@ func (c *InventoryClient) GetUsedIPs() ([]*InventoryUsedIPs, error) {
 	address := c.client.URL.String() + v1address.InventoryUsedIPs
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetUsedIPs} %s", err)
 	}
 
 	items, err := parseUsedIPs(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{Get} %s", err)
+		return nil, fmt.Errorf("{GetUsedIPs} %s", err)
 	}
 	return items, nil
 }

@@ -19,7 +19,7 @@ package port
 // Port .
 type Port struct {
 	OneG                     int         `json:"1g"`
-	AdminDown                int         `json:"admin_down"`
+	AdminDown                interface{} `json:"admin_down"`
 	ID                       int         `json:"id"`
 	Lacp                     string      `json:"lacp"`
 	MemberState              string      `json:"member_state"`

@@ -33,8 +33,36 @@ limitations under the License.
 package v2
 
 const (
-	Auth            = "/api/auth"
-	VNetBase        = "/api/v2/vnet"
-	InventoryBase   = "/api/v2/hw"
-	InventorySwitch = "/api/v2/hw/switch"
+	Auth = "/api/auth"
+
+	VNetBase = "/api/v2/vnet"
+
+	InventoryBase       = "/api/v2/hw"
+	InventorySwitch     = "/api/v2/hw/switch"
+	InventoryController = "/api/v2/hw/controller"
+	InventorySoftgate   = "/api/v2/hw/softgate"
+	InventoryUsedIPs    = "/api/v2/hw/usedips"
+	InventoryProfiles   = "/api/v2/hw/profiles"
+	InventorySubnets    = "/api/v2/hw/subnets"
+	InventoryNOS        = "/api/v2/hw/nos"
+
+	IPAMBase       = "/api/v2/ipam"
+	IPAMSubnets    = "/api/v2/ipam/subnets"
+	IPAMHosts      = "/api/v2/ipam/hosts"
+	IPAMAllocation = "/api/v2/ipam/allocation"
+	IPAMSubnet     = "/api/v2/ipam/subnet"
+
+	Ports          = "/api/v2/ports"
+	PortExtensions = "/api/v2/ports/extensions"
+	PortLAG        = "/api/v2/ports/lag"
+	PortFreeUP     = "/api/v2/ports/freeup"
+
+	BGP               = "/api/v2/ebgp"
+	BGPSites          = "/api/v2/ebgp/sites"
+	BGPVNets          = "/api/v2/ebgp/v-nets"
+	BGPRouteMaps      = "/api/v2/ebgp/routemaps"
+	BGPOffloaders     = "/api/v2/ebgp/offloaders"
+	BGPPorts          = "/api/v2/ebgp/ports"
+	BGPSwitches       = "/api/v2/ebgp/switches"
+	BGPUpdatedSources = "/api/v2/ebgp/updatesources"
 )

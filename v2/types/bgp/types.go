@@ -193,10 +193,77 @@ type EBGPRouteMap struct {
 
 // EBGPOffloader .
 type EBGPOffloader struct {
-	IPAddress     string `json:"ip_address"`
-	Location      string `json:"location"`
-	OffloadPortID int    `json:"offload_port_id"`
-	SwitchID      int    `json:"switch_id"`
+	Asn       interface{} `json:"asn"`
+	AsnID     interface{} `json:"asnID"`
+	AsnNumber struct {
+		Asn interface{} `json:"asn"`
+		ID  interface{} `json:"id"`
+	} `json:"asnNumber"`
+	ConductorVersion interface{}   `json:"conductorVersion"`
+	CreatedDate      int           `json:"createdDate"`
+	CumulusVersion   interface{}   `json:"cumulusVersion"`
+	Description      string        `json:"description"`
+	HardwareHealth   []interface{} `json:"hardwareHealth"`
+	Health           struct{}      `json:"health"`
+	ID               int           `json:"id"`
+	IngressAcls      int           `json:"ingressAcls"`
+	LastSeen         int           `json:"lastSeen"`
+	Links            []struct {
+		Local  IDName `json:"local"`
+		Remote IDName `json:"remote"`
+	} `json:"links"`
+	MacAddrUbit int         `json:"macAddrUbit"`
+	MacAddress  interface{} `json:"macAddress"`
+	Macs        int         `json:"macs"`
+	MainAddress string      `json:"mainAddress"`
+	MainIP      struct {
+		Address     string      `json:"address"`
+		Description interface{} `json:"description"`
+		ID          int         `json:"id"`
+		IPFamily    string      `json:"ipFamily"`
+		Meta        struct {
+			Tag string `json:"tag"`
+		} `json:"meta"`
+		Name     string `json:"name"`
+		Readonly string `json:"readonly"`
+		SubnetID int    `json:"subnetID"`
+		Type     string `json:"type"`
+	} `json:"mainIP"`
+	MaintenanceMode bool   `json:"maintenanceMode"`
+	MgmtAddress     string `json:"mgmtAddress"`
+	MgmtIP          struct {
+		Address     string      `json:"address"`
+		Description interface{} `json:"description"`
+		ID          int         `json:"id"`
+		IPFamily    string      `json:"ipFamily"`
+		Meta        struct {
+			Tag string `json:"tag"`
+		} `json:"meta"`
+		Name     string `json:"name"`
+		Readonly string `json:"readonly"`
+		SubnetID int    `json:"subnetID"`
+		Type     string `json:"type"`
+	} `json:"mgmtIP"`
+	ModifiedDate int    `json:"modifiedDate"`
+	Name         string `json:"name"`
+	Nos          struct {
+		ID   interface{} `json:"id"`
+		Name interface{} `json:"name"`
+		Tag  interface{} `json:"tag"`
+	} `json:"nos"`
+	OpenstackVersion interface{} `json:"openstackVersion"`
+	Platform         string      `json:"platform"`
+	PortCount        int         `json:"portCount"`
+	Profile          IDName      `json:"profile"`
+	ProxmoxVersion   interface{} `json:"proxmoxVersion"`
+	Rangecut         int         `json:"rangecut"`
+	Routes           int         `json:"routes"`
+	Site             IDName      `json:"site"`
+	Status           string      `json:"status"`
+	Tenant           IDName      `json:"tenant"`
+	Timezone         string      `json:"timezone"`
+	Type             string      `json:"type"`
+	Uptime           string      `json:"uptime"`
 }
 
 // EBGPPort .
@@ -255,4 +322,9 @@ type EBGPUpdatedSource struct {
 	IPAddress string `json:"ip_address"`
 	Location  string `json:"location"`
 	SwitchID  int    `json:"switch_id"`
+}
+
+type IDName struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }

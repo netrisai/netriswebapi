@@ -109,25 +109,152 @@ type IDName struct {
 }
 
 /*
-VNet Structure for POST requests
+Inventory Switch Structure for POST requests
 */
 
-type HWAdd struct {
-	Asn         string      `json:"asn"`
-	Description string      `json:"description"`
-	Links       []HWAddLink `json:"links"`
-	MacAddress  string      `json:"macAddress"`
-	MainAddress string      `json:"mainAddress"`
-	MgmtAddress string      `json:"mgmtAddress"`
-	Name        string      `json:"name"`
-	Nos         string      `json:"nos"`
-	PortCount   int         `json:"portCount"`
-	Profile     IDName      `json:"profile"`
-	Site        IDName      `json:"site"`
-	Tenant      IDName      `json:"tenant"`
+type HWSwitchAdd struct {
+	Asn         string   `json:"asn"`
+	Description string   `json:"description"`
+	Links       []HWLink `json:"links"`
+	MacAddress  string   `json:"macAddress"`
+	MainAddress string   `json:"mainAddress"`
+	MgmtAddress string   `json:"mgmtAddress"`
+	Name        string   `json:"name"`
+	Nos         string   `json:"nos"`
+	PortCount   int      `json:"portCount"`
+	Profile     IDName   `json:"profile"`
+	Site        IDName   `json:"site"`
+	Tenant      IDName   `json:"tenant"`
 }
 
-type HWAddLink struct {
+type HWLink struct {
 	Local  IDName `json:"local"`
 	Remote IDName `json:"remote"`
+}
+
+/*
+Inventory Switch Structure for PUT requests
+*/
+
+type HWSwitchUpdate struct {
+	Asn             string   `json:"asn"`
+	Description     string   `json:"description"`
+	Links           []HWLink `json:"links"`
+	MacAddress      string   `json:"macAddress"`
+	MainAddress     string   `json:"mainAddress"`
+	MaintenanceMode bool     `json:"maintenanceMode"`
+	MgmtAddress     string   `json:"mgmtAddress"`
+	Name            string   `json:"name"`
+	Nos             string   `json:"nos"`
+	Profile         IDName   `json:"profile"`
+}
+
+/*
+Inventory Controller Structure for POST requests
+*/
+
+type HWController struct {
+	Description string `json:"description"`
+	MainAddress string `json:"mainAddress"`
+	Name        string `json:"name"`
+	Site        IDName `json:"site"`
+	Tenant      IDName `json:"tenant"`
+}
+
+/*
+Inventory Controller Structure for PUT requests
+*/
+
+type HWControllerUpdate struct {
+	Description     string `json:"description"`
+	MainAddress     string `json:"mainAddress"`
+	MaintenanceMode bool   `json:"maintenanceMode"`
+	Name            string `json:"name"`
+}
+
+/*
+Inventory Softgate Structure for POST requests
+*/
+
+type HWSoftgate struct {
+	Description string   `json:"description"`
+	Links       []HWLink `json:"links"`
+	MainAddress string   `json:"mainAddress"`
+	MgmtAddress string   `json:"mgmtAddress"`
+	Name        string   `json:"name"`
+	Profile     IDName   `json:"profile"`
+	Site        IDName   `json:"site"`
+	Tenant      IDName   `json:"tenant"`
+}
+
+/*
+Inventory Softgate Structure for PUT requests
+*/
+
+type HWSoftgateUpdate struct {
+	Description string   `json:"description"`
+	Links       []HWLink `json:"links"`
+	MainAddress string   `json:"mainAddress"`
+	MgmtAddress string   `json:"mgmtAddress"`
+	Name        string   `json:"name"`
+	Profile     IDName   `json:"profile"`
+	Site        IDName   `json:"site"`
+	Tenant      IDName   `json:"tenant"`
+}
+
+/*
+Inventory additional Structures for GET requests
+*/
+
+type UsedIP struct {
+	Address      string `json:"address"`
+	ConsumerID   int    `json:"consumer_id"`
+	ConsumerType string `json:"consumer_type"`
+	HostID       int    `json:"host_id"`
+	ID           int    `json:"id"`
+	Meta         string `json:"meta"`
+	Name         string `json:"name"`
+	SubnetID     int    `json:"subnet_id"`
+}
+
+type Profile struct {
+	CreatedDate  int           `json:"created_date"`
+	CustomRules  []interface{} `json:"customRules"`
+	Description  string        `json:"description"`
+	DNSServers   string        `json:"dns_servers"`
+	ID           int           `json:"id"`
+	Ipv4SSH      string        `json:"ipv4_ssh"`
+	Ipv6SSH      string        `json:"ipv6_ssh"`
+	ModifiedDate int           `json:"modified_date"`
+	Name         string        `json:"name"`
+	NTPServers   string        `json:"ntp_servers"`
+	Timezone     string        `json:"timezone"`
+}
+
+type HWSubnet struct {
+	AllocationID   int      `json:"allocationID"`
+	DefaultGateway string   `json:"defaultGateway"`
+	Description    string   `json:"description"`
+	ID             int      `json:"id"`
+	IPFamily       string   `json:"ipFamily"`
+	Name           string   `json:"name"`
+	ParentID       int      `json:"parentID"`
+	Prefix         string   `json:"prefix"`
+	Purpose        string   `json:"purpose"`
+	Readonly       string   `json:"readonly"`
+	Sites          []IDName `json:"sites"`
+	Subnet         []Subnet `json:"subnet"`
+	Tenant         []IDName `json:"tenant"`
+	Type           string   `json:"type"`
+}
+
+type Subnet struct {
+	Length int    `json:"length"`
+	Prefix string `json:"prefix"`
+}
+
+type NOS struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+	Tag  string `json:"tag"`
 }
