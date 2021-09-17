@@ -121,8 +121,8 @@ type EBGPAdd struct {
 }
 
 type LocalIP struct {
-	IPFamily int `json:"ipFamily"`
-	Prefix   int `json:"prefix"`
+	IPFamily string `json:"ipFamily"`
+	Prefix   string `json:"prefix"`
 }
 
 // EBGPUpdate .
