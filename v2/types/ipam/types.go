@@ -45,8 +45,8 @@ type IPAM struct {
 }
 
 type IDName struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type Utilization struct {
