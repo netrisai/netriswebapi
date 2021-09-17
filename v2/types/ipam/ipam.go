@@ -129,7 +129,7 @@ func (c *IPAMClient) AddSubnet(subnet *Subnet) (reply http.HTTPReply, err error)
 	return reply, nil
 }
 
-func (c *IPAMClient) UpdateSubnetn(id int, subnet *Allocation) (reply http.HTTPReply, err error) {
+func (c *IPAMClient) UpdateSubnet(id int, subnet *Subnet) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(subnet)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateSubnetn} %s", err)
