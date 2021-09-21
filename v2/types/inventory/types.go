@@ -120,7 +120,7 @@ type HWSwitchAdd struct {
 	MainAddress string   `json:"mainAddress"`
 	MgmtAddress string   `json:"mgmtAddress"`
 	Name        string   `json:"name"`
-	Nos         string   `json:"nos"`
+	Nos         NOS      `json:"nos"`
 	PortCount   int      `json:"portCount"`
 	Profile     IDName   `json:"profile"`
 	Site        IDName   `json:"site"`
@@ -145,7 +145,7 @@ type HWSwitchUpdate struct {
 	MaintenanceMode bool     `json:"maintenanceMode"`
 	MgmtAddress     string   `json:"mgmtAddress"`
 	Name            string   `json:"name"`
-	Nos             string   `json:"nos"`
+	Nos             NOS      `json:"nos"`
 	Profile         IDName   `json:"profile"`
 }
 
