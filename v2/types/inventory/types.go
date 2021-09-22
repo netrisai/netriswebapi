@@ -125,6 +125,7 @@ type HWSwitchAdd struct {
 	Profile     IDName   `json:"profile"`
 	Site        IDName   `json:"site"`
 	Tenant      IDName   `json:"tenant"`
+	Type        string   `json:"type"`
 }
 
 type HWLink struct {
