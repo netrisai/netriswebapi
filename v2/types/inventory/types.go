@@ -33,7 +33,7 @@ type HW struct {
 	ID               int           `json:"id"`
 	IngressAcls      int           `json:"ingressAcls"`
 	LastSeen         int           `json:"lastSeen"`
-	Links            []interface{} `json:"links"`
+	Links            []HWLink      `json:"links"`
 	MacAddrUbit      int           `json:"macAddrUbit"`
 	MacAddress       string        `json:"macAddress"`
 	Macs             int           `json:"macs"`
