@@ -17,6 +17,7 @@ limitations under the License.
 package tenant
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,51 @@ func (c *TenantClient) Get() ([]*Tenant, error) {
 		return nil, fmt.Errorf("{GetTenats} %s", err)
 	}
 	return items, nil
+}
+
+func (c *TenantClient) Add(tenant *Tenant) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(tenant)
+	if err != nil {
+		return reply, fmt.Errorf("{Tenant Add} %s", err)
+	}
+
+	address := c.client.URL.String() + v1address.Tenants
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Tenant Add} %s", err)
+	}
+
+	return reply, nil
+}
+
+func (c *TenantClient) Update(tenant *Tenant) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(tenant)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Tenant Update} %s", err)
+	}
+	address := c.client.URL.String() + v1address.Tenants
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Tenant Update} %s", err)
+	}
+
+	return reply, nil
+}
+
+func (c *TenantClient) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID int `json:"id"`
+	}{id}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.Tenants
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }

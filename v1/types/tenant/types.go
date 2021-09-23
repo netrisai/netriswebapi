@@ -17,10 +17,10 @@ limitations under the License.
 package tenant
 
 type Tenant struct {
-	CreateDate   int    `json:"create_date"`
-	Description  string `json:"description"`
-	ID           int    `json:"id"`
-	ModifiedDate int    `json:"modified_date"`
-	Name         string `json:"name"`
-	TenantID     int    `json:"tenant_id"`
+	CreateDate   int    `json:"create_date,omitempty"`
+	Description  string `json:"description,omitempty"`
+	ID           int    `json:"id,omitempty"`
+	ModifiedDate int    `json:"modified_date,omitempty"`
+	Name         string `json:"name,omitempty"`
+	TenantID     int    `json:"tenant_id,omitempty"`
 }
