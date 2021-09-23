@@ -149,6 +149,8 @@ type HWSwitchUpdate struct {
 	Nos             NOS      `json:"nos"`
 	PortCount       int      `json:"portCount"`
 	Profile         IDName   `json:"profile"`
+	Site            IDName   `json:"site"`
+	Tenant          IDName   `json:"tenant"`
 	Type            string   `json:"type"`
 }
 
