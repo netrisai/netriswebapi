@@ -89,7 +89,7 @@ type EBGPAdd struct {
 	InboundRouteMap    int     `json:"inboundRouteMap"`
 	Internal           string  `json:"internal"`
 	IPVersion          string  `json:"ip_version"`
-	LocalIP            LocalIP `json:"local_ip"`
+	LocalIP            string  `json:"local_ip"`
 	LocalPreference    int     `json:"local_preference"`
 	Multihop           int     `json:"multihop"`
 	Name               string  `json:"name"`
@@ -120,11 +120,6 @@ type EBGPAdd struct {
 	Weight             int     `json:"weight"`
 }
 
-type LocalIP struct {
-	IPFamily string `json:"ipFamily"`
-	Prefix   string `json:"prefix"`
-}
-
 // EBGPUpdate .
 type EBGPUpdate struct {
 	AllowasIn          int     `json:"allowas_in"`
@@ -135,7 +130,7 @@ type EBGPUpdate struct {
 	InboundRouteMap    int     `json:"inboundRouteMap"`
 	Internal           string  `json:"internal"`
 	IPVersion          string  `json:"ip_version"`
-	LocalIP            LocalIP `json:"local_ip"`
+	LocalIP            string  `json:"local_ip"`
 	LocalPreference    int     `json:"local_preference"`
 	Multihop           int     `json:"multihop"`
 	Name               string  `json:"name"`
