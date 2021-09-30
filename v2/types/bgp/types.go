@@ -96,7 +96,6 @@ type EBGPAdd struct {
 	NeighborAddress    *string `json:"neighbor_address"`
 	NeighborAs         string  `json:"neighbor_as"`
 	NfvID              int     `json:"nfv_id"`
-	NfvPortID          int     `json:"nfv_port_id"`
 	Originate          string  `json:"originate"`
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	PrefixLength       int     `json:"prefix_length"`
@@ -137,7 +136,6 @@ type EBGPUpdate struct {
 	NeighborAddress    *string `json:"neighbor_address"`
 	NeighborAs         string  `json:"neighbor_as"`
 	NfvID              int     `json:"nfv_id"`
-	NfvPortID          int     `json:"nfv_port_id"`
 	Originate          string  `json:"originate"`
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	PrefixLength       int     `json:"prefix_length"`
