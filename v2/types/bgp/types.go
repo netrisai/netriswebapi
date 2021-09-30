@@ -87,7 +87,7 @@ type EBGPAdd struct {
 	Community          string  `json:"community"`
 	Description        string  `json:"description"`
 	InboundRouteMap    int     `json:"inboundRouteMap"`
-	Internal           string  `json:"internal,omitempty"`
+	Internal           *string `json:"internal"`
 	IPVersion          string  `json:"ip_version"`
 	LocalIP            string  `json:"local_ip"`
 	LocalPreference    int     `json:"local_preference"`
@@ -127,7 +127,7 @@ type EBGPUpdate struct {
 	Description        string  `json:"description"`
 	ID                 int     `json:"id"`
 	InboundRouteMap    int     `json:"inboundRouteMap"`
-	Internal           string  `json:"internal,omitempty"`
+	Internal           *string `json:"internal"`
 	IPVersion          string  `json:"ip_version"`
 	LocalIP            string  `json:"local_ip"`
 	LocalPreference    int     `json:"local_preference"`
