@@ -99,7 +99,7 @@ type EBGPAdd struct {
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	Port               IDName  `json:"port"`
 	PrefixInboundMax   int     `json:"prefixInboundMax"`
-	PrefixLength       string  `json:"prefixLength"`
+	PrefixLength       int     `json:"prefixLength"`
 	PrefixListInbound  string  `json:"prefixListInbound"`
 	PrefixListOutbound string  `json:"prefixListOutbound"`
 	PrependInbound     int     `json:"prependInbound"`
@@ -132,7 +132,7 @@ type EBGPUpdate struct {
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	Port               IDName  `json:"port"`
 	PrefixInboundMax   int     `json:"prefixInboundMax"`
-	PrefixLength       string  `json:"prefixLength"`
+	PrefixLength       int     `json:"prefixLength"`
 	PrefixListInbound  string  `json:"prefixListInbound"`
 	PrefixListOutbound string  `json:"prefixListOutbound"`
 	PrependInbound     int     `json:"prependInbound"`
