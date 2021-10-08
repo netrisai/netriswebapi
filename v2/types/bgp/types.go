@@ -109,7 +109,7 @@ type EBGPAdd struct {
 	State              string  `json:"state"`
 	UpdateSource       string  `json:"updateSource"`
 	Vlan               int     `json:"vlan"`
-	Vnet               IDName  `json:"vnet"`
+	Vnet               IDNone  `json:"vnet"`
 	Weight             int     `json:"weight"`
 }
 
@@ -142,7 +142,7 @@ type EBGPUpdate struct {
 	State              string  `json:"state"`
 	UpdateSource       string  `json:"updateSource"`
 	Vlan               int     `json:"vlan"`
-	Vnet               IDName  `json:"vnet"`
+	Vnet               IDNone  `json:"vnet"`
 	Weight             int     `json:"weight"`
 }
 
@@ -312,4 +312,9 @@ type EBGPUpdatedSource struct {
 type IDName struct {
 	ID   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
+}
+
+type IDNone struct {
+	ID   interface{} `json:"id,omitempty"`
+	Name string      `json:"name,omitempty"`
 }
