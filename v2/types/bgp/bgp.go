@@ -19,6 +19,7 @@ package bgp
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -183,16 +184,8 @@ func (c *BGPClient) Update(bgp *EBGPUpdate) (reply http.HTTPReply, err error) {
 }
 
 func (c *BGPClient) Delete(id int) (reply http.HTTPReply, err error) {
-	lb := struct {
-		ID int `json:"id"`
-	}{id}
-	js, err := json.Marshal(lb)
-	if err != nil {
-		return reply, err
-	}
-
-	address := c.client.URL.String() + v2address.BGP
-	reply, err = c.client.Delete(address, js)
+	address := c.client.URL.String() + v2address.BGP + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
 	if err != nil {
 		return reply, err
 	}
