@@ -169,12 +169,12 @@ func (c *BGPClient) Add(bgp *EBGPAdd) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-func (c *BGPClient) Update(bgp *EBGPUpdate) (reply http.HTTPReply, err error) {
+func (c *BGPClient) Update(id int, bgp *EBGPUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(bgp)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateBGP} %s", err)
 	}
-	address := c.client.URL.String() + v2address.BGP
+	address := c.client.URL.String() + v2address.BGP + "/" + strconv.Itoa(id)
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{UpdateBGP} %s", err)
