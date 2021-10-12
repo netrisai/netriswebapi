@@ -93,7 +93,7 @@ type EBGPAdd struct {
 	BgpPassword        string  `json:"bgpPassword"`
 	DefaultOriginate   string  `json:"defaultOriginate"`
 	Description        string  `json:"description"`
-	Hardware           IDName  `json:"hardware"`
+	Hardware           IDNone  `json:"hardware"`
 	InboundRouteMap    int     `json:"inboundRouteMap"`
 	IPFamily           string  `json:"ipFamily"`
 	LocalIP            string  `json:"localIP"`
@@ -126,7 +126,7 @@ type EBGPUpdate struct {
 	BgpPassword        string  `json:"bgpPassword"`
 	DefaultOriginate   string  `json:"defaultOriginate"`
 	Description        string  `json:"description"`
-	Hardware           IDName  `json:"hardware"`
+	Hardware           IDNone  `json:"hardware"`
 	InboundRouteMap    int     `json:"inboundRouteMap"`
 	IPFamily           string  `json:"ipFamily"`
 	LocalIP            string  `json:"localIP"`
