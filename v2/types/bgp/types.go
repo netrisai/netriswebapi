@@ -104,7 +104,7 @@ type EBGPAdd struct {
 	NeighborAddress    *string `json:"neighborAddress"`
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	Port               IDName  `json:"port"`
-	PrefixInboundMax   int     `json:"prefixInboundMax"`
+	PrefixInboundMax   string  `json:"prefixInboundMax"`
 	PrefixLength       int     `json:"prefixLength"`
 	PrefixListInbound  string  `json:"prefixListInbound"`
 	PrefixListOutbound string  `json:"prefixListOutbound"`
@@ -137,7 +137,7 @@ type EBGPUpdate struct {
 	NeighborAddress    *string `json:"neighborAddress"`
 	OutboundRouteMap   int     `json:"outboundRouteMap"`
 	Port               IDName  `json:"port"`
-	PrefixInboundMax   int     `json:"prefixInboundMax"`
+	PrefixInboundMax   string  `json:"prefixInboundMax"`
 	PrefixLength       int     `json:"prefixLength"`
 	PrefixListInbound  string  `json:"prefixListInbound"`
 	PrefixListOutbound string  `json:"prefixListOutbound"`
