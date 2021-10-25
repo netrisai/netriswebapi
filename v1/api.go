@@ -27,6 +27,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
+	"github.com/netrisai/netriswebapi/v1/types/user"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
 )
 
@@ -42,6 +43,7 @@ type Clientset struct {
 	tenant    *tenant.TenantClient
 	bgp       *bgp.BGPClient
 	route     *route.RouteClient
+	user      *user.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -112,6 +114,13 @@ func (c *Clientset) Route() *route.RouteClient {
 		c.route = route.New(c.Client)
 	}
 	return c.route
+}
+
+func (c *Clientset) User() *user.Client {
+	if c.user == nil {
+		c.user = user.New(c.Client)
+	}
+	return c.user
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {

@@ -32,6 +32,8 @@ const (
 	Ports   = "/api/switchports"
 	Tenants = "/api/tenants"
 
+	Users = "/api/users"
+
 	BGP               = "/api/ebgp"
 	BGPSites          = "/api/ebgp/sites"
 	BGPVNets          = "/api/ebgp/v-nets"
