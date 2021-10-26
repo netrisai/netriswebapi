@@ -30,12 +30,12 @@ type UserRole struct {
 }
 
 type Tenant struct {
-	T2r         int    `json:"t2r,omitempty"`
-	ID          int    `json:"id,omitempty"`
-	TenantID    int    `json:"tenant_id"`
-	TenantName  string `json:"tenant_name"`
-	TenantRead  string `json:"tenant_read,omitempty"`
-	TenantWrite string `json:"tenant_write,omitempty"`
+	T2r         int         `json:"t2r,omitempty"`
+	ID          int         `json:"id,omitempty"`
+	TenantID    int         `json:"tenant_id"`
+	TenantName  string      `json:"tenant_name"`
+	TenantRead  interface{} `json:"tenant_read,omitempty"`
+	TenantWrite interface{} `json:"tenant_write,omitempty"`
 }
 
 type UserRoleAdd struct {
