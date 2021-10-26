@@ -50,7 +50,7 @@ type UserAdd struct {
 	EmailCc         string            `json:"email_cc"`
 	Fullname        string            `json:"fullname"`
 	Name            string            `json:"name"`
-	PermissionGroup PermissionGroup   `json:"permissionGroup"`
+	PermissionGroup PermissionGroup   `json:"permissionGroup,omitempty"`
 	Phonenumber     string            `json:"phonenumber"`
 	Position        string            `json:"position"`
 	Tenants         []userrole.Tenant `json:"tenants"`
