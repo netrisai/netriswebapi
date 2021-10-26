@@ -17,6 +17,7 @@ limitations under the License.
 package user
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,34 @@ func (c *Client) Get() ([]*User, error) {
 		return nil, fmt.Errorf("{GetTenats} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Add(user *UserAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(user)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.Users
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Update(user *UserAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(user)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.Users
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }
