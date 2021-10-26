@@ -29,6 +29,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v1/types/user"
+	"github.com/netrisai/netriswebapi/v1/types/userrole"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
 )
 
@@ -46,6 +47,7 @@ type Clientset struct {
 	route           *route.RouteClient
 	user            *user.Client
 	permissiongroup *permission.Client
+	userrole        *userrole.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -130,6 +132,13 @@ func (c *Clientset) Permission() *permission.Client {
 		c.permissiongroup = permission.New(c.Client)
 	}
 	return c.permissiongroup
+}
+
+func (c *Clientset) UserRole() *userrole.Client {
+	if c.userrole == nil {
+		c.userrole = userrole.New(c.Client)
+	}
+	return c.userrole
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
