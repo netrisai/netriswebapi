@@ -34,6 +34,8 @@ const (
 
 	Users = "/api/users"
 
+	PermissionGroups = "/api/permissiongroups"
+
 	BGP               = "/api/ebgp"
 	BGPSites          = "/api/ebgp/sites"
 	BGPVNets          = "/api/ebgp/v-nets"

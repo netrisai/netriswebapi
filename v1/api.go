@@ -22,6 +22,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
+	"github.com/netrisai/netriswebapi/v1/types/permission"
 	"github.com/netrisai/netriswebapi/v1/types/port"
 	"github.com/netrisai/netriswebapi/v1/types/route"
 	"github.com/netrisai/netriswebapi/v1/types/site"
@@ -32,18 +33,19 @@ import (
 )
 
 type Clientset struct {
-	Client    *http.HTTPCred
-	site      *site.SiteClient
-	gsetting  *gsetting.GSettingClient
-	l4lb      *l4lb.LBClient
-	subnet    *subnet.SubnetClient
-	inventory *inventory.InventoryClient
-	vnet      *vnet.VNetClient
-	port      *port.PortClient
-	tenant    *tenant.TenantClient
-	bgp       *bgp.BGPClient
-	route     *route.RouteClient
-	user      *user.Client
+	Client          *http.HTTPCred
+	site            *site.SiteClient
+	gsetting        *gsetting.GSettingClient
+	l4lb            *l4lb.LBClient
+	subnet          *subnet.SubnetClient
+	inventory       *inventory.InventoryClient
+	vnet            *vnet.VNetClient
+	port            *port.PortClient
+	tenant          *tenant.TenantClient
+	bgp             *bgp.BGPClient
+	route           *route.RouteClient
+	user            *user.Client
+	permissiongroup *permission.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -121,6 +123,13 @@ func (c *Clientset) User() *user.Client {
 		c.user = user.New(c.Client)
 	}
 	return c.user
+}
+
+func (c *Clientset) Permission() *permission.Client {
+	if c.permissiongroup == nil {
+		c.permissiongroup = permission.New(c.Client)
+	}
+	return c.permissiongroup
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
