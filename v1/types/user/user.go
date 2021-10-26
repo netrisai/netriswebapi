@@ -45,12 +45,12 @@ func (c *Client) Get() ([]*User, error) {
 	address := c.client.URL.String() + v1address.Users
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{GetTenats} %s", err)
+		return nil, fmt.Errorf("{GetUsers} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{GetTenats} %s", err)
+		return nil, fmt.Errorf("{GetUsers} %s", err)
 	}
 	return items, nil
 }
