@@ -16,6 +16,8 @@ limitations under the License.
 
 package user
 
+import "github.com/netrisai/netriswebapi/v1/types/userrole"
+
 type User struct {
 	AuthSchemeID int          `json:"auth_scheme_id"`
 	Company      string       `json:"company"`
@@ -42,49 +44,20 @@ type UserTenant struct {
 }
 
 type UserAdd struct {
-	ID              int             `json:"id,omitempty"`
-	Company         string          `json:"company"`
-	Email           string          `json:"email"`
-	EmailCc         string          `json:"email_cc"`
-	Fullname        string          `json:"fullname"`
-	Name            string          `json:"name"`
-	PermissionGroup PermissionGroup `json:"permissionGroup"`
-	Phonenumber     string          `json:"phonenumber"`
-	Position        string          `json:"position"`
-	Tenants         []UserAddTenant `json:"tenants"`
-	UserRole        UserRole        `json:"userRole"`
+	ID              int               `json:"id,omitempty"`
+	Company         string            `json:"company"`
+	Email           string            `json:"email"`
+	EmailCc         string            `json:"email_cc"`
+	Fullname        string            `json:"fullname"`
+	Name            string            `json:"name"`
+	PermissionGroup PermissionGroup   `json:"permissionGroup"`
+	Phonenumber     string            `json:"phonenumber"`
+	Position        string            `json:"position"`
+	Tenants         []userrole.Tenant `json:"tenants"`
+	UserRole        userrole.UserRole `json:"userRole"`
 }
 
 type PermissionGroup struct {
 	ID   int `json:"id"`
 	Name int `json:"name"`
-}
-
-type UserAddTenant struct {
-	CreateDate   int    `json:"create_date"`
-	Description  string `json:"description"`
-	ID           int    `json:"id"`
-	ModifiedDate int    `json:"modified_date"`
-	Name         string `json:"name"`
-	TenantID     int    `json:"tenant_id"`
-	TenantWrite  bool   `json:"tenant_write"`
-}
-
-type UserRole struct {
-	CreateDate   int              `json:"create_date"`
-	Description  string           `json:"description"`
-	ID           int              `json:"id"`
-	ModifiedDate int              `json:"modified_date"`
-	Name         string           `json:"name"`
-	PermID       int              `json:"perm_id"`
-	PermName     string           `json:"perm_name"`
-	Tenants      []UserRoleTenant `json:"tenants"`
-}
-
-type UserRoleTenant struct {
-	T2r         int    `json:"t2r"`
-	TenantID    int    `json:"tenant_id"`
-	TenantName  string `json:"tenant_name"`
-	TenantRead  string `json:"tenant_read"`
-	TenantWrite string `json:"tenant_write"`
 }
