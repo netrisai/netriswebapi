@@ -16,16 +16,56 @@ limitations under the License.
 
 package permission
 
+const (
+	SectionSERVICES                    string = "SERVICES"
+	SectionINSTANCES                   string = "INSTANCES"
+	SectionCIRCUITS                    string = "CIRCUITS"
+	SectionACL                         string = "ACL"
+	SectionACL_2                       string = "ACL_2.0"
+	SectionACL_PORT_GROUPS             string = "ACL_PORT_GROUPS"
+	SectionLOAD_BALANCER               string = "LOAD_BALANCER"
+	SectionL4_LOAD_BALANCER            string = "L4_LOAD_BALANCER"
+	SectionNET                         string = "NET"
+	SectionTOPOLOGY                    string = "TOPOLOGY"
+	SectionINVENTORY                   string = "INVENTORY"
+	SectionSWITCH_PORTS                string = "SWITCH_PORTS"
+	SectionSITES                       string = "SITES"
+	SectionE_BGP                       string = "E_BGP"
+	SectionE_BGP_OBJECTS               string = "E_BGP_OBJECTS"
+	SectionE_BGP_ROUTE_MAPS            string = "E_BGP_ROUTE_MAPS"
+	SectionSUBNETS                     string = "SUBNETS"
+	SectionNAT                         string = "NAT"
+	SectionVPN                         string = "VPN"
+	SectionROUTES                      string = "ROUTES"
+	SectionLOOKING_GLASS               string = "LOOKING_GLASS"
+	SectionACCOUNTS                    string = "ACCOUNTS"
+	SectionUSERS                       string = "USERS"
+	SectionTENANTS                     string = "TENANTS"
+	SectionUSER_ROLES                  string = "USER_ROLES"
+	SectionPERMISSION_GROUPS           string = "PERMISSION_GROUPS"
+	SectionGLOBAL_SETTINGS             string = "GLOBAL_SETTINGS"
+	SectionGS_GENERAL                  string = "GS_GENERAL"
+	SectionLOGIN_WHITELIST             string = "LOGIN_WHITELIST"
+	SectionAUTHENTICATION              string = "AUTHENTICATION"
+	SectionGENERAL                     string = "GENERAL"
+	SectionAPI_DOCS                    string = "API_DOCS"
+	SectionMONITORING_CHECK_THRESHOLDS string = "MONITORING_CHECK_THRESHOLDS"
+)
+
 type PermissionGroup struct {
-	CreateDate   int    `json:"create_date"`
-	Description  string `json:"description"`
-	ExternalAcl  string `json:"external_acl"`
-	Hidden       string `json:"hidden"`
-	ID           int    `json:"id"`
-	ModifiedDate int    `json:"modified_date"`
-	Name         string `json:"name"`
-	Readonly     string `json:"readonly"`
+	CreateDate   int        `json:"create_date"`
+	Description  string     `json:"description"`
+	ExternalAcl  string     `json:"external_acl"`
+	Hidden       HiddenList `json:"hidden"`
+	ID           int        `json:"id"`
+	ModifiedDate int        `json:"modified_date"`
+	Name         string     `json:"name"`
+	Readonly     HiddenList `json:"readonly"`
 }
+
+type HiddenList string
+
+type ReadonlyList string
 
 type PermissionGroupAdd struct {
 	Description string   `json:"description"`

@@ -84,3 +84,15 @@ func (c *Client) Update(pgroup *PermissionGroupAdd) (reply http.HTTPReply, err e
 
 	return reply, nil
 }
+
+func (h HiddenList) List() []string {
+	list := []string{}
+	_ = json.Unmarshal([]byte(string(h)), &list)
+	return list
+}
+
+func (h ReadonlyList) List() []string {
+	list := []string{}
+	_ = json.Unmarshal([]byte(string(h)), &list)
+	return list
+}
