@@ -16,7 +16,10 @@ limitations under the License.
 
 package user
 
-import "github.com/netrisai/netriswebapi/v1/types/userrole"
+import (
+	"github.com/netrisai/netriswebapi/v1/types/permission"
+	"github.com/netrisai/netriswebapi/v1/types/userrole"
+)
 
 type User struct {
 	AuthSchemeID int          `json:"auth_scheme_id"`
@@ -44,20 +47,15 @@ type UserTenant struct {
 }
 
 type UserAdd struct {
-	ID              int               `json:"id,omitempty"`
-	Company         string            `json:"company"`
-	Email           string            `json:"email"`
-	EmailCc         string            `json:"email_cc"`
-	Fullname        string            `json:"fullname"`
-	Name            string            `json:"name"`
-	PermissionGroup PermissionGroup   `json:"permissionGroup,omitempty"`
-	Phonenumber     string            `json:"phonenumber"`
-	Position        string            `json:"position"`
-	Tenants         []userrole.Tenant `json:"tenants"`
-	UserRole        userrole.UserRole `json:"userRole"`
-}
-
-type PermissionGroup struct {
-	ID   int `json:"id"`
-	Name int `json:"name"`
+	ID              int                        `json:"id,omitempty"`
+	Company         string                     `json:"company"`
+	Email           string                     `json:"email"`
+	EmailCc         string                     `json:"email_cc"`
+	Fullname        string                     `json:"fullname"`
+	Name            string                     `json:"name"`
+	PermissionGroup permission.PermissionGroup `json:"permissionGroup,omitempty"`
+	Phonenumber     string                     `json:"phonenumber"`
+	Position        string                     `json:"position"`
+	Tenants         []userrole.Tenant          `json:"tenants"`
+	UserRole        userrole.UserRole          `json:"userRole"`
 }
