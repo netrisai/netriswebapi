@@ -16,6 +16,8 @@ limitations under the License.
 
 package userrole
 
+import "github.com/netrisai/netriswebapi/v1/types/permission"
+
 type UserRole struct {
 	CreateDate   int      `json:"create_date"`
 	Description  string   `json:"description"`
@@ -34,4 +36,12 @@ type Tenant struct {
 	TenantName  string `json:"tenant_name"`
 	TenantRead  string `json:"tenant_read,omitempty"`
 	TenantWrite string `json:"tenant_write,omitempty"`
+}
+
+type UserRoleAdd struct {
+	Description     string                     `json:"description"`
+	ID              int                        `json:"id,omitempty"`
+	Name            string                     `json:"name"`
+	PermissionGroup permission.PermissionGroup `json:"permissionGroup"`
+	Tenants         []Tenant                   `json:"tenants"`
 }

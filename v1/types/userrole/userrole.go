@@ -55,7 +55,7 @@ func (c *Client) Get() ([]*UserRole, error) {
 	return items, nil
 }
 
-func (c *Client) Add(role *UserRole) (reply http.HTTPReply, err error) {
+func (c *Client) Add(role *UserRoleAdd) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(role)
 	if err != nil {
 		return reply, err
@@ -70,7 +70,7 @@ func (c *Client) Add(role *UserRole) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-func (c *Client) Update(role *UserRole) (reply http.HTTPReply, err error) {
+func (c *Client) Update(role *UserRoleAdd) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(role)
 	if err != nil {
 		return reply, err
