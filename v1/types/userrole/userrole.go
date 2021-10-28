@@ -42,7 +42,7 @@ func parse(APIResult *http.APIResponse) ([]*UserRole, error) {
 }
 
 func (c *Client) Get() ([]*UserRole, error) {
-	address := c.client.URL.String() + v1address.Users
+	address := c.client.URL.String() + v1address.UserRoles
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetUserRoles} %s", err)
