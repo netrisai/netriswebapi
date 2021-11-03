@@ -71,7 +71,7 @@ type PermissionGroupAdd struct {
 	Description string   `json:"description"`
 	ExternalACL bool     `json:"externalACL"`
 	Hidden      []string `json:"hidden"`
-	ID          int64    `json:"id,omitempty"`
+	ID          int    `json:"id,omitempty"`
 	Name        string   `json:"name"`
 	ReadOnly    []string `json:"readOnly"`
 }
