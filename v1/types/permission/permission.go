@@ -85,6 +85,24 @@ func (c *Client) Update(pgroup *PermissionGroupAdd) (reply http.HTTPReply, err e
 	return reply, nil
 }
 
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID int `json:"id"`
+	}{id}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.PermissionGroups
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
 func (h HiddenList) List() []string {
 	list := []string{}
 	_ = json.Unmarshal([]byte(string(h)), &list)
