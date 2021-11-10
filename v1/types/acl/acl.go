@@ -69,3 +69,17 @@ func (c *Client) Add(acl *ACLw) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *Client) Update(acl *ACLw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(acl)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdateACL} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdateACL} %s", err)
+	}
+
+	return reply, nil
+}
