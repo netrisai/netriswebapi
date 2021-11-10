@@ -41,7 +41,7 @@ func parse(APIResult *http.APIResponse) ([]*PortGroup, error) {
 }
 
 func (c *Client) Get() ([]*PortGroup, error) {
-	address := c.client.URL.String() + v1address.ACL
+	address := c.client.URL.String() + v1address.PortGroup
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPortGroups} %s", err)
