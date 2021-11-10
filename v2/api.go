@@ -18,6 +18,7 @@ package v2
 
 import (
 	"github.com/netrisai/netriswebapi/http"
+	"github.com/netrisai/netriswebapi/v1/types/acl"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/permission"
@@ -52,6 +53,7 @@ type Clientset struct {
 	permissiongroup *permission.Client
 	userrole        *userrole.Client
 	link            *link.Client
+	acl             *acl.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -157,6 +159,13 @@ func (c *Clientset) Link() *link.Client {
 		c.link = link.New(c.Client)
 	}
 	return c.link
+}
+
+func (c *Clientset) ACL() *acl.Client {
+	if c.acl == nil {
+		c.acl = acl.New(c.Client)
+	}
+	return c.acl
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
