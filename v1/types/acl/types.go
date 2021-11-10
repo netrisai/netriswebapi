@@ -56,3 +56,22 @@ type ACL struct {
 	TenantsID        string      `json:"tenantsID"`
 	ValidUntil       interface{} `json:"valid_until"`
 }
+
+type ACLAdd struct {
+	Action       string `json:"action"`
+	Comment      string `json:"comment"`
+	DstPortFrom  int    `json:"dst_port_from"`
+	DstPortGroup int    `json:"dst_port_group"`
+	DstPortTo    int    `json:"dst_port_to"`
+	DstPrefix    string `json:"dst_prefix"`
+	Established  int    `json:"established"`
+	IcmpType     int    `json:"icmp_type"`
+	Name         string `json:"name"`
+	Proto        string `json:"proto"`
+	Reverse      string `json:"reverse"`
+	SrcPortFrom  int    `json:"src_port_from"`
+	SrcPortGroup int    `json:"src_port_group"`
+	SrcPortTo    int    `json:"src_port_to"`
+	SrcPrefix    string `json:"src_prefix"`
+	ValidUntil   string `json:"valid_until"`
+}

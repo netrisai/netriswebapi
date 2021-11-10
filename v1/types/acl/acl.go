@@ -17,6 +17,7 @@ limitations under the License.
 package acl
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,19 @@ func (c *Client) Get() ([]*ACL, error) {
 		return nil, fmt.Errorf("{GetACLs} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Add(acl *ACLAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(acl)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.ACL
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }
