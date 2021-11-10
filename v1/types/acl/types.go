@@ -57,7 +57,10 @@ type ACL struct {
 	ValidUntil       interface{} `json:"valid_until"`
 }
 
-type ACLAdd struct {
+// ACLw structure used for POST or PUT requests
+type ACLw struct {
+	ID int `json:"id,omitempty"`
+
 	Name string `json:"name"`
 
 	// Valid options are "permit" and "deny".
@@ -118,4 +121,6 @@ type ACLAdd struct {
 	// Should be filled according to "2021-11-15T20:00:00.000Z"  format
 	// Must not be assigned if deadline doesn't need.
 	ValidUntil interface{} `json:"valid_until"`
+
+	TenantsID string `json:"tenantsID,omitempty"`
 }
