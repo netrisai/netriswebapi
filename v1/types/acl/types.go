@@ -64,6 +64,9 @@ type ACLAdd struct {
 	Action  string `json:"action"`
 	Comment string `json:"comment"`
 
+	// The state of ACL.
+	// Available values 0 or 1.
+	// 1 means ACL is enabled, 0 the ACL is disabled
 	Established int `json:"established"`
 
 	// ICMP type numbers according to RFC 1700
