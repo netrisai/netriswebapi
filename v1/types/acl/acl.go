@@ -55,7 +55,7 @@ func (c *Client) Get() ([]*ACL, error) {
 	return items, nil
 }
 
-func (c *Client) Add(acl *ACLAdd) (reply http.HTTPReply, err error) {
+func (c *Client) Add(acl *ACLw) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(acl)
 	if err != nil {
 		return reply, err
