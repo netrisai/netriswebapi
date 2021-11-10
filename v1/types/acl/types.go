@@ -58,20 +58,61 @@ type ACL struct {
 }
 
 type ACLAdd struct {
-	Action       string `json:"action"`
-	Comment      string `json:"comment"`
-	DstPortFrom  *int   `json:"dst_port_from"`
-	DstPortGroup *int   `json:"dst_port_group"`
-	DstPortTo    *int   `json:"dst_port_to"`
-	DstPrefix    string `json:"dst_prefix"`
-	Established  int    `json:"established"`
-	IcmpType     int    `json:"icmp_type"`
-	Name         string `json:"name"`
-	Proto        string `json:"proto"`
-	Reverse      string `json:"reverse"`
-	SrcPortFrom  *int   `json:"src_port_from"`
-	SrcPortGroup *int   `json:"src_port_group"`
-	SrcPortTo    *int   `json:"src_port_to"`
-	SrcPrefix    string `json:"src_prefix"`
-	ValidUntil   string `json:"valid_until"`
+	Name string `json:"name"`
+
+	// Valid options are "permit" and "deny".
+	Action  string `json:"action"`
+	Comment string `json:"comment"`
+
+	Established int `json:"established"`
+
+	// ICMP type numbers according to RFC 1700
+	// For ICMPAll this field should be emited
+	ICMPType int `json:"icmp_type"`
+
+	// Protocol type.
+	// Available values are (all, ip, tcp, udp, icmp, icmpv6)
+	Proto string `json:"proto"`
+
+	// For reverse rule should be set "yes" else "no"
+	Reverse string `json:"reverse"`
+
+	// Source network address.
+	// Should be filled according to "10.10.10.0/24"  format.
+	SrcPrefix string `json:"src_prefix"`
+
+	// The start of source port range. Starts from 1.
+	// Should assign type int
+	SrcPortFrom interface{} `json:"src_port_from"`
+
+	// The end of source port range.
+	// Ends to 65535. Should assign type int
+	SrcPortTo interface{} `json:"src_port_to"`
+
+	// The port group id of source.
+	// Should be assigned int.
+	// When used SrcPortFrom and SrcPortTo fields this field should be not assigned.
+	SrcPortGroup interface{} `json:"src_port_group"`
+
+	// Destination network address.
+	// Should be filled according to "10.10.10.0/24"  format.
+	DstPrefix string `json:"dst_prefix"`
+
+	// The start of destination port range. Starts from 1.
+	// Should assign type int
+	DstPortFrom interface{} `json:"dst_port_from"`
+
+	// The end of destination port range.
+	// Ends to 65535. Should assign type int
+	DstPortTo interface{} `json:"dst_port_to"`
+
+	// The port group id of destination.
+	// Should be assigned int.
+	// When used DstPortFrom and DstPortTo fields this field should be not assigned/
+	DstPortGroup interface{} `json:"dst_port_group"`
+
+	// Specifies the date until ACl is valid.
+	// Should be filled according to "2021-11-15T20:00:00.000Z"  format
+	// Must not be assigned if deadline doesn't need.
+	ValidUntil interface{} `json:"valid_until"`
 }
