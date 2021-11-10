@@ -30,6 +30,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/bgp"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
+	"github.com/netrisai/netriswebapi/v2/types/link"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 )
@@ -50,6 +51,7 @@ type Clientset struct {
 	user            *user.Client
 	permissiongroup *permission.Client
 	userrole        *userrole.Client
+	link            *link.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -148,6 +150,13 @@ func (c *Clientset) UserRole() *userrole.Client {
 		c.userrole = userrole.New(c.Client)
 	}
 	return c.userrole
+}
+
+func (c *Clientset) Link() *link.Client {
+	if c.link == nil {
+		c.link = link.New(c.Client)
+	}
+	return c.link
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
