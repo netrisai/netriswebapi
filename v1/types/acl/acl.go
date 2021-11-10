@@ -83,3 +83,21 @@ func (c *Client) Update(acl *ACLw) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID []int `json:"id"`
+	}{[]int{id}}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.ACL
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
