@@ -22,6 +22,8 @@ const (
 	L4LB      = "/api/l4lb"
 	Subnets   = "/api/subnets"
 
+	ACL = "/api/acl"
+
 	Inventory        = "/api/inventory"
 	InventoryUsedIPs = "/api/inventory/usedips"
 

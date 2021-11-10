@@ -18,6 +18,7 @@ package v1
 
 import (
 	"github.com/netrisai/netriswebapi/http"
+	"github.com/netrisai/netriswebapi/v1/types/acl"
 	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
@@ -48,6 +49,7 @@ type Clientset struct {
 	user            *user.Client
 	permissiongroup *permission.Client
 	userrole        *userrole.Client
+	acl             *acl.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -139,6 +141,13 @@ func (c *Clientset) UserRole() *userrole.Client {
 		c.userrole = userrole.New(c.Client)
 	}
 	return c.userrole
+}
+
+func (c *Clientset) ACL() *acl.Client {
+	if c.acl == nil {
+		c.acl = acl.New(c.Client)
+	}
+	return c.acl
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
