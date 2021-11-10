@@ -22,6 +22,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/permission"
+	"github.com/netrisai/netriswebapi/v1/types/portgroup"
 	"github.com/netrisai/netriswebapi/v1/types/route"
 	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
@@ -54,6 +55,7 @@ type Clientset struct {
 	userrole        *userrole.Client
 	link            *link.Client
 	acl             *acl.Client
+	portgroup       *portgroup.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -166,6 +168,13 @@ func (c *Clientset) ACL() *acl.Client {
 		c.acl = acl.New(c.Client)
 	}
 	return c.acl
+}
+
+func (c *Clientset) PortGroup() *portgroup.Client {
+	if c.portgroup == nil {
+		c.portgroup = portgroup.New(c.Client)
+	}
+	return c.portgroup
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
