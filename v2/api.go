@@ -34,6 +34,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
 	"github.com/netrisai/netriswebapi/v2/types/link"
 	"github.com/netrisai/netriswebapi/v2/types/port"
+	"github.com/netrisai/netriswebapi/v2/types/roh"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 )
 
@@ -56,6 +57,7 @@ type Clientset struct {
 	link            *link.Client
 	acl             *acl.Client
 	portgroup       *portgroup.Client
+	roh             *roh.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -175,6 +177,13 @@ func (c *Clientset) PortGroup() *portgroup.Client {
 		c.portgroup = portgroup.New(c.Client)
 	}
 	return c.portgroup
+}
+
+func (c *Clientset) ROH() *roh.Client {
+	if c.roh == nil {
+		c.roh = roh.New(c.Client)
+	}
+	return c.roh
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
