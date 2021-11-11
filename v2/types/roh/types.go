@@ -70,6 +70,29 @@ type LinkLocal struct {
 
 type Address struct {
 	Anycast bool   `json:"anycast"`
-	ID      int    `json:"id"`
+	ID      int    `json:"id,omitempty"`
 	Prefix  string `json:"prefix"`
+}
+
+/*
+ROH Structure for POST and PUT requests
+*/
+
+type ROHw struct {
+	Addresses       []Address       `json:"addresses"`
+	InboundPrefixes []InboundPrefix `json:"inboundPrefixes"`
+	LegacyMode      bool            `json:"legacyMode"`
+	Name            string          `json:"name"`
+	Ports           []IDName        `json:"ports"`
+	RoutingProfile  string          `json:"routingProfile"`
+	Site            IDName          `json:"site"`
+	Tenant          IDName          `json:"tenant"`
+	Type            string          `json:"type"`
+	UnicastAddress  string          `json:"unicastAddress"`
+}
+
+type InboundPrefix struct {
+	Action    string `json:"action"`
+	Condition string `json:"condition"`
+	Subnet    string `json:"subnet"`
 }
