@@ -67,4 +67,6 @@ const (
 	BGPPorts          = "/api/v2/ebgp/ports"
 	BGPSwitches       = "/api/v2/ebgp/switches"
 	BGPUpdatedSources = "/api/v2/ebgp/updatesources"
+
+	ROH = "/api/v2/roh"
 )
