@@ -84,7 +84,7 @@ type ROHw struct {
 	LegacyMode      bool            `json:"legacyMode,omitempty"`
 	Name            string          `json:"name"`
 	Ports           []IDName        `json:"ports"`
-	RoutingProfile  string          `json:"routingProfile"`
+	RoutingProfile  string          `json:"routingProfile,omitempty"`
 	Site            IDName          `json:"site"`
 	Tenant          IDName          `json:"tenant"`
 	Type            string          `json:"type"`
