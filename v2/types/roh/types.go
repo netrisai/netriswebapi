@@ -81,7 +81,7 @@ ROH Structure for POST and PUT requests
 type ROHw struct {
 	Addresses       []Address       `json:"addresses"`
 	InboundPrefixes []InboundPrefix `json:"inboundPrefixes"`
-	LegacyMode      bool            `json:"legacyMode"`
+	LegacyMode      bool            `json:"legacyMode,omitempty"`
 	Name            string          `json:"name"`
 	Ports           []IDName        `json:"ports"`
 	RoutingProfile  string          `json:"routingProfile"`
