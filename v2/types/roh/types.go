@@ -16,32 +16,42 @@ limitations under the License.
 
 package roh
 
-import "github.com/netrisai/netriswebapi/v2/types/port"
+import (
+	"github.com/netrisai/netriswebapi/v2/types/ipam"
+	"github.com/netrisai/netriswebapi/v2/types/port"
+)
 
 /*
 ROH Structure for GET requests
 */
 
 type ROH struct {
-	Addresses       []Address      `json:"addresses"`
-	BgpType         string         `json:"bgpType"`
-	Compute         interface{}    `json:"compute"`
-	CreatedDate     int            `json:"createdDate"`
-	ID              int            `json:"id"`
-	InboundPrefixes []interface{}  `json:"inboundPrefixes"`
-	Inherit         bool           `json:"inherit"`
-	Interface       interface{}    `json:"interface"`
-	LegacyMode      bool           `json:"legacyMode"`
-	LinkLocals      []LinkLocal    `json:"linkLocals"`
-	ModifiedDate    int            `json:"modifiedDate"`
-	Name            string         `json:"name"`
-	Ports           []port.Port    `json:"ports"`
-	RoutingProfile  RoutingProfile `json:"routingProfile"`
-	Site            Site           `json:"site"`
-	Tenant          IDName         `json:"tenant"`
-	Type            string         `json:"type"`
-	UnicastAddress  string         `json:"unicastAddress"`
-	Zone            interface{}    `json:"zone"`
+	Addresses       []Address       `json:"addresses"`
+	BgpType         string          `json:"bgpType"`
+	Compute         interface{}     `json:"compute"`
+	CreatedDate     int             `json:"createdDate"`
+	ID              int             `json:"id"`
+	InboundPrefixes []InboundPrefix `json:"inboundPrefixes"`
+	Inherit         bool            `json:"inherit"`
+	Interface       interface{}     `json:"interface"`
+	LegacyMode      bool            `json:"legacyMode"`
+	LinkLocals      []LinkLocal     `json:"linkLocals"`
+	ModifiedDate    int             `json:"modifiedDate"`
+	Name            string          `json:"name"`
+	Ports           []port.Port     `json:"ports"`
+	RoutingProfile  RoutingProfile  `json:"routingProfile"`
+	Site            Site            `json:"site"`
+	Tenant          IDName          `json:"tenant"`
+	Type            string          `json:"type"`
+	UnicastAddress  string          `json:"unicastAddress"`
+	Zone            interface{}     `json:"zone"`
+}
+
+type InboundPrefix struct {
+	Action    string      `json:"action"`
+	Condition string      `json:"condition"`
+	ID        int64       `json:"id"`
+	Subnet    ipam.Subnet `json:"subnet"`
 }
 
 type RoutingProfile struct {
@@ -79,19 +89,19 @@ ROH Structure for POST and PUT requests
 */
 
 type ROHw struct {
-	Addresses       []Address       `json:"addresses"`
-	InboundPrefixes []InboundPrefix `json:"inboundPrefixes"`
-	LegacyMode      bool            `json:"legacyMode,omitempty"`
-	Name            string          `json:"name"`
-	Ports           []IDName        `json:"ports"`
-	RoutingProfile  string          `json:"routingProfile,omitempty"`
-	Site            IDName          `json:"site"`
-	Tenant          IDName          `json:"tenant"`
-	Type            string          `json:"type"`
-	UnicastAddress  string          `json:"unicastAddress"`
+	Addresses       []Address        `json:"addresses"`
+	InboundPrefixes []InboundPrefixW `json:"inboundPrefixes"`
+	LegacyMode      bool             `json:"legacyMode,omitempty"`
+	Name            string           `json:"name"`
+	Ports           []IDName         `json:"ports"`
+	RoutingProfile  string           `json:"routingProfile,omitempty"`
+	Site            IDName           `json:"site"`
+	Tenant          IDName           `json:"tenant"`
+	Type            string           `json:"type"`
+	UnicastAddress  string           `json:"unicastAddress"`
 }
 
-type InboundPrefix struct {
+type InboundPrefixW struct {
 	Action    string `json:"action"`
 	Condition string `json:"condition"`
 	Subnet    string `json:"subnet"`
