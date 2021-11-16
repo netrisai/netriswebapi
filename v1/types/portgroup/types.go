@@ -17,18 +17,18 @@ limitations under the License.
 package portgroup
 
 type PortGroup struct {
-	Approve         interface{}   `json:"approve"`
-	ApproveAction   bool          `json:"approveAction"`
-	ApproveState    bool          `json:"approveState"`
-	CreatedDate     int           `json:"created_date"`
-	ID              int           `json:"id"`
-	ModifiedDate    int           `json:"modified_date"`
-	Name            string        `json:"name"`
-	ParentPortGrpID int           `json:"parent_port_grp_id"`
-	PortFrom        []int         `json:"port_from"`
-	PortGrpID       int           `json:"port_grp_id"`
-	PortTo          []int         `json:"port_to"`
-	Ports           []string      `json:"ports"`
-	Status          string        `json:"status"`
-	TenantName      []interface{} `json:"tenant_name"`
+	Approve         interface{} `json:"approve"`
+	ApproveAction   bool        `json:"approveAction"`
+	ApproveState    bool        `json:"approveState"`
+	CreatedDate     int         `json:"created_date"`
+	ID              int         `json:"id"`
+	ModifiedDate    int         `json:"modified_date"`
+	Name            string      `json:"name"`
+	ParentPortGrpID int         `json:"parent_port_grp_id"`
+	PortFrom        []int       `json:"port_from"`
+	PortGrpID       int         `json:"port_grp_id"`
+	PortTo          []int       `json:"port_to"`
+	Ports           []string    `json:"ports"`
+	Status          string      `json:"status"`
+	TenantName      []string    `json:"tenant_name"`
 }
