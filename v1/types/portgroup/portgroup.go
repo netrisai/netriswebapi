@@ -17,6 +17,7 @@ limitations under the License.
 package portgroup
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,52 @@ func (c *Client) Get() ([]*PortGroup, error) {
 		return nil, fmt.Errorf("{GetPortGroups} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Add(pgroup *PortGroupW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(pgroup)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.PortGroup
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Update(pgroup *PortGroupW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(pgroup)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.PortGroup
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID int `json:"id"`
+	}{id}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.PortGroup
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }

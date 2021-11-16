@@ -32,3 +32,11 @@ type PortGroup struct {
 	Status          string      `json:"status"`
 	TenantName      []string    `json:"tenant_name"`
 }
+
+type PortGroupW struct {
+	AddedArray         []string `json:"addedArray"`
+	DeletedElementsArr []string `json:"deleted_elements_arr"`
+	ID                 int      `json:"id"`
+	Name               string   `json:"name"`
+	Ports              []string `json:"ports"`
+}
