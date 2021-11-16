@@ -87,8 +87,9 @@ func (c *Client) Update(pgroup *PortGroupW) (reply http.HTTPReply, err error) {
 
 func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
 	lb := struct {
-		ID int `json:"id"`
-	}{id}
+		ID   int `json:"id"`
+		Name int `json:"name"`
+	}{ID: id}
 	js, err := json.Marshal(lb)
 	if err != nil {
 		return reply, err
