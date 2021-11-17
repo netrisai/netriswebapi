@@ -29,6 +29,8 @@ const (
 	Inventory        = "/api/inventory"
 	InventoryUsedIPs = "/api/inventory/usedips"
 
+	InventoryProfiles = "/api/inventoryProfiles"
+
 	VNet         = "/api/v-net"
 	VNetInfo     = "/api/v-net/info"
 	VNetValidate = "/api/v-net/validate"

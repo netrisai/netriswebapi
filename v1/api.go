@@ -22,6 +22,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
+	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/permission"
 	"github.com/netrisai/netriswebapi/v1/types/port"
@@ -36,22 +37,23 @@ import (
 )
 
 type Clientset struct {
-	Client          *http.HTTPCred
-	site            *site.SiteClient
-	gsetting        *gsetting.GSettingClient
-	l4lb            *l4lb.LBClient
-	subnet          *subnet.SubnetClient
-	inventory       *inventory.InventoryClient
-	vnet            *vnet.VNetClient
-	port            *port.PortClient
-	tenant          *tenant.TenantClient
-	bgp             *bgp.BGPClient
-	route           *route.RouteClient
-	user            *user.Client
-	permissiongroup *permission.Client
-	userrole        *userrole.Client
-	acl             *acl.Client
-	portgroup       *portgroup.Client
+	Client           *http.HTTPCred
+	site             *site.SiteClient
+	gsetting         *gsetting.GSettingClient
+	l4lb             *l4lb.LBClient
+	subnet           *subnet.SubnetClient
+	inventory        *inventory.InventoryClient
+	vnet             *vnet.VNetClient
+	port             *port.PortClient
+	tenant           *tenant.TenantClient
+	bgp              *bgp.BGPClient
+	route            *route.RouteClient
+	user             *user.Client
+	permissiongroup  *permission.Client
+	userrole         *userrole.Client
+	acl              *acl.Client
+	portgroup        *portgroup.Client
+	inventoryprofile *inventoryprofile.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -157,6 +159,13 @@ func (c *Clientset) PortGroup() *portgroup.Client {
 		c.portgroup = portgroup.New(c.Client)
 	}
 	return c.portgroup
+}
+
+func (c *Clientset) InventoryProfile() *inventoryprofile.Client {
+	if c.inventoryprofile == nil {
+		c.inventoryprofile = inventoryprofile.New(c.Client)
+	}
+	return c.inventoryprofile
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
