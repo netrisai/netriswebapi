@@ -17,6 +17,7 @@ limitations under the License.
 package inventoryprofile
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -52,4 +53,51 @@ func (c *Client) Get() ([]*Profile, error) {
 		return nil, fmt.Errorf("{GetInventoryProfiles} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Add(profile *ProfileW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(profile)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.InventoryProfiles
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Update(profile *ProfileW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(profile)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Update Inventory Profile} %s", err)
+	}
+	address := c.client.URL.String() + v1address.InventoryProfiles
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Update Inventory Profile} %s", err)
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID []int `json:"id"`
+	}{[]int{id}}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.InventoryProfiles
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }

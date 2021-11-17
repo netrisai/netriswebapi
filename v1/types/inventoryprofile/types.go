@@ -31,9 +31,28 @@ type Profile struct {
 }
 
 type CustomRule struct {
+	Deleted   bool   `json:"deleted,omitempty"`
 	DstPort   string `json:"dstPort"`
 	ID        int    `json:"id"`
 	Protocol  string `json:"protocol"`
 	SrcPort   string `json:"srcPort"`
 	SrcSubnet string `json:"srcSubnet"`
+}
+
+type ProfileW struct {
+	CustomRules []CustomRule `json:"customRules"`
+	Description string       `json:"description"`
+	DNSServers  string       `json:"dns_servers"`
+	ID          int64        `json:"id"`
+	Ipv4List    string       `json:"ipv4_list"`
+	Ipv6List    string       `json:"ipv6_list"`
+	Name        string       `json:"name"`
+	NTPServers  string       `json:"ntp_servers"`
+	Timezone    Timezone     `json:"timezone"`
+}
+
+type Timezone struct {
+	Label  string `json:"label"`
+	Offset string `json:"offset"`
+	TzCode string `json:"tzCode"`
 }
