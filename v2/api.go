@@ -20,6 +20,7 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/acl"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
+	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
 	"github.com/netrisai/netriswebapi/v1/types/permission"
 	"github.com/netrisai/netriswebapi/v1/types/portgroup"
@@ -39,25 +40,26 @@ import (
 )
 
 type Clientset struct {
-	Client          *http.HTTPCred
-	vnet            *vnet.VNetClient
-	inventory       *inventory.InventoryClient
-	site            *site.SiteClient
-	gsetting        *gsetting.GSettingClient
-	l4lb            *l4lb.LBClient
-	subnet          *subnet.SubnetClient
-	port            *port.PortClient
-	tenant          *tenant.TenantClient
-	bgp             *bgp.BGPClient
-	route           *route.RouteClient
-	ipam            *ipam.IPAMClient
-	user            *user.Client
-	permissiongroup *permission.Client
-	userrole        *userrole.Client
-	link            *link.Client
-	acl             *acl.Client
-	portgroup       *portgroup.Client
-	roh             *roh.Client
+	Client           *http.HTTPCred
+	vnet             *vnet.VNetClient
+	inventory        *inventory.InventoryClient
+	site             *site.SiteClient
+	gsetting         *gsetting.GSettingClient
+	l4lb             *l4lb.LBClient
+	subnet           *subnet.SubnetClient
+	port             *port.PortClient
+	tenant           *tenant.TenantClient
+	bgp              *bgp.BGPClient
+	route            *route.RouteClient
+	ipam             *ipam.IPAMClient
+	user             *user.Client
+	permissiongroup  *permission.Client
+	userrole         *userrole.Client
+	link             *link.Client
+	acl              *acl.Client
+	portgroup        *portgroup.Client
+	roh              *roh.Client
+	inventoryprofile *inventoryprofile.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -184,6 +186,13 @@ func (c *Clientset) ROH() *roh.Client {
 		c.roh = roh.New(c.Client)
 	}
 	return c.roh
+}
+
+func (c *Clientset) InventoryProfile() *inventoryprofile.Client {
+	if c.inventoryprofile == nil {
+		c.inventoryprofile = inventoryprofile.New(c.Client)
+	}
+	return c.inventoryprofile
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
