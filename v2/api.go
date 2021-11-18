@@ -19,6 +19,7 @@ package v2
 import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/acl"
+	"github.com/netrisai/netriswebapi/v1/types/bgpobject"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
@@ -60,6 +61,7 @@ type Clientset struct {
 	portgroup        *portgroup.Client
 	roh              *roh.Client
 	inventoryprofile *inventoryprofile.Client
+	bgpobject        *bgpobject.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -193,6 +195,13 @@ func (c *Clientset) InventoryProfile() *inventoryprofile.Client {
 		c.inventoryprofile = inventoryprofile.New(c.Client)
 	}
 	return c.inventoryprofile
+}
+
+func (c *Clientset) BGPObject() *bgpobject.Client {
+	if c.bgpobject == nil {
+		c.bgpobject = bgpobject.New(c.Client)
+	}
+	return c.bgpobject
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
