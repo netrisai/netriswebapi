@@ -43,7 +43,7 @@ type ProfileW struct {
 	CustomRules []CustomRule `json:"customRules"`
 	Description string       `json:"description"`
 	DNSServers  string       `json:"dns_servers"`
-	ID          int64        `json:"id"`
+	ID          int        `json:"id"`
 	Ipv4List    string       `json:"ipv4_list"`
 	Ipv6List    string       `json:"ipv6_list"`
 	Name        string       `json:"name"`
