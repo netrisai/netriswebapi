@@ -53,5 +53,7 @@ const (
 	BGPSwitches       = "/api/ebgp/switches"
 	BGPUpdatedSources = "/api/ebgp/updatesources"
 
+	BGPObjects = "/api/ebgpobjects"
+
 	Routes = "/api/routes"
 )

@@ -20,6 +20,7 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/acl"
 	"github.com/netrisai/netriswebapi/v1/types/bgp"
+	"github.com/netrisai/netriswebapi/v1/types/bgpobject"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
@@ -54,6 +55,7 @@ type Clientset struct {
 	acl              *acl.Client
 	portgroup        *portgroup.Client
 	inventoryprofile *inventoryprofile.Client
+	bgpobject        *bgpobject.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -166,6 +168,13 @@ func (c *Clientset) InventoryProfile() *inventoryprofile.Client {
 		c.inventoryprofile = inventoryprofile.New(c.Client)
 	}
 	return c.inventoryprofile
+}
+
+func (c *Clientset) BGPObject() *bgpobject.Client {
+	if c.bgpobject == nil {
+		c.bgpobject = bgpobject.New(c.Client)
+	}
+	return c.bgpobject
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
