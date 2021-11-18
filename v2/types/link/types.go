@@ -21,8 +21,8 @@ Links Structure for POST requests
 */
 
 type LinkAdd struct {
-	Dest         int64  `json:"dest"`
+	Dest         int    `json:"dest"`
 	DestHWType   string `json:"destHWType"`
-	Origin       int64  `json:"origin"`
+	Origin       int    `json:"origin"`
 	OriginHWType string `json:"originHWType"`
 }

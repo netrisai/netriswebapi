@@ -50,7 +50,7 @@ type ROH struct {
 type InboundPrefix struct {
 	Action    string      `json:"action"`
 	Condition string      `json:"condition"`
-	ID        int64       `json:"id"`
+	ID        int         `json:"id"`
 	Subnet    ipam.Subnet `json:"subnet"`
 }
 
