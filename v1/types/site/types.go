@@ -24,7 +24,7 @@ type Site struct {
 	ID                  int    `json:"id"`
 	Name                string `json:"name"`
 	Nat                 string `json:"nat"`
-	PublicASN           string `json:"publicASN"`
+	PublicASN           int    `json:"publicASN"`
 	PhysicalInstanceAsn int    `json:"physical_instance_asn"`
 	RoutingProfileID    int    `json:"rp_id"`
 	RoutingProfilName   string `json:"rp_name"`
@@ -40,13 +40,13 @@ type Site struct {
 type SiteAdd struct {
 	ID                  int    `json:"id"`
 	Name                string `json:"name"`
-	PublicASN           string `json:"publicASN"`
+	PublicASN           int    `json:"publicASN"`
 	BorderSwitchASN     string `json:"borderSwitchAsn"`
 	SpineSwitchASN      string `json:"spineSwitchAsn"`
 	TorSwitchASN        string `json:"torSwitchAsn"`
 	HypervisorHostASN   string `json:"hypervisorHostAsn"`
-	PhysicalInstanceASN string `json:"physicalInstanceASN"`
-	VirtualInstanceASN  string `json:"virtualInstanceASN"`
+	PhysicalInstanceASN int    `json:"physicalInstanceASN"`
+	VirtualInstanceASN  int    `json:"virtualInstanceASN"`
 	VPN                 string `json:"vpn"`
 	RoutingProfileID    int    `json:"rp_id"`
 	Nat                 string `json:"nat"`
