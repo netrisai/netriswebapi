@@ -56,4 +56,6 @@ const (
 	BGPObjects = "/api/ebgpobjects"
 
 	Routes = "/api/routes"
+
+	RouteMaps = "/api/ebgproutemaps"
 )
