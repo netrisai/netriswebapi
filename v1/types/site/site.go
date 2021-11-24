@@ -70,3 +70,19 @@ func (c *SiteClient) Add(site *SiteAdd) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+// Add .
+func (c *SiteClient) Update(site *SiteAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(site)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.Sites
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
