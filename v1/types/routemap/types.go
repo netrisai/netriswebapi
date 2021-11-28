@@ -43,9 +43,9 @@ type SequenceAction struct {
 
 type SequenceMatch struct {
 	EbgpObject     string `json:"ebgpObject"`
-	EbgpObjectType string `json:"ebgpObjectType"`
-	ID             string `json:"id"`
-	SequenceID     string `json:"sequenceID"`
+	EbgpObjectType string `json:"ebgpObjectType,omitempty"`
+	ID             string `json:"id,omitempty"`
+	SequenceID     string `json:"sequenceID,omitempty"`
 	Type           string `json:"type"`
 	Value          string `json:"value"`
 }
