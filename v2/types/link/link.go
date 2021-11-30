@@ -69,3 +69,18 @@ func (c *Client) Add(link *Link) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *Client) Delete(link *Link) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(link)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.Links
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
