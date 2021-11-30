@@ -31,9 +31,8 @@ func New(c *http.HTTPCred) *Client {
 	return &Client{c}
 }
 
-// AddVNet .
-func (c *Client) Add(vnet *LinkAdd) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(vnet)
+func (c *Client) Add(link *LinkAdd) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(link)
 	if err != nil {
 		return reply, err
 	}
