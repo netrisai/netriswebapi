@@ -20,9 +20,9 @@ package link
 Links Structure for POST requests
 */
 
-type LinkAdd struct {
+type Link struct {
 	Dest         int    `json:"dest"`
-	DestHWType   string `json:"destHWType"`
+	DestHWType   string `json:"destHWType,omitempty"`
 	Origin       int    `json:"origin"`
-	OriginHWType string `json:"originHWType"`
+	OriginHWType string `json:"originHWType,omitempty"`
 }

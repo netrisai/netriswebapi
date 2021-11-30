@@ -18,6 +18,7 @@ package link
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -31,7 +32,30 @@ func New(c *http.HTTPCred) *Client {
 	return &Client{c}
 }
 
-func (c *Client) Add(link *LinkAdd) (reply http.HTTPReply, err error) {
+func parse(APIResult *http.APIResponse) ([]*Link, error) {
+	var item []*Link
+	err := http.Decode(APIResult.Data, &item)
+	if err != nil {
+		return item, fmt.Errorf("{parse Links} %s", err)
+	}
+	return item, nil
+}
+
+func (c *Client) Get() ([]*Link, error) {
+	address := c.client.URL.String() + v2address.Links
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetLinks} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetLinks} %s", err)
+	}
+	return items, nil
+}
+
+func (c *Client) Add(link *Link) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(link)
 	if err != nil {
 		return reply, err
