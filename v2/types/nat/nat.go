@@ -17,6 +17,7 @@ limitations under the License.
 package nat
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -76,4 +77,43 @@ func (c *Client) GetByID(id int) (*NAT, error) {
 		return nil, fmt.Errorf("{GetNATByID} %s", err)
 	}
 	return vnet, nil
+}
+
+func (c *Client) Add(roh *NATw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(roh)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.NAT
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Update(id int, roh *NATw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(roh)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdateNAT} %s", err)
+	}
+	address := c.client.URL.String() + v2address.NAT + "/" + strconv.Itoa(id)
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdateNAT} %s", err)
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	address := c.client.URL.String() + v2address.NAT + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }

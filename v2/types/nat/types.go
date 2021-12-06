@@ -56,3 +56,21 @@ type NAT struct {
 		Value  string `json:"value"`
 	} `json:"state"`
 }
+
+type NATw struct {
+	Action             string `json:"action"`
+	Comment            string `json:"comment"`
+	DestinationAddress string `json:"destinationAddress"`
+	DestinationPort    string `json:"destinationPort"`
+	DnatToIP           string `json:"dnatToIP"`
+	DnatToPort         string `json:"dnatToPort"`
+	Protocol           string `json:"protocol"`
+	Site               struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	} `json:"site"`
+	SnatToIP      string `json:"snatToIP"`
+	SourceAddress string `json:"sourceAddress"`
+	SourcePort    string `json:"sourcePort"`
+	State         string `json:"state"`
+}
