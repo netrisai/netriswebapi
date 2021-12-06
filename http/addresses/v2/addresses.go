@@ -53,4 +53,6 @@ const (
 	BGPUpdatedSources = "/api/v2/ebgp/updatesources"
 
 	ROH = "/api/v2/roh"
+
+	NAT = "/api/v2/nat"
 )

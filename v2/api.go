@@ -36,6 +36,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
 	"github.com/netrisai/netriswebapi/v2/types/link"
+	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
@@ -64,6 +65,7 @@ type Clientset struct {
 	inventoryprofile *inventoryprofile.Client
 	bgpobject        *bgpobject.Client
 	routemap         *routemap.Client
+	nat              *nat.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -211,6 +213,13 @@ func (c *Clientset) RouteMap() *routemap.Client {
 		c.routemap = routemap.New(c.Client)
 	}
 	return c.routemap
+}
+
+func (c *Clientset) NAT() *nat.Client {
+	if c.nat == nil {
+		c.nat = nat.New(c.Client)
+	}
+	return c.nat
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
