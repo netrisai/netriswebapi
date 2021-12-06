@@ -58,6 +58,7 @@ type NAT struct {
 }
 
 type NATw struct {
+	Name               string `json:"name"`
 	Action             string `json:"action"`
 	Comment            string `json:"comment"`
 	DestinationAddress string `json:"destinationAddress"`
