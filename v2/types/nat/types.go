@@ -66,12 +66,14 @@ type NATw struct {
 	DnatToIP           string `json:"dnatToIP"`
 	DnatToPort         string `json:"dnatToPort"`
 	Protocol           string `json:"protocol"`
-	Site               struct {
-		ID   int    `json:"id"`
-		Name string `json:"name"`
-	} `json:"site"`
-	SnatToIP      string `json:"snatToIP"`
-	SourceAddress string `json:"sourceAddress"`
-	SourcePort    string `json:"sourcePort"`
-	State         string `json:"state"`
+	Site               IDName `json:"site"`
+	SnatToIP           string `json:"snatToIP"`
+	SourceAddress      string `json:"sourceAddress"`
+	SourcePort         string `json:"sourcePort"`
+	State              string `json:"state"`
+}
+
+type IDName struct {
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
