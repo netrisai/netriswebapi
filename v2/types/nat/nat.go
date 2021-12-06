@@ -79,8 +79,8 @@ func (c *Client) GetByID(id int) (*NAT, error) {
 	return vnet, nil
 }
 
-func (c *Client) Add(roh *NATw) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(roh)
+func (c *Client) Add(nat *NATw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(nat)
 	if err != nil {
 		return reply, err
 	}
@@ -94,8 +94,8 @@ func (c *Client) Add(roh *NATw) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-func (c *Client) Update(id int, roh *NATw) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(roh)
+func (c *Client) Update(id int, nat *NATw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(nat)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateNAT} %s", err)
 	}
