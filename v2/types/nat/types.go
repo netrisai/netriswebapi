@@ -68,6 +68,7 @@ type NATw struct {
 	Protocol           string `json:"protocol"`
 	Site               IDName `json:"site"`
 	SnatToIP           string `json:"snatToIP"`
+	SnatToPool         string `json:"snatToPool"`
 	SourceAddress      string `json:"sourceAddress"`
 	SourcePort         string `json:"sourcePort"`
 	State              string `json:"state"`
