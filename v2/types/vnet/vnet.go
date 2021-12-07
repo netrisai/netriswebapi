@@ -44,7 +44,7 @@ func parseAPIVnets(APIResult *http.APIResponse) ([]*VNet, error) {
 
 func parseAPIVnet(APIResult *http.APIResponse) (*VNetDetailed, error) {
 	var items *VNetDetailed
-	err := http.Decode(APIResult, &items)
+	err := http.Decode(APIResult.Data, &items)
 	if err != nil {
 		return items, fmt.Errorf("{parseAPIVnet} %s", err)
 	}
