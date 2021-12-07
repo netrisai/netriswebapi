@@ -99,7 +99,7 @@ type VNetDetailedPort struct {
 	Access           bool                             `json:"access"`
 	AdminDown        string                           `json:"adminDown"`
 	AutoNeg          string                           `json:"autoNeg"`
-	Breakout         int                              `json:"breakout"`
+	Breakout         string                           `json:"breakout"`
 	CreatedDate      int                              `json:"createdDate"`
 	Description      string                           `json:"description"`
 	DesiredSpeed     interface{}                      `json:"desiredSpeed"`
