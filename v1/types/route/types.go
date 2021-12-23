@@ -40,11 +40,11 @@ type Route struct {
 }
 
 type RouteAdd struct {
-	Description string      `json:"description"`
-	NextHop     string      `json:"next_hop"`
-	Prefix      string      `json:"prefix"`
-	RouteID     interface{} `json:"route_id"`
-	SiteID      int         `json:"site_id"`
-	StateStatus string      `json:"stateStatus"`
-	Switches    []int       `json:"switches"`
+	Description string `json:"description"`
+	NextHop     string `json:"next_hop"`
+	Prefix      string `json:"prefix"`
+	RouteID     int    `json:"route_id,omitempty"`
+	SiteID      int    `json:"site_id"`
+	StateStatus string `json:"stateStatus"`
+	Switches    []int  `json:"switches"`
 }
