@@ -77,8 +77,14 @@ type EBGP struct {
 	TerminateOnSwitch    string        `json:"terminate_on_switch"`
 	UpdateSource         string        `json:"update_source"`
 	Vlan                 int           `json:"vlan"`
-	Vnet                 EBGPVNet      `json:"vnet"`
+	Vnet                 VNet          `json:"vnet"`
 	Weight               int           `json:"weight"`
+}
+
+type VNet struct {
+	ID       interface{} `json:"id"`
+	Internal int         `json:"internal"`
+	Name     string      `json:"name"`
 }
 
 type EBGPPortShort struct {
