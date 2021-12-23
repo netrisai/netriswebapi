@@ -92,3 +92,21 @@ func (c *RouteClient) Update(route *RouteAdd) (reply http.HTTPReply, err error) 
 
 	return reply, nil
 }
+
+func (c *RouteClient) Delete(id int) (reply http.HTTPReply, err error) {
+	lb := struct {
+		ID int `json:"id"`
+	}{id}
+	js, err := json.Marshal(lb)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v1address.Routes
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
