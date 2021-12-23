@@ -32,7 +32,7 @@ type EBGP struct {
 	GraphPort            string        `json:"graphPort"`
 	ID                   int           `json:"id"`
 	InboundRouteMapName  string        `json:"inboundRouteMapName"`
-	InboundRouteMap      string        `json:"inbound_route_map"`
+	InboundRouteMap      int           `json:"inbound_route_map"`
 	Internal             int           `json:"internal"`
 	IPVersion            string        `json:"ip_version"`
 	KubenetInfo          string        `json:"kubenet_info"`
@@ -51,7 +51,7 @@ type EBGP struct {
 	OffloaderSwName      string        `json:"offloader_sw_name"`
 	Originate            string        `json:"originate"`
 	OutboundRouteMapName string        `json:"outboundRouteMapName"`
-	OutboundRouteMap     string        `json:"outbound_route_map"`
+	OutboundRouteMap     int           `json:"outbound_route_map"`
 	PName                string        `json:"p_name"`
 	Port                 EBGPPortShort `json:"port"`
 	PortName             string        `json:"portName"`
