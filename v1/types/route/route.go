@@ -49,7 +49,7 @@ func (c *RouteClient) Get() ([]*Route, error) {
 	}
 	siteList := ""
 	for _, s := range sites {
-		siteList += fmt.Sprintf("selectedSites[]=%d&", s.ID)
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
 	address := c.client.URL.String() + v1address.Routes + "?" + siteList
 	APIResult, err := c.client.Get(address)
