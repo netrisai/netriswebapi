@@ -29,6 +29,7 @@ const (
 	ACL2Publishers        = "/api/acltwozero/publishers"
 	ACL2PublishersApprove = "/api/acltwozero/publishers/approve"
 	ACL2PublishersReject  = "/api/acltwozero/publishers/reject"
+	ACL2Subscribers       = "/api/acltwozero/subscribers"
 
 	PortGroup = "/api/aclportgroups"
 

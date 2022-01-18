@@ -171,3 +171,17 @@ func (c *Client) PublisherReject(reject *PublisherReject) (reply http.HTTPReply,
 
 	return reply, nil
 }
+
+func (c *Client) SubscribersEdit(s *SubscriberW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(s)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Edit ACL2.0 Subscribers} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2Subscribers
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Edit ACL2.0 Subscribers} %s", err)
+	}
+
+	return reply, nil
+}

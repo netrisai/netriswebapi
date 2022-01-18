@@ -132,3 +132,17 @@ type PublisherApprove struct {
 }
 
 type PublisherReject PublisherApprove
+
+type SubscriberW struct {
+	ID        int                 `json:"id"`
+	Instances []int               `json:"instances"`
+	Prefixes  []SubscriberWPrefix `json:"prefixes"`
+	TenantID  int                 `json:"tenantID"`
+	Type      string              `json:"type"`
+}
+
+type SubscriberWPrefix struct {
+	Comment string `json:"comment"`
+	Length  string `json:"length"`
+	Prefix  string `json:"prefix"`
+}
