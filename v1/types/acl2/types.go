@@ -82,3 +82,9 @@ type ACLw struct {
 	Privacy  string `json:"privacy"`
 	TenantID int    `json:"tenantID"`
 }
+
+type ACLStatusW struct {
+	ID       int    `json:"id"`
+	Status   string `json:"status"`
+	TenantID int    `json:"tenantID"`
+}

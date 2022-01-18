@@ -101,3 +101,17 @@ func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *Client) ChangeStatus(status *ACLStatusW) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(status)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Change ACL2.0 Status} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2Status
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Change ACL2.0 Status} %s", err)
+	}
+
+	return reply, nil
+}

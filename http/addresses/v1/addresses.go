@@ -24,7 +24,8 @@ const (
 
 	ACL = "/api/acl"
 
-	ACL2 = "/api/acltwozero"
+	ACL2       = "/api/acltwozero"
+	ACL2Status = "/api/acltwozero/changestatus"
 
 	PortGroup = "/api/aclportgroups"
 
