@@ -90,12 +90,13 @@ type ACLStatusW struct {
 }
 
 type PublisherW struct {
-	ID        int                `json:"id"`
-	Instances []int              `json:"instances"`
-	Lbs       []PublisherWLB     `json:"lbs"`
-	Prefixes  []PublisherWPrefix `json:"prefixes"`
-	TenantID  int                `json:"tenantID"`
-	Type      string             `json:"type"`
+	ID        int                  `json:"id"`
+	Instances []int                `json:"instances"`
+	Lbs       []PublisherWLB       `json:"lbs,omitempty"`
+	Prefixes  []PublisherWPrefix   `json:"prefixes,omitempty"`
+	Protocols []PublisherWProtocol `json:"protocols,omitempty"`
+	TenantID  int                  `json:"tenantID"`
+	Type      string               `json:"type"`
 }
 
 type PublisherWLB struct {
@@ -114,4 +115,12 @@ type PublisherD struct {
 	Prefix    string `json:"prefix,omitempty"`
 	ServiceID int    `json:"serviceID"`
 	Type      string `json:"type"`
+}
+
+type PublisherWProtocol struct {
+	Description string `json:"description"`
+	ID          int    `json:"id"`
+	Port        string `json:"port"`
+	PortGroupID int    `json:"portGroupID"`
+	Proto       string `json:"proto"`
 }
