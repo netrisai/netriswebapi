@@ -124,3 +124,9 @@ type PublisherWProtocol struct {
 	PortGroupID int    `json:"portGroupID"`
 	Proto       string `json:"proto"`
 }
+
+type PublisherApprove struct {
+	Action    string `json:"action"`
+	ApproveID int    `json:"approveID"`
+	PrefixID  int    `json:"prefixID"`
+}
