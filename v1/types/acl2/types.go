@@ -107,3 +107,11 @@ type PublisherWPrefix struct {
 	Length string `json:"length"`
 	Prefix string `json:"prefix"`
 }
+
+type PublisherD struct {
+	ID        int    `json:"id"`
+	Length    string `json:"length,omitempty"`
+	Prefix    string `json:"prefix,omitempty"`
+	ServiceID int    `json:"serviceID"`
+	Type      string `json:"type"`
+}

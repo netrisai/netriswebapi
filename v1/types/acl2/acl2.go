@@ -129,3 +129,17 @@ func (c *Client) AddPublisher(pub *PublisherW) (reply http.HTTPReply, err error)
 
 	return reply, nil
 }
+
+func (c *Client) DeletePublisher(pub *PublisherD) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(pub)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Delete ACL2.0 Publishers} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2Publishers
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Delete ACL2.0 Publishers} %s", err)
+	}
+
+	return reply, nil
+}
