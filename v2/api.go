@@ -19,6 +19,7 @@ package v2
 import (
 	"github.com/netrisai/netriswebapi/http"
 	"github.com/netrisai/netriswebapi/v1/types/acl"
+	"github.com/netrisai/netriswebapi/v1/types/acl2"
 	"github.com/netrisai/netriswebapi/v1/types/bgpobject"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
@@ -66,6 +67,7 @@ type Clientset struct {
 	bgpobject        *bgpobject.Client
 	routemap         *routemap.Client
 	nat              *nat.Client
+	acl2             *acl2.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -220,6 +222,13 @@ func (c *Clientset) NAT() *nat.Client {
 		c.nat = nat.New(c.Client)
 	}
 	return c.nat
+}
+
+func (c *Clientset) ACL2() *acl2.Client {
+	if c.acl2 == nil {
+		c.acl2 = acl2.New(c.Client)
+	}
+	return c.acl2
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
