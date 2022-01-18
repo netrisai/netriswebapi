@@ -157,3 +157,17 @@ func (c *Client) PublisherApprove(approve *PublisherApprove) (reply http.HTTPRep
 
 	return reply, nil
 }
+
+func (c *Client) PublisherReject(reject *PublisherReject) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(reject)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Add ACL2.0 Publisher reject} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2PublishersReject
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Add ACL2.0 Publisher reject} %s", err)
+	}
+
+	return reply, nil
+}

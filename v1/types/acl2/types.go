@@ -130,3 +130,5 @@ type PublisherApprove struct {
 	ApproveID int    `json:"approveID"`
 	PrefixID  int    `json:"prefixID"`
 }
+
+type PublisherReject PublisherApprove
