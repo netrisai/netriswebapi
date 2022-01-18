@@ -199,3 +199,17 @@ func (c *Client) DeleteSubscriber(sub *SubscriberD) (reply http.HTTPReply, err e
 
 	return reply, nil
 }
+
+func (c *Client) SubscribersApprove(approve *SubscriberApprove) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(approve)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Add ACL2.0 Subscriber approve} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2SubscribersApprove
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Add ACL2.0 Subscriber approve} %s", err)
+	}
+
+	return reply, nil
+}

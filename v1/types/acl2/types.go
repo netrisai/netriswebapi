@@ -152,3 +152,13 @@ type SubscriberD struct {
 	ServiceID int    `json:"serviceID"`
 	Type      string `json:"type"`
 }
+
+type SubscriberApprove struct {
+	Action          string `json:"action"`
+	ApproveID       int    `json:"approveID"`
+	ID              int    `json:"id"`
+	PrefixID        int    `json:"prefixID"`
+	ServiceTenantID int    `json:"serviceTenantID"`
+	SubTenantID     int    `json:"subTenantID"`
+	Type            string `json:"type"`
+}
