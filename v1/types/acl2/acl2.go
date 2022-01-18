@@ -213,3 +213,17 @@ func (c *Client) SubscribersApprove(approve *SubscriberApprove) (reply http.HTTP
 
 	return reply, nil
 }
+
+func (c *Client) SubscriberReject(reject *SubscriberApprove) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(reject)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Add ACL2.0 Subscriber reject} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2SubscribersReject
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Add ACL2.0 Subscriber reject} %s", err)
+	}
+
+	return reply, nil
+}

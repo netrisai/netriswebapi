@@ -162,3 +162,5 @@ type SubscriberApprove struct {
 	SubTenantID     int    `json:"subTenantID"`
 	Type            string `json:"type"`
 }
+
+type SubscriberReject SubscriberApprove
