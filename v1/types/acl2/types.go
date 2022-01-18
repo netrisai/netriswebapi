@@ -88,3 +88,22 @@ type ACLStatusW struct {
 	Status   string `json:"status"`
 	TenantID int    `json:"tenantID"`
 }
+
+type PublisherW struct {
+	ID        int                `json:"id"`
+	Instances []int              `json:"instances"`
+	Lbs       []PublisherWLB     `json:"lbs"`
+	Prefixes  []PublisherWPrefix `json:"prefixes"`
+	TenantID  int                `json:"tenantID"`
+	Type      string             `json:"type"`
+}
+
+type PublisherWLB struct {
+	ID        int    `json:"id"`
+	IPAddress string `json:"ipAddress"`
+}
+
+type PublisherWPrefix struct {
+	Length string `json:"length"`
+	Prefix string `json:"prefix"`
+}
