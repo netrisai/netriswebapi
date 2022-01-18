@@ -185,3 +185,17 @@ func (c *Client) SubscribersEdit(s *SubscriberW) (reply http.HTTPReply, err erro
 
 	return reply, nil
 }
+
+func (c *Client) DeleteSubscriber(sub *SubscriberD) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(sub)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{Delete ACL2.0 Subscriber} %s", err)
+	}
+	address := c.client.URL.String() + v1address.ACL2Subscribers
+	reply, err = c.client.Delete(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{Delete ACL2.0 Subscriber} %s", err)
+	}
+
+	return reply, nil
+}

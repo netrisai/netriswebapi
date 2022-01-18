@@ -146,3 +146,9 @@ type SubscriberWPrefix struct {
 	Length  string `json:"length"`
 	Prefix  string `json:"prefix"`
 }
+
+type SubscriberD struct {
+	ID        int    `json:"id"`
+	ServiceID int    `json:"serviceID"`
+	Type      string `json:"type"`
+}
