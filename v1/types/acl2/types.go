@@ -92,7 +92,7 @@ type ACLStatusW struct {
 type PublisherW struct {
 	ID        int                  `json:"id"`
 	Instances []int                `json:"instances,omitempty"`
-	Lbs       []PublisherWLB       `json:"lbs,omitempty"`
+	Lbs       []PublisherWLB       `json:"lbs"`
 	Prefixes  []PublisherWPrefix   `json:"prefixes,omitempty"`
 	Protocols []PublisherWProtocol `json:"protocols,omitempty"`
 	TenantID  int                  `json:"tenantID"`
