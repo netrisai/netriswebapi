@@ -105,7 +105,7 @@ type PublisherWLB struct {
 }
 
 type PublisherWPrefix struct {
-	ID     string `json:"id"`
+	ID     int    `json:"id"`
 	Length string `json:"length"`
 	Prefix string `json:"prefix"`
 }
