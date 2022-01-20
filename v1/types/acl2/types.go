@@ -143,6 +143,7 @@ type SubscriberW struct {
 }
 
 type SubscriberWPrefix struct {
+	ID        int    `json:"id"`
 	Comment string `json:"comment"`
 	Length  string `json:"length"`
 	Prefix  string `json:"prefix"`
