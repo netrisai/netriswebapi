@@ -113,19 +113,19 @@ Inventory Switch Structure for POST requests
 */
 
 type HWSwitchAdd struct {
-	Asn         string   `json:"asn"`
-	Description string   `json:"description"`
-	Links       []HWLink `json:"links"`
-	MacAddress  string   `json:"macAddress"`
-	MainAddress string   `json:"mainAddress"`
-	MgmtAddress string   `json:"mgmtAddress"`
-	Name        string   `json:"name"`
-	Nos         NOS      `json:"nos"`
-	PortCount   int      `json:"portCount"`
-	Profile     IDName   `json:"profile"`
-	Site        IDName   `json:"site"`
-	Tenant      IDName   `json:"tenant"`
-	Type        string   `json:"type"`
+	Asn         interface{} `json:"asn"`
+	Description string      `json:"description"`
+	Links       []HWLink    `json:"links"`
+	MacAddress  string      `json:"macAddress"`
+	MainAddress string      `json:"mainAddress"`
+	MgmtAddress string      `json:"mgmtAddress"`
+	Name        string      `json:"name"`
+	Nos         NOS         `json:"nos"`
+	PortCount   int         `json:"portCount"`
+	Profile     IDName      `json:"profile"`
+	Site        IDName      `json:"site"`
+	Tenant      IDName      `json:"tenant"`
+	Type        string      `json:"type"`
 }
 
 type HWLink struct {
@@ -138,20 +138,20 @@ Inventory Switch Structure for PUT requests
 */
 
 type HWSwitchUpdate struct {
-	Asn             string   `json:"asn"`
-	Description     string   `json:"description"`
-	Links           []HWLink `json:"links"`
-	MacAddress      string   `json:"macAddress"`
-	MainAddress     string   `json:"mainAddress"`
-	MaintenanceMode bool     `json:"maintenanceMode"`
-	MgmtAddress     string   `json:"mgmtAddress"`
-	Name            string   `json:"name"`
-	Nos             NOS      `json:"nos"`
-	PortCount       int      `json:"portCount"`
-	Profile         IDName   `json:"profile"`
-	Site            IDName   `json:"site"`
-	Tenant          IDName   `json:"tenant"`
-	Type            string   `json:"type"`
+	Asn             interface{} `json:"asn"`
+	Description     string      `json:"description"`
+	Links           []HWLink    `json:"links"`
+	MacAddress      string      `json:"macAddress"`
+	MainAddress     string      `json:"mainAddress"`
+	MaintenanceMode bool        `json:"maintenanceMode"`
+	MgmtAddress     string      `json:"mgmtAddress"`
+	Name            string      `json:"name"`
+	Nos             NOS         `json:"nos"`
+	PortCount       int         `json:"portCount"`
+	Profile         IDName      `json:"profile"`
+	Site            IDName      `json:"site"`
+	Tenant          IDName      `json:"tenant"`
+	Type            string      `json:"type"`
 }
 
 /*
