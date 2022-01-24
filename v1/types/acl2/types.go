@@ -122,7 +122,7 @@ type PublisherWProtocol struct {
 	Description string `json:"description"`
 	ID          int    `json:"id"`
 	Port        string `json:"port"`
-	PortGroupID int    `json:"portGroupID"`
+	PortGroupID int    `json:"portGroupID,omitempty"`
 	Proto       string `json:"proto"`
 }
 
