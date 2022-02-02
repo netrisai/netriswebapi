@@ -243,7 +243,7 @@ type VNetUpdatePort struct {
 	Lacp     string `json:"lacp"`
 	State    string `json:"state"`
 	Vlan     string `json:"vlan"`
-	Maccount int    `json:"maccount"`
+	Maccount int    `json:"macCount"`
 }
 
 type VNetUpdateSite struct {
