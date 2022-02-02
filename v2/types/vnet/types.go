@@ -237,12 +237,13 @@ type VNetUpdateGuestTenant struct {
 }
 
 type VNetUpdatePort struct {
-	Access bool   `json:"access"`
-	Name   string `json:"name"`
-	ID     int    `json:"id"`
-	Lacp   string `json:"lacp"`
-	State  string `json:"state"`
-	Vlan   string `json:"vlan"`
+	Access   bool   `json:"access"`
+	Name     string `json:"name"`
+	ID       int    `json:"id"`
+	Lacp     string `json:"lacp"`
+	State    string `json:"state"`
+	Vlan     string `json:"vlan"`
+	Maccount string `json:"maccount"`
 }
 
 type VNetUpdateSite struct {
