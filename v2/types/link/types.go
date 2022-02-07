@@ -21,12 +21,11 @@ Links Structure for POST requests
 */
 
 type Link struct {
-	Local struct {
-		ID   int    `json:"id"`
-		Name string `json:"name"`
-	} `json:"local"`
-	Remote struct {
-		ID   int    `json:"id"`
-		Name string `json:"name"`
-	} `json:"remote"`
+	Local  LinkIDName `json:"local"`
+	Remote LinkIDName `json:"remote"`
+}
+
+type LinkIDName struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
