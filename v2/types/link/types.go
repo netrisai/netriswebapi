@@ -21,8 +21,12 @@ Links Structure for POST requests
 */
 
 type Link struct {
-	Dest         int    `json:"dest"`
-	DestHWType   string `json:"destHWType,omitempty"`
-	Origin       int    `json:"origin"`
-	OriginHWType string `json:"originHWType,omitempty"`
+	Local struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	} `json:"local"`
+	Remote struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	} `json:"remote"`
 }
