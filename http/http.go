@@ -24,6 +24,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 	"time"
 
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -40,7 +41,7 @@ func init() {
 
 // NewHTTPCredentials .
 func NewHTTPCredentials(address, login, password string, timeout int) (*HTTPCred, error) {
-	URL, err := url.Parse(address)
+	URL, err := url.Parse(strings.Replace(login, "//", "/", -1))
 	if err != nil {
 		return nil, fmt.Errorf("{newHTTPCredentials} %s", err)
 	}
