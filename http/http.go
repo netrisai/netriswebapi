@@ -41,7 +41,7 @@ func init() {
 
 // NewHTTPCredentials .
 func NewHTTPCredentials(address, login, password string, timeout int) (*HTTPCred, error) {
-	URL, err := url.Parse(strings.Replace(login, "//", "/", -1))
+	URL, err := url.Parse(strings.TrimSuffix(address, "/"))
 	if err != nil {
 		return nil, fmt.Errorf("{newHTTPCredentials} %s", err)
 	}
