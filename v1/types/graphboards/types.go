@@ -18,12 +18,17 @@ package graphboards
 
 import "encoding/json"
 
+type board struct {
+	ActiveDashboardID int         `json:"activeDashboardID"`
+	Dashboards        []dashboard `json:"dashboards"`
+}
+
 type Board struct {
 	ActiveDashboardID int         `json:"activeDashboardID"`
 	Dashboards        []Dashboard `json:"dashboards"`
 }
 
-type Dashboard struct {
+type dashboard struct {
 	Data       string `json:"data"`
 	GridSize   int    `json:"grid_size"`
 	ID         int    `json:"id"`
@@ -31,6 +36,16 @@ type Dashboard struct {
 	Public     int    `json:"public"`
 	TenantID   int    `json:"tenant_id"`
 	TenantName string `json:"tenant_name"`
+}
+
+type Dashboard struct {
+	Data       []DashboardData `json:"data"`
+	GridSize   int             `json:"grid_size"`
+	ID         int             `json:"id"`
+	Name       string          `json:"name"`
+	Public     int             `json:"public"`
+	TenantID   int             `json:"tenant_id"`
+	TenantName string          `json:"tenant_name"`
 }
 
 type DashboardData struct {
@@ -49,8 +64,31 @@ type DashboardData struct {
 	MUUID  string   `json:"mUUID"`
 }
 
-func (d Dashboard) GetData() []DashboardData {
+func (d dashboard) getData() []DashboardData {
 	var data []DashboardData
 	_ = json.Unmarshal([]byte(d.Data), &data)
 	return data
+}
+
+func (d dashboard) ConvertToDashboard() Dashboard {
+	return Dashboard{
+		Data:       d.getData(),
+		GridSize:   d.GridSize,
+		ID:         d.ID,
+		Name:       d.Name,
+		Public:     d.Public,
+		TenantID:   d.TenantID,
+		TenantName: d.TenantName,
+	}
+}
+
+func (d *board) ConvertToBoard() *Board {
+	dashboards := []Dashboard{}
+	for _, dboard := range d.Dashboards {
+		dashboards = append(dashboards, dboard.ConvertToDashboard())
+	}
+	return &Board{
+		ActiveDashboardID: d.ActiveDashboardID,
+		Dashboards:        dashboards,
+	}
 }

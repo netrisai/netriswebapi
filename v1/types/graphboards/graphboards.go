@@ -32,12 +32,12 @@ func New(c *http.HTTPCred) *Client {
 }
 
 func parse(APIResult *http.APIResponse) (*Board, error) {
-	var board *Board
-	err := http.Decode(APIResult.Data, &board)
+	var b *board
+	err := http.Decode(APIResult.Data, &b)
 	if err != nil {
-		return board, fmt.Errorf("{parse} %s", err)
+		return nil, fmt.Errorf("{parse} %s", err)
 	}
-	return board, nil
+	return b.ConvertToBoard(), nil
 }
 
 func (c *Client) Get() (*Board, error) {
