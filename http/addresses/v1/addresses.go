@@ -35,6 +35,8 @@ const (
 
 	PortGroup = "/api/aclportgroups"
 
+	GraphBoards = "/api/graphboards"
+
 	Inventory        = "/api/inventory"
 	InventoryUsedIPs = "/api/inventory/usedips"
 

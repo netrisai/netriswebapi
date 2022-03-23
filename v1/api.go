@@ -22,6 +22,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/acl2"
 	"github.com/netrisai/netriswebapi/v1/types/bgp"
 	"github.com/netrisai/netriswebapi/v1/types/bgpobject"
+	"github.com/netrisai/netriswebapi/v1/types/graphboards"
 	"github.com/netrisai/netriswebapi/v1/types/gsetting"
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
@@ -60,6 +61,7 @@ type Clientset struct {
 	bgpobject        *bgpobject.Client
 	routemap         *routemap.Client
 	acl2             *acl2.Client
+	graphboards      *graphboards.Client
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -193,6 +195,13 @@ func (c *Clientset) ACL2() *acl2.Client {
 		c.acl2 = acl2.New(c.Client)
 	}
 	return c.acl2
+}
+
+func (c *Clientset) GraphBoards() *graphboards.Client {
+	if c.graphboards == nil {
+		c.graphboards = graphboards.New(c.Client)
+	}
+	return c.graphboards
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
