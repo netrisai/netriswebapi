@@ -87,6 +87,7 @@ func (cred *HTTPCred) loginUser(URL string, redirectCounter int) error {
 	if err != nil {
 		return fmt.Errorf("{LoginUser} %s", err)
 	}
+	req.Header.Set("Content-Type", "text/plain")
 
 	client := cred.createHTTPClient()
 
