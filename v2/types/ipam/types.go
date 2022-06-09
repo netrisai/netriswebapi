@@ -22,7 +22,7 @@ IPAM Structure for GET requests
 
 type IPAM struct {
 	AllocationID   int      `json:"allocationID"`
-	Children       []IPAM  `json:"children"`
+	Children       []IPAM   `json:"children"`
 	DefaultGateway string   `json:"defaultGateway"`
 	Description    string   `json:"description"`
 	FullName       string   `json:"fullName"`
@@ -93,4 +93,5 @@ type Subnet struct {
 	Purpose        string   `json:"purpose"`
 	Sites          []IDName `json:"sites"`
 	Tenant         IDName   `json:"tenant"`
+	Tags           []string `json:"tags"`
 }
