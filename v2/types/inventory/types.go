@@ -263,3 +263,11 @@ type NOS struct {
 	Name string `json:"name"`
 	Tag  string `json:"tag"`
 }
+
+type EquinixMetalServer struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Site        IDName `json:"site"`
+	Tenant      IDName `json:"tenant"`
+	UUID        string `json:"uuid"`
+}

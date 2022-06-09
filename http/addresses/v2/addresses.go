@@ -21,14 +21,15 @@ const (
 
 	VNetBase = "/api/v2/vnet"
 
-	InventoryBase       = "/api/v2/hw"
-	InventorySwitch     = "/api/v2/hw/switch"
-	InventoryController = "/api/v2/hw/controller"
-	InventorySoftgate   = "/api/v2/hw/softgate"
-	InventoryUsedIPs    = "/api/v2/hw/usedips"
-	InventoryProfiles   = "/api/v2/hw/profiles"
-	InventorySubnets    = "/api/v2/hw/subnets"
-	InventoryNOS        = "/api/v2/hw/nos"
+	InventoryBase         = "/api/v2/hw"
+	InventorySwitch       = "/api/v2/hw/switch"
+	InventoryEquinixMetal = "/api/v2/hw/equinix-metal-server"
+	InventoryController   = "/api/v2/hw/controller"
+	InventorySoftgate     = "/api/v2/hw/softgate"
+	InventoryUsedIPs      = "/api/v2/hw/usedips"
+	InventoryProfiles     = "/api/v2/hw/profiles"
+	InventorySubnets      = "/api/v2/hw/subnets"
+	InventoryNOS          = "/api/v2/hw/nos"
 
 	Links = "/api/v2/link"
 
