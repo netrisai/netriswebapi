@@ -58,6 +58,7 @@ type HW struct {
 	Timezone         string        `json:"timezone"`
 	Type             string        `json:"type"`
 	Uptime           string        `json:"uptime"`
+	UUID             string        `json:"uuid"`
 }
 
 type HWASNNumber struct {
