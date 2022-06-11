@@ -21,23 +21,24 @@ VNet Structure for GET requests
 */
 
 type VNet struct {
-	CreatedDate  int           `json:"createdDate"`
-	Gateways     []VNetGateway `json:"gateways"`
-	ID           int           `json:"id"`
-	Internal     int           `json:"internal"`
-	MacAddress   string        `json:"macAddress"`
-	ModifiedDate int           `json:"modifiedDate"`
-	Name         string        `json:"name"`
-	NativeVlan   int           `json:"nativeVlan"`
-	PortsCount   int           `json:"portsCount"`
-	Provisioning bool          `json:"provisioning"`
-	State        string        `json:"state"`
-	Status       VNetStatus    `json:"status"`
-	VlanAware    bool          `json:"vlanAware"`
-	Vlans        string        `json:"vlans"`
-	VxlanID      int           `json:"vxlanID"`
-	Tenant       IDName        `json:"tenant"`
-	TenantID     int           `json:"tenantID"`
+	CreatedDate  int                `json:"createdDate"`
+	Gateways     []VNetGateway      `json:"gateways"`
+	ID           int                `json:"id"`
+	Internal     int                `json:"internal"`
+	MacAddress   string             `json:"macAddress"`
+	ModifiedDate int                `json:"modifiedDate"`
+	Name         string             `json:"name"`
+	NativeVlan   int                `json:"nativeVlan"`
+	PortsCount   int                `json:"portsCount"`
+	Provisioning bool               `json:"provisioning"`
+	State        string             `json:"state"`
+	Sites        []VNetDetailedSite `json:"sites"`
+	Status       VNetStatus         `json:"status"`
+	VlanAware    bool               `json:"vlanAware"`
+	Vlans        string             `json:"vlans"`
+	VxlanID      int                `json:"vxlanID"`
+	Tenant       IDName             `json:"tenant"`
+	TenantID     int                `json:"tenantID"`
 }
 
 type IDName struct {
