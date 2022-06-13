@@ -80,6 +80,16 @@ func (cred *HTTPCred) CheckAuth() error {
 	return fmt.Errorf("{CheckAuth} not authorized")
 }
 
+func (cred *HTTPCred) SetCookie(sessionID string) {
+	cred.setCookie(sessionID)
+}
+
+func (cred *HTTPCred) setCookie(sessionID string) {
+	cred.Lock()
+	defer cred.Unlock()
+	cred.Cookies = []http.Cookie{{Name: "connect.sid", Value: sessionID}}
+}
+
 func (cred *HTTPCred) loginUser(URL string, redirectCounter int) error {
 	reqData := fmt.Sprintf("user=%s&password=%s&auth_scheme_id=1", cred.LoginData.Login, cred.LoginData.Password)
 
