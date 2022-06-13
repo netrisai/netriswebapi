@@ -240,3 +240,13 @@ func Client(address, login, password string, timeout int) (*Clientset, error) {
 		Client: client,
 	}, nil
 }
+
+func ClientWithCookie(address, sessionID string, timeout int) (*Clientset, error) {
+	client, err := http.NewHTTPCredentialsWithCooke(address, sessionID, timeout)
+	if err != nil {
+		return nil, err
+	}
+	return &Clientset{
+		Client: client,
+	}, nil
+}

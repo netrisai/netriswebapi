@@ -59,6 +59,24 @@ func NewHTTPCredentials(address, login, password string, timeout int) (*HTTPCred
 	}, nil
 }
 
+// NewHTTPCredentialsWithCooke .
+func NewHTTPCredentialsWithCooke(address, sessionID string, timeout int) (*HTTPCred, error) {
+	URL, err := url.Parse(strings.TrimSuffix(address, "/"))
+	if err != nil {
+		return nil, fmt.Errorf("{NewHTTPCredentialsWithCooke} %s", err)
+	}
+	if timeout == 0 {
+		timeout = 5
+	}
+	return &HTTPCred{
+		URL:           *URL,
+		LoginData:     loginData{},
+		Cookies:       []http.Cookie{{Name: "connect.sid", Value: sessionID}},
+		Timeout:       timeout,
+		RedirectCount: 10,
+	}, nil
+}
+
 // InsecureVerify .
 func (cred *HTTPCred) InsecureVerify(enable bool) {
 	cred.Lock()
