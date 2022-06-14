@@ -91,7 +91,10 @@ func (c *PortClient) GetByID(id int) (*Port, error) {
 }
 
 func (c *PortClient) UpdateList(ports []*PortUpdate) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(ports)
+	str := struct {
+		Ports []*PortUpdate `json:"ports"`
+	}{ports}
+	js, err := json.Marshal(str)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateList} %s", err)
 	}
