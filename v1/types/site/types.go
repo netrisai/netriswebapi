@@ -30,6 +30,7 @@ type Site struct {
 	EquinixLocation      string `json:"equinixLocation"`
 	EquinixProjectAPIKey string `json:"equinixProjectAPIKey"`
 	EquinixProjectID     string `json:"equinixProjectID"`
+	VLANRange            string `json:"vlanRange"`
 	RoutingProfileID     int    `json:"rp_id"`
 	RoutingProfilName    string `json:"rp_name"`
 	RoutingProfilTag     string `json:"rp_tag"`
@@ -55,4 +56,5 @@ type SiteAdd struct {
 	RoutingProfileID    int    `json:"rp_id"`
 	Nat                 string `json:"nat"`
 	ACLPolicy           string `json:"acl_policy"`
+	VLANRange           string `json:"vlanRange"`
 }
