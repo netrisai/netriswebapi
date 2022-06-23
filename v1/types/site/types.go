@@ -43,18 +43,22 @@ type Site struct {
 
 // SiteAdd .
 type SiteAdd struct {
-	ID                  int    `json:"id"`
-	Name                string `json:"name"`
-	PublicASN           int    `json:"publicASN"`
-	BorderSwitchASN     string `json:"borderSwitchAsn"`
-	SpineSwitchASN      string `json:"spineSwitchAsn"`
-	TorSwitchASN        string `json:"torSwitchAsn"`
-	HypervisorHostASN   string `json:"hypervisorHostAsn"`
-	PhysicalInstanceASN int    `json:"physicalInstanceASN"`
-	VirtualInstanceASN  int    `json:"virtualInstanceASN"`
-	VPN                 string `json:"vpn"`
-	RoutingProfileID    int    `json:"rp_id"`
-	Nat                 string `json:"nat"`
-	ACLPolicy           string `json:"acl_policy"`
-	VLANRange           string `json:"vlanRange"`
+	ID                   int    `json:"id"`
+	Name                 string `json:"name"`
+	PublicASN            int    `json:"publicASN"`
+	BorderSwitchASN      string `json:"borderSwitchAsn"`
+	SpineSwitchASN       string `json:"spineSwitchAsn"`
+	TorSwitchASN         string `json:"torSwitchAsn"`
+	HypervisorHostASN    string `json:"hypervisorHostAsn"`
+	PhysicalInstanceASN  int    `json:"physicalInstanceASN"`
+	VirtualInstanceASN   int    `json:"virtualInstanceASN"`
+	VPN                  string `json:"vpn"`
+	RoutingProfileID     int    `json:"rp_id"`
+	Nat                  string `json:"nat"`
+	ACLPolicy            string `json:"acl_policy"`
+	SwitchFabric         string `json:"switchFabric"`
+	VLANRange            string `json:"vlanRange"`
+	EquinixProjectID     string `json:"equinixProjectID"`
+	EquinixProjectAPIKey string `json:"equinixProjectAPIKey"`
+	EquinixLocation      string `json:"equinixLocation"`
 }
