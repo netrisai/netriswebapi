@@ -41,6 +41,7 @@ type IPAM struct {
 	} `json:"subnet"`
 	Tenant      IDName      `json:"tenant"`
 	Type        string      `json:"type"`
+	Tags        []string    `json:"tags"`
 	Utilization Utilization `json:"utilization"`
 }
 
@@ -93,4 +94,5 @@ type Subnet struct {
 	Purpose        string   `json:"purpose"`
 	Sites          []IDName `json:"sites"`
 	Tenant         IDName   `json:"tenant"`
+	Tags           []string `json:"tags"`
 }

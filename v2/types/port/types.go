@@ -101,6 +101,7 @@ type PortUpdate struct {
 	Mtu         int                  `json:"mtu"`
 	Speed       string               `json:"speed"`
 	Tenant      IDName               `json:"tenant"`
+	Status      string               `json:"status"`
 }
 
 type PortUpdateExtenstion struct {

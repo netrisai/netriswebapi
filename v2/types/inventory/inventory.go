@@ -79,8 +79,8 @@ func (c *InventoryClient) GetByID(id int) (*HW, error) {
 }
 
 func (c *InventoryClient) Delete(kind string, id int) (reply http.HTTPReply, err error) {
-	if !(kind == "switch" || kind == "controller" || kind == "softgate") {
-		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate")
+	if !(kind == "switch" || kind == "controller" || kind == "softgate" || kind == "equinix_metal_server") {
+		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate, equinix_metal_server")
 	}
 
 	address := c.client.URL.String() + v2address.InventoryBase + "/" + kind + "/" + strconv.Itoa(id)
@@ -93,8 +93,8 @@ func (c *InventoryClient) Delete(kind string, id int) (reply http.HTTPReply, err
 }
 
 func (c *InventoryClient) DeleteByName(kind, name string) (reply http.HTTPReply, err error) {
-	if !(kind == "switch" || kind == "controller" || kind == "softgate") {
-		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate")
+	if !(kind == "switch" || kind == "controller" || kind == "softgate" || kind == "equinix_metal_server") {
+		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate, equinix_metal_server")
 	}
 
 	address := c.client.URL.String() + v2address.InventoryBase + "/" + kind + "/" + name

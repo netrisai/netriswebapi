@@ -56,6 +56,25 @@ func (c *PortClient) Get() ([]*Port, error) {
 	return items, nil
 }
 
+func (c *PortClient) GetBySites(sites []int) ([]*Port, error) {
+	siteList := ""
+	for _, s := range sites {
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s)
+	}
+
+	address := c.client.URL.String() + v2address.Ports + "?useSites=true&" + siteList
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+	}
+	return items, nil
+}
+
 func (c *PortClient) GetByID(id int) (*Port, error) {
 	address := c.client.URL.String() + v2address.Ports + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
@@ -72,7 +91,10 @@ func (c *PortClient) GetByID(id int) (*Port, error) {
 }
 
 func (c *PortClient) UpdateList(ports []*PortUpdate) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(ports)
+	str := struct {
+		Ports []*PortUpdate `json:"ports"`
+	}{ports}
+	js, err := json.Marshal(str)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateList} %s", err)
 	}

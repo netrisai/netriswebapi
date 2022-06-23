@@ -58,6 +58,7 @@ type HW struct {
 	Timezone         string        `json:"timezone"`
 	Type             string        `json:"type"`
 	Uptime           string        `json:"uptime"`
+	UUID             string        `json:"uuid"`
 }
 
 type HWASNNumber struct {
@@ -125,6 +126,7 @@ type HWSwitchAdd struct {
 	Profile     IDName      `json:"profile"`
 	Site        IDName      `json:"site"`
 	Tenant      IDName      `json:"tenant"`
+	UUID        string      `json:"uuid"`
 	Type        string      `json:"type"`
 }
 
@@ -151,6 +153,7 @@ type HWSwitchUpdate struct {
 	Profile         IDName      `json:"profile"`
 	Site            IDName      `json:"site"`
 	Tenant          IDName      `json:"tenant"`
+	UUID            string      `json:"uuid"`
 	Type            string      `json:"type"`
 }
 
@@ -189,6 +192,7 @@ type HWSoftgate struct {
 	Name        string   `json:"name"`
 	Profile     IDName   `json:"profile"`
 	Site        IDName   `json:"site"`
+	UUID        string   `json:"uuid"`
 	Tenant      IDName   `json:"tenant"`
 }
 
@@ -204,6 +208,7 @@ type HWSoftgateUpdate struct {
 	Name        string   `json:"name"`
 	Profile     IDName   `json:"profile"`
 	Site        IDName   `json:"site"`
+	UUID        string   `json:"uuid"`
 	Tenant      IDName   `json:"tenant"`
 }
 
@@ -262,4 +267,12 @@ type NOS struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 	Tag  string `json:"tag"`
+}
+
+type EquinixMetalServer struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Site        IDName `json:"site"`
+	Tenant      IDName `json:"tenant"`
+	UUID        string `json:"uuid"`
 }

@@ -18,37 +18,47 @@ package site
 
 // Site .
 type Site struct {
-	ACLPolicy           string `json:"acl_policy"`
-	ASN                 int    `json:"asn"`
-	HypervisorASN       int    `json:"hypervisor_asn"`
-	ID                  int    `json:"id"`
-	Name                string `json:"name"`
-	Nat                 string `json:"nat"`
-	PublicASN           int    `json:"publicASN"`
-	PhysicalInstanceAsn int    `json:"physical_instance_asn"`
-	RoutingProfileID    int    `json:"rp_id"`
-	RoutingProfilName   string `json:"rp_name"`
-	RoutingProfilTag    string `json:"rp_tag"`
-	SiteToSiteVPN       string `json:"siteToSiteVpn"`
-	SpineASN            int    `json:"spine_asn"`
-	TorASN              int    `json:"tor_asn"`
-	VirtualInstanceASN  int    `json:"virtual_instance_asn"`
-	VPN                 string `json:"vpn"`
+	ACLPolicy            string `json:"acl_policy"`
+	ASN                  int    `json:"asn"`
+	HypervisorASN        int    `json:"hypervisor_asn"`
+	ID                   int    `json:"id"`
+	Name                 string `json:"name"`
+	Nat                  string `json:"nat"`
+	PublicASN            int    `json:"publicASN"`
+	PhysicalInstanceAsn  int    `json:"physical_instance_asn"`
+	SwitchFabric         string `json:"switchFabric"`
+	EquinixLocation      string `json:"equinixLocation"`
+	EquinixProjectAPIKey string `json:"equinixProjectAPIKey"`
+	EquinixProjectID     string `json:"equinixProjectID"`
+	VLANRange            string `json:"vlanRange"`
+	RoutingProfileID     int    `json:"rp_id"`
+	RoutingProfilName    string `json:"rp_name"`
+	RoutingProfilTag     string `json:"rp_tag"`
+	SiteToSiteVPN        string `json:"siteToSiteVpn"`
+	SpineASN             int    `json:"spine_asn"`
+	TorASN               int    `json:"tor_asn"`
+	VirtualInstanceASN   int    `json:"virtual_instance_asn"`
+	VPN                  string `json:"vpn"`
 }
 
 // SiteAdd .
 type SiteAdd struct {
-	ID                  int    `json:"id"`
-	Name                string `json:"name"`
-	PublicASN           int    `json:"publicASN"`
-	BorderSwitchASN     string `json:"borderSwitchAsn"`
-	SpineSwitchASN      string `json:"spineSwitchAsn"`
-	TorSwitchASN        string `json:"torSwitchAsn"`
-	HypervisorHostASN   string `json:"hypervisorHostAsn"`
-	PhysicalInstanceASN int    `json:"physicalInstanceASN"`
-	VirtualInstanceASN  int    `json:"virtualInstanceASN"`
-	VPN                 string `json:"vpn"`
-	RoutingProfileID    int    `json:"rp_id"`
-	Nat                 string `json:"nat"`
-	ACLPolicy           string `json:"acl_policy"`
+	ID                   int    `json:"id"`
+	Name                 string `json:"name"`
+	PublicASN            int    `json:"publicASN"`
+	BorderSwitchASN      string `json:"borderSwitchAsn"`
+	SpineSwitchASN       string `json:"spineSwitchAsn"`
+	TorSwitchASN         string `json:"torSwitchAsn"`
+	HypervisorHostASN    string `json:"hypervisorHostAsn"`
+	PhysicalInstanceASN  int    `json:"physicalInstanceASN"`
+	VirtualInstanceASN   int    `json:"virtualInstanceASN"`
+	VPN                  string `json:"vpn"`
+	RoutingProfileID     int    `json:"rp_id"`
+	Nat                  string `json:"nat"`
+	ACLPolicy            string `json:"acl_policy"`
+	SwitchFabric         string `json:"switchFabric"`
+	VLANRange            string `json:"vlanRange"`
+	EquinixProjectID     string `json:"equinixProjectID"`
+	EquinixProjectAPIKey string `json:"equinixProjectAPIKey"`
+	EquinixLocation      string `json:"equinixLocation"`
 }
