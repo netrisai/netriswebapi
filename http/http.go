@@ -109,12 +109,14 @@ func (cred *HTTPCred) setCookie(sessionID string) {
 }
 
 func (cred *HTTPCred) loginUser(URL string, redirectCounter int) error {
-	reqData := fmt.Sprintf(`{"user": "%s", "password": "%s", "authSchemeID": 1}`, cred.LoginData.Login, cred.LoginData.Password)
+	reqData := fmt.Sprintf(`{"user": "%s", "password": "%s", "auth_scheme_id": 1}`, cred.LoginData.Login, cred.LoginData.Password)
 
 	req, err := http.NewRequest("POST", URL, bytes.NewBufferString(reqData))
 	if err != nil {
 		return fmt.Errorf("{LoginUser} %s", err)
 	}
+
+	req.Header.Set("Content-type", "application/json")
 
 	client := cred.createHTTPClient()
 
