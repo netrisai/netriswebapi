@@ -39,6 +39,7 @@ type VNet struct {
 	VxlanID      int                `json:"vxlanID"`
 	Tenant       IDName             `json:"tenant"`
 	TenantID     int                `json:"tenantID"`
+	Vlan         int                `json:"vlan"`
 }
 
 type IDName struct {
@@ -81,6 +82,7 @@ type VNetDetailed struct {
 	VlanAware    bool                      `json:"vlanAware"`
 	Vlans        string                    `json:"vlans"`
 	VxlanID      int                       `json:"vxlanID"`
+	Vlan         int                       `json:"vlan"`
 }
 
 type VNetDetailedGateway struct {
@@ -185,6 +187,7 @@ type VNetAdd struct {
 	Tenant       VNetAddTenant    `json:"tenant"`
 	VlanAware    bool             `json:"vlanAware"`
 	Vlans        string           `json:"vlans"`
+	Vlan         interface{}      `json:"vlan"`
 }
 
 type VNetAddGateway struct {
