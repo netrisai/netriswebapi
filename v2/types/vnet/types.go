@@ -228,6 +228,7 @@ type VNetUpdate struct {
 	Sites        []VNetUpdateSite        `json:"sites"`
 	State        string                  `json:"state"`
 	Vlans        string                  `json:"vlans"`
+	Vlan         interface{}             `json:"vlan"`
 }
 
 type VNetUpdateGateway struct {
