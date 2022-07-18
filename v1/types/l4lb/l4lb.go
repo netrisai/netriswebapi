@@ -19,6 +19,7 @@ package l4lb
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
 	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
@@ -70,12 +71,12 @@ func (c *LBClient) Add(l4lb *LoadBalancerAdd) (reply http.HTTPReply, err error) 
 	return reply, nil
 }
 
-func (c *LBClient) Update(l4lb *LoadBalancerUpdate) (reply http.HTTPReply, err error) {
+func (c *LBClient) Update(id int, l4lb *LoadBalancerUpdate) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(l4lb)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{Update} %s", err)
 	}
-	address := c.client.URL.String() + v1address.L4LB
+	address := c.client.URL.String() + v1address.L4LB + "/" + strconv.Itoa(id)
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{Update} %s", err)
@@ -85,16 +86,8 @@ func (c *LBClient) Update(l4lb *LoadBalancerUpdate) (reply http.HTTPReply, err e
 }
 
 func (c *LBClient) Delete(id int) (reply http.HTTPReply, err error) {
-	lb := struct {
-		ID int `json:"id"`
-	}{id}
-	js, err := json.Marshal(lb)
-	if err != nil {
-		return reply, err
-	}
-
-	address := c.client.URL.String() + v1address.L4LB
-	reply, err = c.client.Delete(address, js)
+	address := c.client.URL.String() + v1address.L4LB + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
 	if err != nil {
 		return reply, err
 	}
