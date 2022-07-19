@@ -87,7 +87,6 @@ type LoadBalancerAdd struct {
 
 // LoadBalancerUpdate .
 type LoadBalancerUpdate struct {
-	ID         int    `json:"id"`
 	Name       string `json:"name"`
 	TenantID   int    `json:"tenantId,omitempty"`
 	TenantName string `json:"tenantName"`
