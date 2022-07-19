@@ -42,6 +42,15 @@ func parse(APIResult *http.APIResponse) ([]*LoadBalancer, error) {
 	return sites, nil
 }
 
+func parseSingle(APIResult *http.APIResponse) (*LoadBalancer, error) {
+	var item *LoadBalancer
+	err := http.Decode(APIResult.Data, &item)
+	if err != nil {
+		return item, fmt.Errorf("{parse} %s", err)
+	}
+	return item, nil
+}
+
 func (c *LBClient) Get() ([]*LoadBalancer, error) {
 	address := c.client.URL.String() + v2address.L4LB
 	APIResult, err := c.client.Get(address)
@@ -54,6 +63,20 @@ func (c *LBClient) Get() ([]*LoadBalancer, error) {
 		return nil, fmt.Errorf("{GetL4LB} %s", err)
 	}
 	return items, nil
+}
+
+func (c *LBClient) GetByID(id int) (*LoadBalancer, error) {
+	address := c.client.URL.String() + v2address.L4LB + "/" + strconv.Itoa(id)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetL4LBByID} %s", err)
+	}
+
+	item, err := parseSingle(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetL4LBByID} %s", err)
+	}
+	return item, nil
 }
 
 func (c *LBClient) Add(l4lb *LoadBalancerAdd) (reply http.HTTPReply, err error) {
