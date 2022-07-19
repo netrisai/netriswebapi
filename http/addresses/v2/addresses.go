@@ -19,6 +19,8 @@ package v2
 const (
 	Auth = "/api/auth"
 
+	L4LB = "/api/v2/l4lb"
+
 	VNetBase = "/api/v2/vnet"
 
 	InventoryBase         = "/api/v2/hw"
