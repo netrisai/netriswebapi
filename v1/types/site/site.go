@@ -57,6 +57,9 @@ func (c *SiteClient) Get() ([]*Site, error) {
 
 // Add .
 func (c *SiteClient) Add(site *SiteAdd) (reply http.HTTPReply, err error) {
+	if site.SwitchFabric == "" {
+		site.SwitchFabric = "netris"
+	}
 	js, err := json.Marshal(site)
 	if err != nil {
 		return reply, err
@@ -73,6 +76,9 @@ func (c *SiteClient) Add(site *SiteAdd) (reply http.HTTPReply, err error) {
 
 // Add .
 func (c *SiteClient) Update(site *SiteAdd) (reply http.HTTPReply, err error) {
+	if site.SwitchFabric == "" {
+		site.SwitchFabric = "netris"
+	}
 	js, err := json.Marshal(site)
 	if err != nil {
 		return reply, err
