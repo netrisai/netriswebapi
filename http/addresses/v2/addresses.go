@@ -58,4 +58,6 @@ const (
 	ROH = "/api/v2/roh"
 
 	NAT = "/api/v2/nat"
+
+	DHCP = "/api/v2/dhcp-option-set"
 )

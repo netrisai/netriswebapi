@@ -33,6 +33,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/user"
 	"github.com/netrisai/netriswebapi/v1/types/userrole"
 	"github.com/netrisai/netriswebapi/v2/types/bgp"
+	"github.com/netrisai/netriswebapi/v2/types/dhcp"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
 	"github.com/netrisai/netriswebapi/v2/types/l4lb"
@@ -68,6 +69,7 @@ type Clientset struct {
 	routemap         *routemap.Client
 	nat              *nat.Client
 	acl2             *acl2.Client
+	dhcp             *dhcp.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -229,6 +231,13 @@ func (c *Clientset) ACL2() *acl2.Client {
 		c.acl2 = acl2.New(c.Client)
 	}
 	return c.acl2
+}
+
+func (c *Clientset) DHCP() *dhcp.Client {
+	if c.dhcp == nil {
+		c.dhcp = dhcp.New(c.Client)
+	}
+	return c.dhcp
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
