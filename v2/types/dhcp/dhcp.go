@@ -17,7 +17,9 @@ limitations under the License.
 package dhcp
 
 import (
+	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
@@ -52,4 +54,33 @@ func (c *Client) Get() ([]*DHCPOptionSet, error) {
 		return nil, fmt.Errorf("{GetDHCPOptionSet} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Add(dhcp *DHCPw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(dhcp)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.DHCP
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Update(id int, dhcp *DHCPw) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(dhcp)
+	if err != nil {
+		return http.HTTPReply{}, fmt.Errorf("{UpdateDHCPOptionSet} %s", err)
+	}
+	address := c.client.URL.String() + v2address.DHCP + "/" + strconv.Itoa(id)
+	reply, err = c.client.Put(address, js)
+	if err != nil {
+		return reply, fmt.Errorf("{UpdateDHCPOptionSet} %s", err)
+	}
+
+	return reply, nil
 }

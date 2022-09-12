@@ -31,7 +31,17 @@ type DHCPOptionSet struct {
 }
 
 type AdditionalOption struct {
-	Code  int    `json:"code"`
-	Type  string `json:"type"`
-	Value string `json:"value"`
+	Code  interface{} `json:"code"`
+	Type  string      `json:"type"`
+	Value string      `json:"value"`
+}
+
+type DHCPw struct {
+	AdditionalOptions []AdditionalOption `json:"additionalOptions"`
+	Description       string             `json:"description"`
+	DNSServers        []string           `json:"dnsServers"`
+	DomainSearch      string             `json:"domainSearch"`
+	LeaseTime         int                `json:"leaseTime"`
+	Name              string             `json:"name"`
+	NTPServers        []string           `json:"ntpServers"`
 }
