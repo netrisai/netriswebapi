@@ -48,9 +48,23 @@ type IDName struct {
 }
 
 type VNetGateway struct {
-	IPFamily string `json:"ipFamily"`
-	Prefix   string `json:"prefix"`
-	Vlan     int    `json:"vlan"`
+	DHCP           VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool            `json:"dhcpEnabled"`
+	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
+	IPFamily       string          `json:"ipFamily"`
+	Prefix         string          `json:"prefix"`
+	Vlan           string          `json:"vlan"`
+}
+
+type VNetGatewayDHCP struct {
+	End       string                   `json:"end"`
+	OptionSet VNetGatewayDHCPOptionSet `json:"optionSet"`
+	Start     string                   `json:"start"`
+}
+
+type VNetGatewayDHCPOptionSet struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 type VNetStatus struct {
@@ -86,8 +100,11 @@ type VNetDetailed struct {
 }
 
 type VNetDetailedGateway struct {
-	Prefix string `json:"prefix"`
-	Vlan   string `json:"vlan"`
+	DHCP           VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool            `json:"dhcpEnabled"`
+	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
+	Prefix         string          `json:"prefix"`
+	Vlan           string          `json:"vlan"`
 }
 
 type VNetDetailedGuestTenant struct {
@@ -191,8 +208,11 @@ type VNetAdd struct {
 }
 
 type VNetAddGateway struct {
-	Prefix string `json:"prefix"`
-	Vlan   string `json:"vlan"`
+	DHCP           VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool            `json:"dhcpEnabled"`
+	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
+	Prefix         string          `json:"prefix"`
+	Vlan           string          `json:"vlan"`
 }
 
 type VNetAddTenant struct {
@@ -232,8 +252,11 @@ type VNetUpdate struct {
 }
 
 type VNetUpdateGateway struct {
-	Prefix string `json:"prefix"`
-	Vlan   string `json:"vlan"`
+	DHCP           VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool            `json:"dhcpEnabled"`
+	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
+	Prefix         string          `json:"prefix"`
+	Vlan           string          `json:"vlan"`
 }
 
 type VNetUpdateGuestTenant struct {
