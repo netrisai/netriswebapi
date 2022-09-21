@@ -57,14 +57,9 @@ type VNetGateway struct {
 }
 
 type VNetGatewayDHCP struct {
-	End       string                   `json:"end"`
-	OptionSet VNetGatewayDHCPOptionSet `json:"optionSet"`
-	Start     string                   `json:"start"`
-}
-
-type VNetGatewayDHCPOptionSet struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	End       string `json:"end"`
+	OptionSet IDName `json:"optionSet"`
+	Start     string `json:"start"`
 }
 
 type VNetStatus struct {
