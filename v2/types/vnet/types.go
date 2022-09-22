@@ -203,11 +203,11 @@ type VNetAdd struct {
 }
 
 type VNetAddGateway struct {
-	DHCP           VNetGatewayDHCP `json:"dhcp"`
-	DHCPEnabled    bool            `json:"dhcpEnabled"`
-	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
-	Prefix         string          `json:"prefix"`
-	Vlan           string          `json:"vlan"`
+	DHCP           *VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool             `json:"dhcpEnabled"`
+	DHCPLeaseCount int              `json:"dhcpLeaseCount"`
+	Prefix         string           `json:"prefix"`
+	Vlan           string           `json:"vlan"`
 }
 
 type VNetAddTenant struct {
@@ -247,11 +247,11 @@ type VNetUpdate struct {
 }
 
 type VNetUpdateGateway struct {
-	DHCP           VNetGatewayDHCP `json:"dhcp"`
-	DHCPEnabled    bool            `json:"dhcpEnabled"`
-	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
-	Prefix         string          `json:"prefix"`
-	Vlan           string          `json:"vlan"`
+	DHCP           *VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool             `json:"dhcpEnabled"`
+	DHCPLeaseCount int              `json:"dhcpLeaseCount"`
+	Prefix         string           `json:"prefix"`
+	Vlan           string           `json:"vlan"`
 }
 
 type VNetUpdateGuestTenant struct {
