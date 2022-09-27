@@ -107,3 +107,13 @@ func (c *Client) Update(id int, dhcp *DHCPw) (reply http.HTTPReply, err error) {
 
 	return reply, nil
 }
+
+func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
+	address := c.client.URL.String() + v2address.DHCP + "/" + strconv.Itoa(id)
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
