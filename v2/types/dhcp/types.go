@@ -31,9 +31,10 @@ type DHCPOptionSet struct {
 }
 
 type AdditionalOption struct {
-	Code  interface{} `json:"code"`
-	Type  string      `json:"type"`
-	Value string      `json:"value"`
+	Code     interface{} `json:"code"`
+	Type     string      `json:"type"`
+	Value    string      `json:"value"`
+	IsCustom bool        `json:"isCustom"`
 }
 
 type DHCPw struct {
