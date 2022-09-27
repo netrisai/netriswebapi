@@ -42,6 +42,15 @@ func parse(APIResult *http.APIResponse) ([]*DHCPOptionSet, error) {
 	return items, nil
 }
 
+func parseSingle(APIResult *http.APIResponse) (*DHCPOptionSet, error) {
+	var items *DHCPOptionSet
+	err := http.Decode(APIResult.Data, &items)
+	if err != nil {
+		return items, fmt.Errorf("{parse} %s", err)
+	}
+	return items, nil
+}
+
 func (c *Client) Get() ([]*DHCPOptionSet, error) {
 	address := c.client.URL.String() + v2address.DHCP
 	APIResult, err := c.client.Get(address)
@@ -54,6 +63,20 @@ func (c *Client) Get() ([]*DHCPOptionSet, error) {
 		return nil, fmt.Errorf("{GetDHCPOptionSet} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) GetByID(id int) (*DHCPOptionSet, error) {
+	address := c.client.URL.String() + v2address.DHCP + "/" + strconv.Itoa(id)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetDHCPOptionSetByID} %s", err)
+	}
+
+	item, err := parseSingle(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetDHCPOptionSetByID} %s", err)
+	}
+	return item, nil
 }
 
 func (c *Client) Add(dhcp *DHCPw) (reply http.HTTPReply, err error) {
