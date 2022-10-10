@@ -21,7 +21,8 @@ const (
 
 	L4LB = "/api/v2/l4lb"
 
-	VNetBase = "/api/v2/vnet"
+	VNetBase      = "/api/v2/vnet"
+	VNetUnmanaged = "/api/v2/vnet-unmanaged"
 
 	InventoryBase         = "/api/v2/hw"
 	InventorySwitch       = "/api/v2/hw/switch"

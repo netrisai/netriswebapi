@@ -42,6 +42,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
+	"github.com/netrisai/netriswebapi/v2/types/vnetunmanaged"
 )
 
 type Clientset struct {
@@ -70,6 +71,7 @@ type Clientset struct {
 	nat              *nat.Client
 	acl2             *acl2.Client
 	dhcp             *dhcp.Client
+	vnetunmanaged    *vnetunmanaged.VNetClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -238,6 +240,13 @@ func (c *Clientset) DHCP() *dhcp.Client {
 		c.dhcp = dhcp.New(c.Client)
 	}
 	return c.dhcp
+}
+
+func (c *Clientset) VNetUnmanaged() *vnetunmanaged.VNetClient {
+	if c.vnetunmanaged == nil {
+		c.vnetunmanaged = vnetunmanaged.New(c.Client)
+	}
+	return c.vnetunmanaged
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
