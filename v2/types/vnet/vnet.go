@@ -65,6 +65,20 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 	return items, nil
 }
 
+func (c *VNetClient) GetWithUnmanaged() ([]*VNet, error) {
+	address := c.client.URL.String() + v2address.VNetBase + "?unmanaged=true"
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithUnmanaged} %s", err)
+	}
+
+	items, err := parseAPIVnets(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithUnmanaged} %s", err)
+	}
+	return items, nil
+}
+
 func (c *VNetClient) GetByID(id int) (*VNetDetailed, error) {
 	address := c.client.URL.String() + v2address.VNetBase + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
