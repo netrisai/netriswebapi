@@ -31,6 +31,7 @@ type VNet struct {
 	NativeVlan   int                `json:"nativeVlan"`
 	PortsCount   int                `json:"portsCount"`
 	Provisioning bool               `json:"provisioning"`
+	Ports        []VNetDetailedPort `json:"ports"`
 	State        string             `json:"state"`
 	Sites        []VNetDetailedSite `json:"sites"`
 	Status       VNetStatus         `json:"status"`
