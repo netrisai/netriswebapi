@@ -95,11 +95,11 @@ type VNetDetailed struct {
 }
 
 type VNetDetailedGateway struct {
-	DHCP           VNetGatewayDHCP `json:"dhcp"`
-	DHCPEnabled    bool            `json:"dhcpEnabled"`
-	DHCPLeaseCount int             `json:"dhcpLeaseCount"`
-	Prefix         string          `json:"prefix"`
-	Vlan           string          `json:"vlan"`
+	DHCP           *VNetGatewayDHCP `json:"dhcp"`
+	DHCPEnabled    bool             `json:"dhcpEnabled"`
+	DHCPLeaseCount int              `json:"dhcpLeaseCount"`
+	Prefix         string           `json:"prefix"`
+	Vlan           string           `json:"vlan"`
 }
 
 type VNetDetailedGuestTenant struct {
