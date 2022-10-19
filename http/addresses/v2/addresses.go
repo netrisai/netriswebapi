@@ -61,4 +61,6 @@ const (
 	NAT = "/api/v2/nat"
 
 	DHCP = "/api/v2/dhcp-option-set"
+
+	VlanReservation = "/api/v2/reservation/vlan"
 )
