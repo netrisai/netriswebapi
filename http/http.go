@@ -155,17 +155,27 @@ func (cred *HTTPCred) LoginUser() error {
 
 // CustomBodyRequest impelements the POST, PUT, UPDATE requests
 func (cred *HTTPCred) CustomBodyRequest(method string, address string, data []byte) (reply HTTPReply, err error) {
-	return cred.customBodyRequest(method, address, data, cred.RedirectCount)
+	return cred.customBodyRequest(method, address, data, cred.RedirectCount, "")
 }
 
-func (cred *HTTPCred) customBodyRequest(method string, address string, data []byte, redirectCounter int) (reply HTTPReply, err error) {
+// CustomBodyRequest impelements the POST, PUT, UPDATE requests
+func (cred *HTTPCred) CustomTextPlainRequest(method string, address string, data []byte) (reply HTTPReply, err error) {
+	return cred.customBodyRequest(method, address, data, cred.RedirectCount, "text/plain")
+}
+
+func (cred *HTTPCred) customBodyRequest(method string, address string, data []byte, redirectCounter int, contentType string) (reply HTTPReply, err error) {
 	requestBody := bytes.NewBuffer(data)
 	request, err := http.NewRequest(method, address, requestBody)
 	if err != nil {
 		return reply, fmt.Errorf("{CustomBodyRequest} [%s] [%s] %s", method, address, err)
 	}
 
-	request.Header.Set("Content-type", "application/json")
+	request.Header.Set("Content-type", contentType)
+
+	if contentType == "" {
+		request.Header.Set("Content-type", "application/json")
+	}
+
 	cred.Lock()
 	for _, cookie := range cred.Cookies {
 		cook := cookie
@@ -181,7 +191,7 @@ func (cred *HTTPCred) customBodyRequest(method string, address string, data []by
 
 	if resp.StatusCode == 301 && redirectCounter > 0 {
 		location, _ := resp.Location()
-		return cred.customBodyRequest(method, location.String(), data, redirectCounter-1)
+		return cred.customBodyRequest(method, location.String(), data, redirectCounter-1, contentType)
 	}
 
 	reply.StatusCode = resp.StatusCode
