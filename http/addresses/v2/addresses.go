@@ -63,4 +63,6 @@ const (
 	DHCP = "/api/v2/dhcp-option-set"
 
 	VlanReservation = "/api/v2/reservation/vlan"
+
+	Sites = "/api/v2/sites"
 )

@@ -27,7 +27,6 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/portgroup"
 	"github.com/netrisai/netriswebapi/v1/types/route"
 	"github.com/netrisai/netriswebapi/v1/types/routemap"
-	"github.com/netrisai/netriswebapi/v1/types/site"
 	"github.com/netrisai/netriswebapi/v1/types/subnet"
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v1/types/user"
@@ -41,6 +40,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
+	"github.com/netrisai/netriswebapi/v2/types/site"
 	"github.com/netrisai/netriswebapi/v2/types/vlanreservation"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 	"github.com/netrisai/netriswebapi/v2/types/vnetunmanaged"
@@ -50,7 +50,7 @@ type Clientset struct {
 	Client           *http.HTTPCred
 	vnet             *vnet.VNetClient
 	inventory        *inventory.InventoryClient
-	site             *site.SiteClient
+	site             *site.Client
 	gsetting         *gsetting.GSettingClient
 	l4lb             *l4lb.LBClient
 	subnet           *subnet.SubnetClient
@@ -90,7 +90,7 @@ func (c *Clientset) Inventory() *inventory.InventoryClient {
 	return c.inventory
 }
 
-func (c *Clientset) Site() *site.SiteClient {
+func (c *Clientset) Site() *site.Client {
 	if c.site == nil {
 		c.site = site.New(c.Client)
 	}
