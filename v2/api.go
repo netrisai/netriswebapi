@@ -35,6 +35,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/dhcp"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
+	"github.com/netrisai/netriswebapi/v2/types/ipreservation"
 	"github.com/netrisai/netriswebapi/v2/types/l4lb"
 	"github.com/netrisai/netriswebapi/v2/types/link"
 	"github.com/netrisai/netriswebapi/v2/types/nat"
@@ -74,6 +75,7 @@ type Clientset struct {
 	dhcp             *dhcp.Client
 	vnetunmanaged    *vnetunmanaged.VNetClient
 	vlanreservation  *vlanreservation.Client
+	ipreservation    *ipreservation.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -256,6 +258,13 @@ func (c *Clientset) VlanReservation() *vlanreservation.Client {
 		c.vlanreservation = vlanreservation.New(c.Client)
 	}
 	return c.vlanreservation
+}
+
+func (c *Clientset) IPReservation() *ipreservation.Client {
+	if c.ipreservation == nil {
+		c.ipreservation = ipreservation.New(c.Client)
+	}
+	return c.ipreservation
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
