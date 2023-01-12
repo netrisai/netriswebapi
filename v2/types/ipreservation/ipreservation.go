@@ -122,7 +122,6 @@ func (c *Client) Add(item *IPReservation) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-// DeleteVNet .
 func (c *Client) Delete(id int) (reply http.HTTPReply, err error) {
 	address := c.client.URL.String() + v2address.IPReservation + "/" + strconv.Itoa(id)
 	reply, err = c.client.Delete(address, nil)
