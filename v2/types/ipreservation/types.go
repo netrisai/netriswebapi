@@ -17,10 +17,10 @@ limitations under the License.
 package ipreservation
 
 type IPReservation struct {
-	Consumer Consumer `json:"consumer"`
-	Host     Host     `json:"host"`
-	ID       int      `json:"id"`
-	Meta     Meta     `json:"meta"`
+	Consumer Consumer               `json:"consumer"`
+	Host     Host                   `json:"host"`
+	ID       int                    `json:"id"`
+	Meta     map[string]interface{} `json:"meta"`
 }
 
 type Consumer struct {
@@ -40,15 +40,4 @@ type Subnet struct {
 	Name    string `json:"name"`
 	Prefix  string `json:"prefix"`
 	Purpose string `json:"purpose"`
-}
-
-type Meta struct {
-	DHCP DHCP   `json:"dhcp"`
-	Tag  string `json:"tag"`
-}
-
-type DHCP struct {
-	End         string `json:"end"`
-	OptionSetID int    `json:"option_set_id"`
-	Start       string `json:"start"`
 }
