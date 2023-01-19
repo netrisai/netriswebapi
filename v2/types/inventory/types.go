@@ -276,3 +276,11 @@ type EquinixMetalServer struct {
 	Tenant      IDName `json:"tenant"`
 	UUID        string `json:"uuid"`
 }
+
+type PhoenixNapBMCServer struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Site        IDName `json:"site"`
+	Tenant      IDName `json:"tenant"`
+	UUID        string `json:"uuid"`
+}
