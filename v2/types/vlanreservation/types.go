@@ -20,7 +20,7 @@ type VlanReservation struct {
 	Vlan     int                    `json:"vlan"`
 	Consumer Consumer               `json:"consumer"`
 	Site     IDName                 `json:"site,omitempty"`
-	Meta     map[string]interface{} `json:"meta,omitempty"`
+	Meta     map[string]interface{} `json:"meta"`
 }
 
 type Consumer struct {
