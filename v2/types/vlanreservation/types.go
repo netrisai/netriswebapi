@@ -17,9 +17,10 @@ limitations under the License.
 package vlanreservation
 
 type VlanReservation struct {
-	Vlan     int      `json:"vlan"`
-	Consumer Consumer `json:"consumer"`
-	Site     IDName   `json:"site,omitempty"`
+	Vlan     int                    `json:"vlan"`
+	Consumer Consumer               `json:"consumer"`
+	Site     IDName                 `json:"site,omitempty"`
+	Meta     map[string]interface{} `json:"meta,omitempty"`
 }
 
 type Consumer struct {

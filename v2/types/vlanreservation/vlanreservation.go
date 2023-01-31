@@ -17,6 +17,7 @@ limitations under the License.
 package vlanreservation
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -55,6 +56,34 @@ func (c *Client) Get() ([]*VlanReservation, error) {
 	return items, nil
 }
 
+func (c *Client) GetByVlanId(id int) ([]*VlanReservation, error) {
+	address := c.client.URL.String() + v2address.VlanReservation + "/" + strconv.Itoa(id)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVlanReservationByVlanId} %s", err)
+	}
+
+	items, err := parseList(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVlanReservationByVlanId} %s", err)
+	}
+	return items, nil
+}
+
+func (c *Client) GetByVlanIdAndSite(vlanId, siteId int) ([]*VlanReservation, error) {
+	address := c.client.URL.String() + v2address.VlanReservation + "/" + strconv.Itoa(vlanId) + "?filterBySite=" + strconv.Itoa(siteId)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVlanReservationBySite} %s", err)
+	}
+
+	items, err := parseList(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVlanReservationBySite} %s", err)
+	}
+	return items, nil
+}
+
 func (c *Client) GetBySite(id int) ([]*VlanReservation, error) {
 	address := c.client.URL.String() + v2address.VlanReservation + "?filterBySite=" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
@@ -67,4 +96,29 @@ func (c *Client) GetBySite(id int) ([]*VlanReservation, error) {
 		return nil, fmt.Errorf("{GetVlanReservationBySite} %s", err)
 	}
 	return items, nil
+}
+
+func (c *Client) Post(vlan *VlanReservation) (reply http.HTTPReply, err error) {
+	js, err := json.Marshal(vlan)
+	if err != nil {
+		return reply, err
+	}
+
+	address := c.client.URL.String() + v2address.VlanReservation
+	reply, err = c.client.Post(address, js)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
+
+func (c *Client) Delete(vlanId, siteId int) (reply http.HTTPReply, err error) {
+	address := c.client.URL.String() + v2address.VlanReservation + "/" + strconv.Itoa(vlanId) + "/" + strconv.Itoa(siteId)
+	reply, err = c.client.Delete(address, nil)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
 }
