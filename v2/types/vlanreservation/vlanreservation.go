@@ -99,6 +99,9 @@ func (c *Client) GetBySite(id int) ([]*VlanReservation, error) {
 }
 
 func (c *Client) Post(vlan *VlanReservation) (reply http.HTTPReply, err error) {
+	if vlan.Meta == nil {
+		vlan.Meta = make(map[string]interface{})
+	}
 	js, err := json.Marshal(vlan)
 	if err != nil {
 		return reply, err

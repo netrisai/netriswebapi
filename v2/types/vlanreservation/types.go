@@ -24,10 +24,10 @@ type VlanReservation struct {
 }
 
 type Consumer struct {
-	ID   int    `json:"id"`
-	Type string `json:"type"`
+	ID   int    `json:"id,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 type IDName struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
