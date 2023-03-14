@@ -18,7 +18,7 @@ package site
 
 type Site struct {
 	AclPolicy             string                `json:"aclPolicy"`
-	ID                    int                   `json:"id"`
+	ID                    int                   `json:"id,omitempty"`
 	Name                  string                `json:"name"`
 	PublicAsn             int                   `json:"publicAsn"`
 	RohAsn                int                   `json:"rohAsn"`
