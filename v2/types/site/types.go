@@ -42,8 +42,8 @@ type IDName struct {
 }
 
 type SwitchFabricProviders struct {
-	EquinixMetal  EquinixMetal  `json:"equinixMetal"`
-	PhoenixNapBmc PhoenixNapBmc `json:"phoenixNapBmc"`
+	EquinixMetal  EquinixMetal  `json:"equinixMetal,omitempty"`
+	PhoenixNapBmc PhoenixNapBmc `json:"phoenixNapBmc,omitempty"`
 }
 
 type EquinixMetal struct {
