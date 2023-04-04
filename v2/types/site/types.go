@@ -17,17 +17,17 @@ limitations under the License.
 package site
 
 type Site struct {
-	AclPolicy             string                `json:"aclPolicy"`
-	ID                    int                   `json:"id,omitempty"`
-	Name                  string                `json:"name"`
-	PublicAsn             int                   `json:"publicAsn"`
-	RohAsn                int                   `json:"rohAsn"`
-	RohProfile            RohProfile            `json:"rohProfile,omitempty"`
-	SiteMesh              IDName                `json:"siteMesh"`
-	SwitchFabric          string                `json:"switchFabric"`
-	SwitchFabricProviders SwitchFabricProviders `json:"switchFabricProviders,omitempty"`
-	VlanRange             string                `json:"vlanRange"`
-	VMAsn                 int                   `json:"vmAsn"`
+	AclPolicy             string                 `json:"aclPolicy"`
+	ID                    int                    `json:"id,omitempty"`
+	Name                  string                 `json:"name"`
+	PublicAsn             int                    `json:"publicAsn"`
+	RohAsn                int                    `json:"rohAsn"`
+	RohProfile            *RohProfile            `json:"rohProfile,omitempty"`
+	SiteMesh              IDName                 `json:"siteMesh"`
+	SwitchFabric          string                 `json:"switchFabric"`
+	SwitchFabricProviders *SwitchFabricProviders `json:"switchFabricProviders,omitempty"`
+	VlanRange             string                 `json:"vlanRange"`
+	VMAsn                 int                    `json:"vmAsn"`
 }
 
 type RohProfile struct {
@@ -37,23 +37,23 @@ type RohProfile struct {
 }
 
 type IDName struct {
-	Name  string `json:"name"`
-	Value string `json:"value"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type SwitchFabricProviders struct {
-	EquinixMetal  EquinixMetal  `json:"equinixMetal,omitempty"`
-	PhoenixNapBmc PhoenixNapBmc `json:"phoenixNapBmc,omitempty"`
+	EquinixMetal  *EquinixMetal  `json:"equinixMetal,omitempty"`
+	PhoenixNapBmc *PhoenixNapBmc `json:"phoenixNapBmc,omitempty"`
 }
 
 type EquinixMetal struct {
-	Location      string `json:"location"`
-	ProjectAPIKey string `json:"projectApiKey"`
-	ProjectID     string `json:"projectId"`
+	Location      string `json:"location,omitempty"`
+	ProjectAPIKey string `json:"projectApiKey,omitempty"`
+	ProjectID     string `json:"projectId,omitempty"`
 }
 
 type PhoenixNapBmc struct {
-	ClientID     string `json:"clientId"`
-	ClientSecret string `json:"clientSecret"`
-	Location     string `json:"location"`
+	ClientID     string `json:"clientId,omitempty"`
+	ClientSecret string `json:"clientSecret,omitempty"`
+	Location     string `json:"location,omitempty"`
 }
