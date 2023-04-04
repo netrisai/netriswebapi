@@ -22,18 +22,18 @@ type Site struct {
 	Name                  string                `json:"name"`
 	PublicAsn             int                   `json:"publicAsn"`
 	RohAsn                int                   `json:"rohAsn"`
-	RohProfile            RohProfile            `json:"rohProfile"`
+	RohProfile            RohProfile            `json:"rohProfile,omitempty"`
 	SiteMesh              IDName                `json:"siteMesh"`
 	SwitchFabric          string                `json:"switchFabric"`
-	SwitchFabricProviders SwitchFabricProviders `json:"switchFabricProviders"`
+	SwitchFabricProviders SwitchFabricProviders `json:"switchFabricProviders,omitempty"`
 	VlanRange             string                `json:"vlanRange"`
 	VMAsn                 int                   `json:"vmAsn"`
 }
 
 type RohProfile struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Value string `json:"value"`
+	ID    int    `json:"id,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type IDName struct {
