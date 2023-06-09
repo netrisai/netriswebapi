@@ -122,6 +122,7 @@ type EBGPAdd struct {
 	RemoteIP           string   `json:"remoteIP"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
+	Untagged           bool     `json:"untagged"`
 	UpdateSource       string   `json:"updateSource"`
 	Vlan               int      `json:"vlan"`
 	Vnet               IDNone   `json:"vnet"`
@@ -156,6 +157,7 @@ type EBGPUpdate struct {
 	RemoteIP           string   `json:"remoteIP"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
+	Untagged           bool     `json:"untagged"`
 	UpdateSource       string   `json:"updateSource"`
 	Vlan               int      `json:"vlan"`
 	Vnet               IDNone   `json:"vnet"`
