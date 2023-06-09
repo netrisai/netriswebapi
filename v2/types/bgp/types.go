@@ -75,6 +75,7 @@ type EBGP struct {
 	TermSwName           string        `json:"term_sw_name"`
 	TermSwitchID         int           `json:"term_switch_id"`
 	TerminateOnSwitch    string        `json:"terminate_on_switch"`
+	Untagged             bool          `json:"untagged"`
 	UpdateSource         string        `json:"update_source"`
 	Vlan                 int           `json:"vlan"`
 	Vnet                 VNet          `json:"vnet"`
