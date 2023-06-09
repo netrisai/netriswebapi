@@ -47,5 +47,5 @@ type SequenceMatch struct {
 	ID             string      `json:"id,omitempty"`
 	SequenceID     string      `json:"sequenceID,omitempty"`
 	Type           string      `json:"type"`
-	Value          *string      `json:"value"`
+	Value          *string     `json:"value"`
 }
