@@ -122,6 +122,7 @@ type VNetDetailedTenant struct {
 
 type VNetDetailedPort struct {
 	Access           bool                             `json:"access"`
+	AccessMode       bool                             `json:"accessMode"`
 	AdminDown        string                           `json:"adminDown"`
 	AutoNeg          string                           `json:"autoNeg"`
 	Breakout         string                           `json:"breakout"`
@@ -220,12 +221,13 @@ type VNetAddTenant struct {
 }
 
 type VNetAddPort struct {
-	Name   string `json:"name"`
-	Access bool   `json:"access"`
-	ID     int    `json:"id"`
-	Lacp   string `json:"lacp"`
-	State  string `json:"state"`
-	Vlan   string `json:"vlan"`
+	Name       string `json:"name"`
+	Access     bool   `json:"access"`
+	AccessMode bool   `json:"accessMode"`
+	ID         int    `json:"id"`
+	Lacp       string `json:"lacp"`
+	State      string `json:"state"`
+	Vlan       string `json:"vlan"`
 }
 
 type VNetAddSite struct {
@@ -265,13 +267,14 @@ type VNetUpdateGuestTenant struct {
 }
 
 type VNetUpdatePort struct {
-	Access   bool   `json:"access"`
-	Name     string `json:"name"`
-	ID       int    `json:"id"`
-	Lacp     string `json:"lacp"`
-	State    string `json:"state"`
-	Vlan     string `json:"vlan"`
-	Maccount int    `json:"macCount"`
+	Access     bool   `json:"access"`
+	AccessMode bool   `json:"accessMode"`
+	Name       string `json:"name"`
+	ID         int    `json:"id"`
+	Lacp       string `json:"lacp"`
+	State      string `json:"state"`
+	Vlan       string `json:"vlan"`
+	Maccount   int    `json:"macCount"`
 }
 
 type VNetUpdateSite struct {
