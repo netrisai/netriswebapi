@@ -19,27 +19,27 @@ package vpc
 type VPC struct {
 	ID           int           `json:"id"`
 	Name         string        `json:"name"`
-	AdminTenant  adminTenant   `json:"adminTenant"`
-	GuestTenant  []guestTenant `json:"guestTenant"`
+	AdminTenant  AdminTenant   `json:"adminTenant"`
+	GuestTenant  []GuestTenant `json:"guestTenant"`
 	Tags         []string      `json:"tags"`
 	IsDefault    bool          `json:"isDefault"`
 	ModifiedDate int           `json:"modifiedDate"`
 	CreatedDate  int           `json:"createdDate"`
 }
 
-type guestTenant struct {
+type GuestTenant struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-type adminTenant struct {
+type AdminTenant struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type VPCw struct {
 	Name        string        `json:"name"`
-	AdminTenant adminTenant   `json:"adminTenant"`
-	GuestTenant []guestTenant `json:"guestTenant"`
+	AdminTenant AdminTenant   `json:"adminTenant"`
+	GuestTenant []GuestTenant `json:"guestTenant"`
 	Tags        []string      `json:"tags"`
 }
