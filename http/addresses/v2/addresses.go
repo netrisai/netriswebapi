@@ -67,4 +67,6 @@ const (
 	IPReservation   = "/api/v2/reservation/ip"
 
 	Sites = "/api/v2/sites"
+
+	VPC = "/api/v2/vpc"
 )
