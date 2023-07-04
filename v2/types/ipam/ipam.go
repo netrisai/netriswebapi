@@ -103,6 +103,20 @@ func (c *IPAMClient) GetSubnets() ([]*IPAM, error) {
 	return items, nil
 }
 
+func (c *IPAMClient) GetSubnetsByVPC(vpcid int) ([]*IPAM, error) {
+	address := c.client.URL.String() + v2address.IPAMSubnets + fmt.Sprintf("?filterByVpc=%d", vpcid)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetSubnets} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetSubnets} %s", err)
+	}
+	return items, nil
+}
+
 func (c *IPAMClient) GetHosts(id int) ([]*Host, error) {
 	address := c.client.URL.String() + v2address.IPAMHosts + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
