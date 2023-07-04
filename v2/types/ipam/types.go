@@ -81,7 +81,7 @@ type Allocation struct {
 	Name        string `json:"name"`
 	Prefix      string `json:"prefix"`
 	Tenant      IDName `json:"tenant"`
-	Vpc         IDName `json:"vpc"`
+	Vpc         IDName `json:"vpc,omitempty"`
 }
 
 /*
@@ -97,5 +97,5 @@ type Subnet struct {
 	Sites          []IDName `json:"sites"`
 	Tenant         IDName   `json:"tenant"`
 	Tags           []string `json:"tags"`
-	Vpc            IDName   `json:"vpc"`
+	Vpc            IDName   `json:"vpc,omitempty"`
 }
