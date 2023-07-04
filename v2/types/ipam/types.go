@@ -43,6 +43,7 @@ type IPAM struct {
 	Type        string      `json:"type"`
 	Tags        []string    `json:"tags"`
 	Utilization Utilization `json:"utilization"`
+	Vpc         IDName      `json:"vpc"`
 }
 
 type IDName struct {
@@ -80,6 +81,7 @@ type Allocation struct {
 	Name        string `json:"name"`
 	Prefix      string `json:"prefix"`
 	Tenant      IDName `json:"tenant"`
+	Vpc         IDName `json:"vpc"`
 }
 
 /*
@@ -95,4 +97,5 @@ type Subnet struct {
 	Sites          []IDName `json:"sites"`
 	Tenant         IDName   `json:"tenant"`
 	Tags           []string `json:"tags"`
+	Vpc            IDName   `json:"vpc"`
 }
