@@ -24,6 +24,7 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
 	"github.com/netrisai/netriswebapi/v1/types/site"
+	"github.com/netrisai/netriswebapi/v2/types/vpc"
 )
 
 type BGPClient struct {
@@ -41,9 +42,18 @@ func (c *BGPClient) Get() ([]*EBGP, error) {
 	}
 	siteList := ""
 	for _, s := range sites {
-		siteList += fmt.Sprintf("selectedSites[]=%d&", s.ID)
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
-	address := c.client.URL.String() + v2address.BGP + "?" + siteList
+
+	vpcs, err := vpc.New(c.client).Get()
+	if err != nil {
+		return nil, err
+	}
+	vpcList := ""
+	for _, vpc := range vpcs {
+		vpcList += fmt.Sprintf("filterByVpc[]=%d&", vpc.ID)
+	}
+	address := c.client.URL.String() + v2address.BGP + "?" + siteList + vpcList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetBGP} %s", err)

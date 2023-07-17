@@ -81,6 +81,7 @@ type EBGP struct {
 	Vnet                 VNet          `json:"vnet"`
 	Weight               int           `json:"weight"`
 	Tags                 []string      `json:"tags"`
+	Vpc                  IDName        `json:"vpc"`
 }
 
 type VNet struct {
@@ -128,6 +129,7 @@ type EBGPAdd struct {
 	Vnet               IDNone   `json:"vnet"`
 	Weight             int      `json:"weight"`
 	Tags               []string `json:"tags"`
+	Vpc                *IDName  `json:"vpc,omitempty"`
 }
 
 // EBGPUpdate .
