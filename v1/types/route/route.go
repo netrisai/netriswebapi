@@ -23,6 +23,7 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
 	"github.com/netrisai/netriswebapi/v1/types/site"
+	"github.com/netrisai/netriswebapi/v2/types/vpc"
 )
 
 type RouteClient struct {
@@ -51,7 +52,15 @@ func (c *RouteClient) Get() ([]*Route, error) {
 	for _, s := range sites {
 		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
-	address := c.client.URL.String() + v1address.Routes + "?" + siteList
+	vpcs, err := vpc.New(c.client).Get()
+	if err != nil {
+		return nil, err
+	}
+	vpcList := ""
+	for _, vpc := range vpcs {
+		vpcList += fmt.Sprintf("filterByVpc[]=%d&", vpc.ID)
+	}
+	address := c.client.URL.String() + v1address.Routes + "?" + siteList + vpcList
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetRoutes} %s", err)
