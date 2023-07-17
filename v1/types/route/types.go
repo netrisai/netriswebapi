@@ -37,14 +37,21 @@ type Route struct {
 		ID   int    `json:"id"`
 		Name string `json:"name"`
 	} `json:"switches"`
+	Vpc IDName `json:"vpc"`
 }
 
 type RouteAdd struct {
-	Description string `json:"description"`
-	NextHop     string `json:"next_hop"`
-	Prefix      string `json:"prefix"`
-	RouteID     int    `json:"route_id,omitempty"`
-	SiteID      int    `json:"site_id"`
-	StateStatus string `json:"stateStatus"`
-	Switches    []int  `json:"switches"`
+	Description string  `json:"description"`
+	NextHop     string  `json:"next_hop"`
+	Prefix      string  `json:"prefix"`
+	RouteID     int     `json:"route_id,omitempty"`
+	SiteID      int     `json:"site_id"`
+	StateStatus string  `json:"stateStatus"`
+	Switches    []int   `json:"switches"`
+	Vpc         *IDName `json:"vpc,omitempty"`
+}
+
+type IDName struct {
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
