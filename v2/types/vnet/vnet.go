@@ -65,6 +65,20 @@ func (c *VNetClient) Get() ([]*VNet, error) {
 	return items, nil
 }
 
+func (c *VNetClient) GetByVPC(vpcid int) ([]*VNet, error) {
+	address := c.client.URL.String() + v2address.VNetBase + fmt.Sprintf("?filterByVpc=%d", vpcid)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVNet} %s", err)
+	}
+
+	items, err := parseAPIVnets(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetVNet} %s", err)
+	}
+	return items, nil
+}
+
 func (c *VNetClient) GetWithUnmanaged() ([]*VNet, error) {
 	address := c.client.URL.String() + v2address.VNetBase + "?unmanaged=true"
 	APIResult, err := c.client.Get(address)
