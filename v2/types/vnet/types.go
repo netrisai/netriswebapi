@@ -42,6 +42,7 @@ type VNet struct {
 	TenantID     int                `json:"tenantID"`
 	Vlan         int                `json:"vlan"`
 	Tags         []string           `json:"tags"`
+	Vpc          IDName             `json:"vpc"`
 }
 
 type IDName struct {
@@ -95,6 +96,7 @@ type VNetDetailed struct {
 	VxlanID      int                       `json:"vxlanID"`
 	Vlan         int                       `json:"vlan"`
 	Tags         []string                  `json:"tags"`
+	Vpc          IDName                    `json:"vpc"`
 }
 
 type VNetDetailedGateway struct {
@@ -205,6 +207,7 @@ type VNetAdd struct {
 	Vlans        string           `json:"vlans"`
 	Vlan         interface{}      `json:"vlan"`
 	Tags         []string         `json:"tags"`
+	Vpc          *IDName          `json:"vpc,omitempty"`
 }
 
 type VNetAddGateway struct {
