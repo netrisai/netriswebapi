@@ -44,16 +44,29 @@ func (c *BGPClient) Get() ([]*EBGP, error) {
 	for _, s := range sites {
 		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
+	address := c.client.URL.String() + v2address.BGP + "?" + siteList
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBGP} %s", err)
+	}
 
-	vpcs, err := vpc.New(c.client).Get()
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBGP} %s", err)
+	}
+	return items, nil
+}
+
+func (c *BGPClient) GetByVpc(vpcid int) ([]*EBGP, error) {
+	sites, err := site.New(c.client).Get()
 	if err != nil {
 		return nil, err
 	}
-	vpcList := ""
-	for _, vpc := range vpcs {
-		vpcList += fmt.Sprintf("filterByVpc[]=%d&", vpc.ID)
+	siteList := ""
+	for _, s := range sites {
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
-	address := c.client.URL.String() + v2address.BGP + "?" + siteList + vpcList
+	address := c.client.URL.String() + v2address.BGP + "?" + siteList + fmt.Sprintf("filterByVpc=%d", vpcid)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetBGP} %s", err)
