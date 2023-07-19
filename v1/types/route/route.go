@@ -52,15 +52,30 @@ func (c *RouteClient) Get() ([]*Route, error) {
 	for _, s := range sites {
 		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
-	vpcs, err := vpc.New(c.client).Get()
+	address := c.client.URL.String() + v1address.Routes + "?" + siteList
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetRoutes} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetRoutes} %s", err)
+	}
+	return items, nil
+}
+
+
+func (c *RouteClient) GetByVPC(vpcid int) ([]*Route, error) {
+	sites, err := site.New(c.client).Get()
 	if err != nil {
 		return nil, err
 	}
-	vpcList := ""
-	for _, vpc := range vpcs {
-		vpcList += fmt.Sprintf("filterByVpc[]=%d&", vpc.ID)
+	siteList := ""
+	for _, s := range sites {
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s.ID)
 	}
-	address := c.client.URL.String() + v1address.Routes + "?" + siteList + vpcList
+	address := c.client.URL.String() + v1address.Routes + "?" + siteList + fmt.Sprintf("filterByVpc=%d", vpcid)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetRoutes} %s", err)
