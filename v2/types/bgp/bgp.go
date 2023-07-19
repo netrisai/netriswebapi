@@ -24,7 +24,6 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
 	"github.com/netrisai/netriswebapi/v1/types/site"
-	"github.com/netrisai/netriswebapi/v2/types/vpc"
 )
 
 type BGPClient struct {
