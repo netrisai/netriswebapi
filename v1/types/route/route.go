@@ -23,7 +23,6 @@ import (
 	"github.com/netrisai/netriswebapi/http"
 	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
 	"github.com/netrisai/netriswebapi/v1/types/site"
-	"github.com/netrisai/netriswebapi/v2/types/vpc"
 )
 
 type RouteClient struct {
