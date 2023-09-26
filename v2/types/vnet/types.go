@@ -112,6 +112,11 @@ type VNetDetailedGuestTenant struct {
 	Name string `json:"name"`
 }
 
+type VNetDetailedPortInfo struct {
+	IfName int    `json:"ifName"`
+	Port   string `json:"port"`
+}
+
 type VNetDetailedSite struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
@@ -155,6 +160,7 @@ type VNetDetailedPort struct {
 	Untagged         bool                             `json:"untagged"`
 	Used             bool                             `json:"used"`
 	Vlan             string                           `json:"vlan"`
+	Info             VNetDetailedPortInfo             `json:"info"`
 }
 
 type VNetDetailedPortSite struct {
