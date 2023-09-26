@@ -53,6 +53,12 @@ type Port struct {
 	Tenant           IDName               `json:"tenant"`
 	Transceiver      string               `json:"transceiver"`
 	Used             bool                 `json:"used"`
+	Info             PortInfo             `json:"info"`
+}
+
+type PortInfo struct {
+	IfName int    `json:"ifName"`
+	Port   string `json:"port"`
 }
 
 type IDName struct {
