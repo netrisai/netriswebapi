@@ -113,7 +113,7 @@ type VNetDetailedGuestTenant struct {
 }
 
 type VNetDetailedPortInfo struct {
-	IfName int    `json:"ifName"`
+	IfName string `json:"ifName"`
 	Port   string `json:"port"`
 }
 
