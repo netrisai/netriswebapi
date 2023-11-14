@@ -47,6 +47,7 @@ const (
 	PortExtensions = "/api/v2/ports/extensions"
 	PortLAG        = "/api/v2/ports/lag"
 	PortFreeUP     = "/api/v2/ports/freeup"
+	PortAggregated = "/api/v2/ports/aggregatedports"
 
 	BGP               = "/api/v2/ebgp"
 	BGPSites          = "/api/v2/ebgp/sites"
