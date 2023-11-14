@@ -42,7 +42,7 @@ type Port struct {
 	PortIndex        string               `json:"portIndex"`
 	ShortName        string               `json:"shortName"`
 	Site             IDName               `json:"site"`
-	SlavePorts       []interface{}        `json:"slavePorts"`
+	SlavePorts       []Port               `json:"slavePorts"`
 	SortIndexAsc     string               `json:"sortIndexAsc"`
 	SortIndexDesc    string               `json:"sortIndexDesc"`
 	Speed            string               `json:"speed"`
@@ -134,12 +134,14 @@ Port LAG structure for POST requests
 */
 
 type PortLAG struct {
+	ID             int              `json:"id"`
 	AggregatedPort IDName           `json:"aggregatedPort"`
 	Description    string           `json:"description"`
 	Extension      PortLAGExtension `json:"extension"`
 	Mtu            int              `json:"mtu"`
 	Ports          []IDName         `json:"ports"`
 	Tenant         IDName           `json:"tenant"`
+	LACP           string           `json:"lacp"`
 }
 
 type PortLAGExtension struct {
@@ -147,4 +149,17 @@ type PortLAGExtension struct {
 	Name     string `json:"name"`
 	VlanFrom int    `json:"vlanFrom"`
 	VlanTo   int    `json:"vlanTo"`
+}
+
+type AggregatedPort struct {
+	ID         int                       `json:"id"`
+	Name       string                    `json:"name"`
+	LagMembers []AggregatedPortLagMember `json:"lagMembers"`
+	Tenant     IDName                    `json:"tenant"`
+	Lacp       string                    `json:"lacp"`
+}
+
+type AggregatedPortLagMember struct {
+	ID   int    `json:"id"`
+	Port string `json:"port"`
 }
