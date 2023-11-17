@@ -36,7 +36,7 @@ type EBGP struct {
 	Internal             int           `json:"internal"`
 	IPVersion            string        `json:"ip_version"`
 	KubenetInfo          string        `json:"kubenet_info"`
-	LocalAsn             int           `json:"localAsn"`
+	LocalAsn             string        `json:"localAsn"`
 	LocalIP              string        `json:"local_ip"`
 	LocalPreference      int           `json:"local_preference"`
 	ModifiedDate         int           `json:"modified_date"`

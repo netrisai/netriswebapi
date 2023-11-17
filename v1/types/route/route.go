@@ -64,7 +64,6 @@ func (c *RouteClient) Get() ([]*Route, error) {
 	return items, nil
 }
 
-
 func (c *RouteClient) GetByVPC(vpcid int) ([]*Route, error) {
 	sites, err := site.New(c.client).Get()
 	if err != nil {

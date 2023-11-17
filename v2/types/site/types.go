@@ -27,7 +27,7 @@ type Site struct {
 	SwitchFabric          string                 `json:"switchFabric"`
 	SwitchFabricProviders *SwitchFabricProviders `json:"switchFabricProviders,omitempty"`
 	VlanRange             string                 `json:"vlanRange"`
-	VlanRangeAutoAssign		string								 `json:"vlanRangeAutoAssign,omitempty"`
+	VlanRangeAutoAssign   string                 `json:"vlanRangeAutoAssign,omitempty"`
 	VMAsn                 int                    `json:"vmAsn"`
 }
 
