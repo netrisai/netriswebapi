@@ -106,6 +106,7 @@ type EBGPAdd struct {
 	Hardware           IDNone   `json:"hardware"`
 	InboundRouteMap    int      `json:"inboundRouteMap"`
 	IPFamily           string   `json:"ipFamily"`
+	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
 	LocalPreference    int      `json:"localPreference"`
 	Multihop           int      `json:"multihop"`
@@ -142,6 +143,7 @@ type EBGPUpdate struct {
 	Hardware           IDNone   `json:"hardware"`
 	InboundRouteMap    int      `json:"inboundRouteMap"`
 	IPFamily           string   `json:"ipFamily"`
+	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
 	LocalPreference    int      `json:"localPreference"`
 	Multihop           int      `json:"multihop"`
