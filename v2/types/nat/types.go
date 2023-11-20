@@ -35,9 +35,10 @@ type NAT struct {
 		ID   int    `json:"id"`
 		Name string `json:"name"`
 	} `json:"editor"`
-	ID           int    `json:"id"`
-	ModifiedDate int    `json:"modifiedDate"`
-	Name         string `json:"name"`
+	ID           int       `json:"id"`
+	ModifiedDate int       `json:"modifiedDate"`
+	Name         string    `json:"name"`
+	PortGroup    PortGroup `json:"portGroup"`
 	Protocol     struct {
 		Label string `json:"label"`
 		Value string `json:"value"`
@@ -58,23 +59,30 @@ type NAT struct {
 }
 
 type NATw struct {
-	Name               string `json:"name"`
-	Action             string `json:"action"`
-	Comment            string `json:"comment"`
-	DestinationAddress string `json:"destinationAddress"`
-	DestinationPort    string `json:"destinationPort"`
-	DnatToIP           string `json:"dnatToIP"`
-	DnatToPort         string `json:"dnatToPort"`
-	Protocol           string `json:"protocol"`
-	Site               IDName `json:"site"`
-	SnatToIP           string `json:"snatToIP"`
-	SnatToPool         string `json:"snatToPool"`
-	SourceAddress      string `json:"sourceAddress"`
-	SourcePort         string `json:"sourcePort"`
-	State              string `json:"state"`
+	Name               string    `json:"name"`
+	Action             string    `json:"action"`
+	Comment            string    `json:"comment"`
+	DestinationAddress string    `json:"destinationAddress"`
+	DestinationPort    string    `json:"destinationPort"`
+	DnatToIP           string    `json:"dnatToIP"`
+	DnatToPort         string    `json:"dnatToPort"`
+	PortGroup          PortGroup `json:"portGroup"`
+	Protocol           string    `json:"protocol"`
+	Site               IDName    `json:"site"`
+	SnatToIP           string    `json:"snatToIP"`
+	SnatToPool         string    `json:"snatToPool"`
+	SourceAddress      string    `json:"sourceAddress"`
+	SourcePort         string    `json:"sourcePort"`
+	State              string    `json:"state"`
 }
 
 type IDName struct {
 	ID   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
+}
+
+type PortGroup struct {
+	ID    int      `json:"id"`
+	Name  string   `json:"name"`
+	Ports []string `json:"ports"`
 }
