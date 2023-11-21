@@ -30,7 +30,7 @@ type NAT struct {
 	DestinationAddress string `json:"destinationAddress"`
 	DestinationPort    string `json:"destinationPort"`
 	DnatToIP           string `json:"dnatToIP"`
-	DnatToPort         int    `json:"dnatToPort"`
+	DnatToPort         string    `json:"dnatToPort"`
 	Editor             struct {
 		ID   int    `json:"id"`
 		Name string `json:"name"`
