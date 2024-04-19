@@ -30,6 +30,7 @@ const (
 	InventoryPhoenixnapBMCServer = "/api/v2/hw/phoenixnap-bmc-server"
 	InventoryController          = "/api/v2/hw/controller"
 	InventorySoftgate            = "/api/v2/hw/softgate"
+	InventoryServer              = "/api/v2/hw/server"
 	InventoryUsedIPs             = "/api/v2/hw/usedips"
 	InventoryProfiles            = "/api/v2/hw/profiles"
 	InventorySubnets             = "/api/v2/hw/subnets"

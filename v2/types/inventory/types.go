@@ -285,3 +285,22 @@ type PhoenixNapBMCServer struct {
 	Tenant      IDName `json:"tenant"`
 	UUID        string `json:"uuid"`
 }
+
+/*
+Inventory Server Structure
+*/
+
+type HWServer struct {
+	Description string      `json:"description"`
+	Links       []HWLink    `json:"links"`
+	MainAddress string      `json:"mainAddress"`
+	MgmtAddress string      `json:"mgmtAddress"`
+	Name        string      `json:"name"`
+	Profile     IDName      `json:"profile"`
+	Site        IDName      `json:"site"`
+	UUID        string      `json:"uuid"`
+	Tenant      IDName      `json:"tenant"`
+	Asn         interface{} `json:"asn"`
+	PortCount   int         `json:"portCount"`
+	CustomData  string      `json:"customData"`
+}
