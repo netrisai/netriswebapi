@@ -128,6 +128,7 @@ type HWSwitchAdd struct {
 	Tenant      IDName      `json:"tenant"`
 	UUID        string      `json:"uuid"`
 	Type        string      `json:"type"`
+	Breakout    string      `json:"breakout"`
 }
 
 type HWLink struct {
