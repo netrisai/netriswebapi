@@ -59,6 +59,7 @@ type HW struct {
 	Type             string        `json:"type"`
 	Uptime           string        `json:"uptime"`
 	UUID             string        `json:"uuid"`
+	CustomData       string        `json:"customData"`
 }
 
 type HWASNNumber struct {
