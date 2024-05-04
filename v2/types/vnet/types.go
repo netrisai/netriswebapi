@@ -284,6 +284,7 @@ type VNetUpdatePort struct {
 	State      string `json:"state"`
 	Vlan       string `json:"vlan"`
 	Maccount   int    `json:"macCount"`
+	Untagged   bool   `json:"untagged"`
 }
 
 type VNetUpdateSite struct {
