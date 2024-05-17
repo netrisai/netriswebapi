@@ -94,21 +94,6 @@ func (c *Client) Add(link *Linkw) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-func (c *Client) Update(id int, link *Linkw) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(link)
-	if err != nil {
-		return reply, err
-	}
-
-	address := c.client.URL.String() + v2address.Links + "/" + strconv.Itoa(id)
-	reply, err = c.client.Put(address, js)
-	if err != nil {
-		return reply, fmt.Errorf("{Update} %s", err)
-	}
-
-	return reply, nil
-}
-
 func (c *Client) Delete(link *Link) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(link)
 	if err != nil {
