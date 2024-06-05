@@ -259,7 +259,7 @@ func (cred *HTTPCred) Get(address string) (*APIResponse, error) {
 		return nil, fmt.Errorf("{http.Get} %s", err)
 	}
 
-	if data.StatusCode != http.StatusOK && data.StatusCode != http.StatusNotModified {
+	if data.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("{http.Get} %s", data.Data)
 	}
 
