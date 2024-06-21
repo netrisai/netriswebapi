@@ -17,17 +17,19 @@ limitations under the License.
 package inventoryprofile
 
 type Profile struct {
-	CreatedDate  int          `json:"created_date"`
-	CustomRules  []CustomRule `json:"customRules"`
-	Description  string       `json:"description"`
-	DNSServers   string       `json:"dns_servers"`
-	ID           int          `json:"id"`
-	Ipv4SSH      string       `json:"ipv4_ssh"`
-	Ipv6SSH      string       `json:"ipv6_ssh"`
-	ModifiedDate int          `json:"modified_date"`
-	Name         string       `json:"name"`
-	NTPServers   string       `json:"ntp_servers"`
-	Timezone     string       `json:"timezone"`
+	CreatedDate     int             `json:"created_date"`
+	CustomRules     []CustomRule    `json:"customRules"`
+	Description     string          `json:"description"`
+	DNSServers      string          `json:"dns_servers"`
+	ID              int             `json:"id"`
+	Ipv4SSH         string          `json:"ipv4_ssh"`
+	Ipv6SSH         string          `json:"ipv6_ssh"`
+	ModifiedDate    int             `json:"modified_date"`
+	Name            string          `json:"name"`
+	NTPServers      string          `json:"ntp_servers"`
+	Timezone        string          `json:"timezone"`
+	FabricProps     FabricProps     `json:"fabricProps"`
+	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
 }
 
 type CustomRule struct {
@@ -40,19 +42,34 @@ type CustomRule struct {
 }
 
 type ProfileW struct {
-	CustomRules []CustomRule `json:"customRules"`
-	Description string       `json:"description"`
-	DNSServers  string       `json:"dns_servers"`
-	ID          int          `json:"id"`
-	Ipv4List    string       `json:"ipv4_list"`
-	Ipv6List    string       `json:"ipv6_list"`
-	Name        string       `json:"name"`
-	NTPServers  string       `json:"ntp_servers"`
-	Timezone    Timezone     `json:"timezone"`
+	CustomRules     []CustomRule    `json:"customRules"`
+	Description     string          `json:"description"`
+	DNSServers      string          `json:"dns_servers"`
+	ID              int             `json:"id"`
+	Ipv4List        string          `json:"ipv4_list"`
+	Ipv6List        string          `json:"ipv6_list"`
+	Name            string          `json:"name"`
+	NTPServers      string          `json:"ntp_servers"`
+	Timezone        Timezone        `json:"timezone"`
+	FabricProps     FabricProps     `json:"fabricProps"`
+	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
 }
 
 type Timezone struct {
 	Label  string `json:"label"`
 	Offset string `json:"offset"`
 	TzCode string `json:"tzCode"`
+}
+
+type FabricProps struct {
+	OptimiseBgpOverlay    bool `json:"optimiseBgpOverlay,omitempty"`
+	UnnumberedBgpUnderlay bool `json:"unnumberedBgpUnderlay,omitempty"`
+}
+
+type GpuClusterProps struct {
+	Roce                 bool `json:"roce,omitempty"`
+	RoceAdaptiveRouting  bool `json:"roceAdaptiveRouting,omitempty"`
+	CongestionControl    bool `json:"congestionControl,omitempty"`
+	AsicMonitoring       bool `json:"asicMonitoring,omitempty"`
+	AggregateL3VpnPrefix bool `json:"aggregateL3VpnPrefix,omitempty"`
 }
