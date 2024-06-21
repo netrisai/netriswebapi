@@ -62,14 +62,14 @@ type Timezone struct {
 }
 
 type FabricProps struct {
-	OptimiseBgpOverlay    bool `json:"optimiseBgpOverlay,omitempty"`
-	UnnumberedBgpUnderlay bool `json:"unnumberedBgpUnderlay,omitempty"`
+	OptimiseBgpOverlay    bool `json:"optimiseBgpOverlay"`
+	UnnumberedBgpUnderlay bool `json:"unnumberedBgpUnderlay"`
 }
 
 type GpuClusterProps struct {
-	Roce                 bool `json:"roce,omitempty"`
-	RoceAdaptiveRouting  bool `json:"roceAdaptiveRouting,omitempty"`
-	CongestionControl    bool `json:"congestionControl,omitempty"`
-	AsicMonitoring       bool `json:"asicMonitoring,omitempty"`
-	AggregateL3VpnPrefix bool `json:"aggregateL3VpnPrefix,omitempty"`
+	Roce                 bool `json:"roce"`
+	RoceAdaptiveRouting  bool `json:"roceAdaptiveRouting"`
+	CongestionControl    bool `json:"congestionControl"`
+	AsicMonitoring       bool `json:"asicMonitoring"`
+	AggregateL3VpnPrefix bool `json:"aggregateL3VpnPrefix"`
 }
