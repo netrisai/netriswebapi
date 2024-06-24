@@ -33,12 +33,13 @@ type Profile struct {
 }
 
 type CustomRule struct {
-	Deleted   bool   `json:"deleted,omitempty"`
-	DstPort   string `json:"dstPort"`
-	ID        int    `json:"id"`
-	Protocol  string `json:"protocol"`
-	SrcPort   string `json:"srcPort"`
-	SrcSubnet string `json:"srcSubnet"`
+	Deleted     bool   `json:"deleted,omitempty"`
+	DstPort     string `json:"dstPort"`
+	ID          int    `json:"id"`
+	Protocol    string `json:"protocol"`
+	SrcPort     string `json:"srcPort"`
+	SrcSubnet   string `json:"srcSubnet"`
+	Description string `json:"description"`
 }
 
 type ProfileW struct {
