@@ -71,4 +71,7 @@ const (
 	Sites = "/api/v2/sites"
 
 	VPC = "/api/v2/vpc"
+
+	ServerClusterTemplate = "/api/v2/server-cluster-template"
+	ServerCluster = "/api/v2/server-cluster"
 )
