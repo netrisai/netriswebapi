@@ -41,6 +41,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
+	"github.com/netrisai/netriswebapi/v2/types/serverclustertemplate"
 	"github.com/netrisai/netriswebapi/v2/types/site"
 	"github.com/netrisai/netriswebapi/v2/types/vlanreservation"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
@@ -49,35 +50,36 @@ import (
 )
 
 type Clientset struct {
-	Client           *http.HTTPCred
-	vnet             *vnet.VNetClient
-	inventory        *inventory.InventoryClient
-	site             *site.Client
-	gsetting         *gsetting.GSettingClient
-	l4lb             *l4lb.LBClient
-	subnet           *subnet.SubnetClient
-	port             *port.PortClient
-	tenant           *tenant.TenantClient
-	bgp              *bgp.BGPClient
-	route            *route.RouteClient
-	ipam             *ipam.IPAMClient
-	user             *user.Client
-	permissiongroup  *permission.Client
-	userrole         *userrole.Client
-	link             *link.Client
-	acl              *acl.Client
-	portgroup        *portgroup.Client
-	roh              *roh.Client
-	inventoryprofile *inventoryprofile.Client
-	bgpobject        *bgpobject.Client
-	routemap         *routemap.Client
-	nat              *nat.Client
-	acl2             *acl2.Client
-	dhcp             *dhcp.Client
-	vnetunmanaged    *vnetunmanaged.VNetClient
-	vlanreservation  *vlanreservation.Client
-	ipreservation    *ipreservation.Client
-	vpc              *vpc.Client
+	Client                *http.HTTPCred
+	vnet                  *vnet.VNetClient
+	inventory             *inventory.InventoryClient
+	site                  *site.Client
+	gsetting              *gsetting.GSettingClient
+	l4lb                  *l4lb.LBClient
+	subnet                *subnet.SubnetClient
+	port                  *port.PortClient
+	tenant                *tenant.TenantClient
+	bgp                   *bgp.BGPClient
+	route                 *route.RouteClient
+	ipam                  *ipam.IPAMClient
+	user                  *user.Client
+	permissiongroup       *permission.Client
+	userrole              *userrole.Client
+	link                  *link.Client
+	acl                   *acl.Client
+	portgroup             *portgroup.Client
+	roh                   *roh.Client
+	inventoryprofile      *inventoryprofile.Client
+	bgpobject             *bgpobject.Client
+	routemap              *routemap.Client
+	nat                   *nat.Client
+	acl2                  *acl2.Client
+	dhcp                  *dhcp.Client
+	vnetunmanaged         *vnetunmanaged.VNetClient
+	vlanreservation       *vlanreservation.Client
+	ipreservation         *ipreservation.Client
+	vpc                   *vpc.Client
+	serverclustertemplate *serverclustertemplate.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -85,6 +87,13 @@ func (c *Clientset) VNet() *vnet.VNetClient {
 		c.vnet = vnet.New(c.Client)
 	}
 	return c.vnet
+}
+
+func (c *Clientset) ServerClusterTemplate() *serverclustertemplate.Client {
+	if c.serverclustertemplate == nil {
+		c.serverclustertemplate = serverclustertemplate.New(c.Client)
+	}
+	return c.serverclustertemplate
 }
 
 func (c *Clientset) Inventory() *inventory.InventoryClient {
