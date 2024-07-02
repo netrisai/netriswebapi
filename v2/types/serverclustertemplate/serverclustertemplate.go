@@ -79,14 +79,11 @@ func (c *Client) GetByID(id int) (interface{}, error) {
 	return item, nil
 }
 
-func (c *Client) Add(serverClusterTemplate interface{}) (reply http.HTTPReply, err error) {
-	js, err := json.Marshal(serverClusterTemplate)
-	if err != nil {
-		return reply, err
-	}
+func (c *Client) Add(serverClusterTemplate string) (reply http.HTTPReply, err error) {
+	dataBytes := []byte(serverClusterTemplate)
 
 	address := c.client.URL.String() + v2address.ServerClusterTemplate
-	reply, err = c.client.Post(address, js)
+	reply, err = c.client.Post(address, dataBytes)
 	if err != nil {
 		return reply, err
 	}
