@@ -33,8 +33,8 @@ func New(c *http.HTTPCred) *Client {
 	return &Client{c}
 }
 
-func parse(APIResult *http.APIResponse) ([]interface{}, error) {
-	var items []interface{}
+func parse(APIResult *http.APIResponse) ([]*ServerClusterTemplate, error) {
+	var items []*ServerClusterTemplate
 	err := http.Decode(APIResult.Data, &items)
 	if err != nil {
 		return items, fmt.Errorf("{parse} %s", err)
@@ -42,8 +42,8 @@ func parse(APIResult *http.APIResponse) ([]interface{}, error) {
 	return items, nil
 }
 
-func parseSingle(APIResult *http.APIResponse) (interface{}, error) {
-	var items interface{}
+func parseSingle(APIResult *http.APIResponse) (*ServerClusterTemplate, error) {
+	var items *ServerClusterTemplate
 	err := http.Decode(APIResult.Data, &items)
 	if err != nil {
 		return items, fmt.Errorf("{parse} %s", err)
@@ -51,7 +51,7 @@ func parseSingle(APIResult *http.APIResponse) (interface{}, error) {
 	return items, nil
 }
 
-func (c *Client) Get() ([]interface{}, error) {
+func (c *Client) Get() ([]*ServerClusterTemplate, error) {
 	address := c.client.URL.String() + v2address.ServerClusterTemplate
 	APIResult, err := c.client.Get(address)
 	if err != nil {
@@ -65,7 +65,7 @@ func (c *Client) Get() ([]interface{}, error) {
 	return items, nil
 }
 
-func (c *Client) GetByID(id int) (interface{}, error) {
+func (c *Client) GetByID(id int) (*ServerClusterTemplate, error) {
 	address := c.client.URL.String() + v2address.ServerClusterTemplate + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
