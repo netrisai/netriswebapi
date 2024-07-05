@@ -25,6 +25,6 @@ type ServerClusterTemplate struct {
 }
 
 type ServerClusterTemplateW struct {
-	Name         string `json:"name"`
-	Vnets        string `json:"vnets"`
+	Name  string      `json:"name"`
+	Vnets interface{} `json:"vnets"`
 }
