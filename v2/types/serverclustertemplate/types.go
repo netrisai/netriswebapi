@@ -19,17 +19,12 @@ package serverclustertemplate
 type ServerClusterTemplate struct {
 	ID           int    `json:"id"`
 	Name         string `json:"name"`
-	CreatedDate  int    `json:"createdDate"`
+	Vnets        string `json:"vnets"`
 	ModifiedDate int    `json:"modifiedDate"`
-	Vnets        []Vnet `json:"vnets"`
+	CreatedDate  int    `json:"createdDate"`
 }
 
-type Vnet struct {
-	ID          int      `json:"id"`
-	Postfix     string   `json:"postfix"`
-	Type        string   `json:"type"`
-	Vlan        string   `json:"vlan"`
-	VlanID      string   `json:"vlanID"`
-	ServerNics  []string `json:"serverNics"`
-	IPv4Gateway string   `json:"ipv4Gateway,omitempty"`
+type ServerClusterTemplateW struct {
+	Name         string `json:"name"`
+	Vnets        string `json:"vnets"`
 }
