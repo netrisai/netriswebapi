@@ -17,14 +17,14 @@ limitations under the License.
 package serverclustertemplate
 
 type ServerClusterTemplate struct {
-	ID           int         `json:"id"`
-	Name         string      `json:"name"`
-	Vnets        interface{} `json:"vnets"`
-	ModifiedDate int         `json:"modifiedDate"`
-	CreatedDate  int         `json:"createdDate"`
+	ID           int           `json:"id"`
+	Name         string        `json:"name"`
+	Vnets        []interface{} `json:"vnets"`
+	ModifiedDate int           `json:"modifiedDate"`
+	CreatedDate  int           `json:"createdDate"`
 }
 
 type ServerClusterTemplateW struct {
-	Name  string      `json:"name"`
-	Vnets interface{} `json:"vnets"`
+	Name  string        `json:"name"`
+	Vnets []interface{} `json:"vnets"`
 }
