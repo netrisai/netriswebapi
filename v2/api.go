@@ -41,6 +41,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
+	"github.com/netrisai/netriswebapi/v2/types/servercluster"
 	"github.com/netrisai/netriswebapi/v2/types/serverclustertemplate"
 	"github.com/netrisai/netriswebapi/v2/types/site"
 	"github.com/netrisai/netriswebapi/v2/types/vlanreservation"
@@ -79,6 +80,7 @@ type Clientset struct {
 	vlanreservation       *vlanreservation.Client
 	ipreservation         *ipreservation.Client
 	vpc                   *vpc.Client
+	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
 }
 
@@ -87,6 +89,13 @@ func (c *Clientset) VNet() *vnet.VNetClient {
 		c.vnet = vnet.New(c.Client)
 	}
 	return c.vnet
+}
+
+func (c *Clientset) ServerCluster() *servercluster.Client {
+	if c.servercluster == nil {
+		c.servercluster = servercluster.New(c.Client)
+	}
+	return c.servercluster
 }
 
 func (c *Clientset) ServerClusterTemplate() *serverclustertemplate.Client {
