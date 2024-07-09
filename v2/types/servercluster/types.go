@@ -43,3 +43,8 @@ type ServerClusterW struct {
 	Tags               []string `json:"tags"`
 	Servers            []IDName `json:"servers"`
 }
+
+type ServerClusterU struct {
+	Tags               []string `json:"tags"`
+	Servers            []IDName `json:"servers"`
+}
