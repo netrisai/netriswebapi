@@ -94,7 +94,7 @@ func (c *Client) Add(servercluster *ServerClusterW) (reply http.HTTPReply, err e
 	return reply, nil
 }
 
-func (c *Client) Update(id int, servercluster *ServerClusterW) (reply http.HTTPReply, err error) {
+func (c *Client) Update(id int, servercluster *ServerClusterU) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(servercluster)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateServerCluster} %s", err)
