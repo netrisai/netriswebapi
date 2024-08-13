@@ -48,6 +48,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 	"github.com/netrisai/netriswebapi/v2/types/vnetunmanaged"
 	"github.com/netrisai/netriswebapi/v2/types/vpc"
+	"github.com/netrisai/netriswebapi/v2/types/version"
 )
 
 type Clientset struct {
@@ -82,6 +83,7 @@ type Clientset struct {
 	vpc                   *vpc.Client
 	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
+	version          *version.VersionClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -124,6 +126,13 @@ func (c *Clientset) GlobalSettings() *gsetting.GSettingClient {
 		c.gsetting = gsetting.New(c.Client)
 	}
 	return c.gsetting
+}
+
+func (c *Clientset) Version() *version.VersionClient {
+	if c.version == nil {
+		c.version = version.New(c.Client)
+	}
+	return c.version
 }
 
 func (c *Clientset) L4LB() *l4lb.LBClient {

@@ -20,7 +20,7 @@ import (
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
-	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
+	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
 )
 
 type VersionClient struct {
@@ -41,7 +41,7 @@ func parse(APIResult *http.APIResponse) (Version, error) {
 }
 
 func (c *VersionClient) Get() (Version, error) {
-	address := c.client.URL.String() + v1address.Version
+	address := c.client.URL.String() + v2address.Version
 	APIResult, err := c.client.Get(address)
 	var responce Version
 	if err != nil {

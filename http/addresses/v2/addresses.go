@@ -17,6 +17,8 @@ limitations under the License.
 package v2
 
 const (
+	Version = "/api/users/permissions"
+
 	Auth = "/api/auth"
 
 	L4LB = "/api/v2/l4lb"

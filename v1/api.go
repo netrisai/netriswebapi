@@ -37,7 +37,6 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/tenant"
 	"github.com/netrisai/netriswebapi/v1/types/user"
 	"github.com/netrisai/netriswebapi/v1/types/userrole"
-	"github.com/netrisai/netriswebapi/v1/types/version"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
 )
 
@@ -63,7 +62,6 @@ type Clientset struct {
 	routemap         *routemap.Client
 	acl2             *acl2.Client
 	graphboards      *graphboards.Client
-	version          *version.VersionClient
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -155,13 +153,6 @@ func (c *Clientset) UserRole() *userrole.Client {
 		c.userrole = userrole.New(c.Client)
 	}
 	return c.userrole
-}
-
-func (c *Clientset) Version() *version.VersionClient {
-	if c.version == nil {
-		c.version = version.New(c.Client)
-	}
-	return c.version
 }
 
 func (c *Clientset) ACL() *acl.Client {

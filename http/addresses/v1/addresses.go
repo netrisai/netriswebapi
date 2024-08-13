@@ -17,7 +17,6 @@ limitations under the License.
 package v1
 
 const (
-	Version = "/api/users/permissions"
 
 	Sites     = "/api/sites"
 	GSettings = "/api/general"
