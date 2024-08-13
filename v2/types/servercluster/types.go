@@ -45,6 +45,6 @@ type ServerClusterW struct {
 }
 
 type ServerClusterU struct {
-	Tags               []string `json:"tags"`
-	Servers            []IDName `json:"servers"`
+	Tags    []string `json:"tags"`
+	Servers []IDName `json:"servers"`
 }
