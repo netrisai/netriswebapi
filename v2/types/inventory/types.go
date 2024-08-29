@@ -196,6 +196,8 @@ type HWSoftgate struct {
 	Site        IDName   `json:"site"`
 	UUID        string   `json:"uuid"`
 	Tenant      IDName   `json:"tenant"`
+	SGFlavor    string   `json:"sgFlavor"`
+	SGRole      string   `json:"sgRole"`
 }
 
 /*
@@ -212,6 +214,8 @@ type HWSoftgateUpdate struct {
 	Site        IDName   `json:"site"`
 	UUID        string   `json:"uuid"`
 	Tenant      IDName   `json:"tenant"`
+	SGFlavor    string   `json:"sgFlavor"`
+	SGRole      string   `json:"sgRole"`
 }
 
 /*

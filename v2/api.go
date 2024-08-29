@@ -44,11 +44,11 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/servercluster"
 	"github.com/netrisai/netriswebapi/v2/types/serverclustertemplate"
 	"github.com/netrisai/netriswebapi/v2/types/site"
+	"github.com/netrisai/netriswebapi/v2/types/version"
 	"github.com/netrisai/netriswebapi/v2/types/vlanreservation"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 	"github.com/netrisai/netriswebapi/v2/types/vnetunmanaged"
 	"github.com/netrisai/netriswebapi/v2/types/vpc"
-	"github.com/netrisai/netriswebapi/v2/types/version"
 )
 
 type Clientset struct {
@@ -83,7 +83,7 @@ type Clientset struct {
 	vpc                   *vpc.Client
 	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
-	version          *version.VersionClient
+	version               *version.VersionClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
