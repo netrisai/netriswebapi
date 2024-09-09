@@ -27,8 +27,9 @@ type Link struct {
 }
 
 type Linkw struct {
-	Local  LinkIDName `json:"local"`
-	Remote LinkIDName `json:"remote"`
+	Local         LinkIDName    `json:"local"`
+	Remote        LinkIDName    `json:"remote"`
+	MCLagPeerLink MCLagPeerLink `json:"mclagPeerLink"`
 }
 
 type LinkIDName struct {
@@ -36,4 +37,9 @@ type LinkIDName struct {
 	Name string `json:"name"`
 	Ipv4 string `json:"ipv4"`
 	Ipv6 string `json:"ipv6"`
+}
+
+type MCLagPeerLink struct {
+	SharedIPv4Addr string `json:"sharedIPv4Addr"`
+	AnycastMACAddr string `json:"anycastMACAddr"`
 }
