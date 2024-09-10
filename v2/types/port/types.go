@@ -54,6 +54,7 @@ type Port struct {
 	Transceiver      string               `json:"transceiver"`
 	Used             bool                 `json:"used"`
 	Info             PortInfo             `json:"info"`
+	MCLagId          int                  `json:"mclagId"`
 }
 
 type PortInfo struct {
