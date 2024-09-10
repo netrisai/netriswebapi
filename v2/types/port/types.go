@@ -143,7 +143,7 @@ type PortLAG struct {
 	Ports          []IDName         `json:"ports"`
 	Tenant         IDName           `json:"tenant"`
 	LACP           string           `json:"lacp"`
-	MCLagId        int              `json:"mclagId"`
+	MCLagId        *int             `json:"mclagId,omitempty"`
 }
 
 type PortLAGExtension struct {
