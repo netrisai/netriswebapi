@@ -24,13 +24,13 @@ type Link struct {
 	ID     int        `json:"id"`
 	Local  LinkIDName `json:"local"`
 	Remote LinkIDName `json:"remote"`
-	MCLagPeerLink MCLagPeerLink `json:"mclagPeerLink,omitempty"`
+	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
 }
 
 type Linkw struct {
 	Local         LinkIDName    `json:"local"`
 	Remote        LinkIDName    `json:"remote"`
-	MCLagPeerLink MCLagPeerLink `json:"mclagPeerLink,omitempty"`
+	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
 }
 
 type LinkIDName struct {
