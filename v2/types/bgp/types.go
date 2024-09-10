@@ -104,7 +104,7 @@ type EBGPAdd struct {
 	DefaultOriginate   string   `json:"defaultOriginate"`
 	Description        string   `json:"description"`
 	Hardware           IDNone   `json:"hardware"`
-	InboundRouteMap    int      `json:"inboundRouteMap"`
+	InboundRouteMap    *int      `json:"inboundRouteMap,omitempty"`
 	IPFamily           string   `json:"ipFamily"`
 	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
@@ -113,7 +113,7 @@ type EBGPAdd struct {
 	Name               string   `json:"name"`
 	NeighborAS         int      `json:"neighborAS"`
 	NeighborAddress    string   `json:"neighborAddress"`
-	OutboundRouteMap   int      `json:"outboundRouteMap"`
+	OutboundRouteMap   *int      `json:"outboundRouteMap,omitempty"`
 	Port               IDName   `json:"port"`
 	PrefixInboundMax   string   `json:"prefixInboundMax"`
 	PrefixLength       int      `json:"prefixLength"`
@@ -141,7 +141,7 @@ type EBGPUpdate struct {
 	DefaultOriginate   string   `json:"defaultOriginate"`
 	Description        string   `json:"description"`
 	Hardware           IDNone   `json:"hardware"`
-	InboundRouteMap    int      `json:"inboundRouteMap"`
+	InboundRouteMap    *int      `json:"inboundRouteMap,omitempty"`
 	IPFamily           string   `json:"ipFamily"`
 	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
@@ -150,7 +150,7 @@ type EBGPUpdate struct {
 	Name               string   `json:"name"`
 	NeighborAS         int      `json:"neighborAS"`
 	NeighborAddress    string   `json:"neighborAddress"`
-	OutboundRouteMap   int      `json:"outboundRouteMap"`
+	OutboundRouteMap   *int      `json:"outboundRouteMap,omitempty"`
 	Port               IDName   `json:"port"`
 	PrefixInboundMax   string   `json:"prefixInboundMax"`
 	PrefixLength       int      `json:"prefixLength"`
