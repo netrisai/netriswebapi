@@ -21,15 +21,15 @@ Links Structure for POST requests
 */
 
 type Link struct {
-	ID     int        `json:"id"`
-	Local  LinkIDName `json:"local"`
-	Remote LinkIDName `json:"remote"`
+	ID            int            `json:"id"`
+	Local         LinkIDName     `json:"local"`
+	Remote        LinkIDName     `json:"remote"`
 	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
 }
 
 type Linkw struct {
-	Local         LinkIDName    `json:"local"`
-	Remote        LinkIDName    `json:"remote"`
+	Local         LinkIDName     `json:"local"`
+	Remote        LinkIDName     `json:"remote"`
 	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
 }
 
