@@ -99,9 +99,9 @@ type EBGPPortShort struct {
 }
 
 type Timers struct {
-	Hello   string `json:"hello"`
-	Hold    string `json:"hold"`
-	Connect string `json:"connect"`
+	Hello   int `json:"hello"`
+	Hold    int `json:"hold"`
+	Connect int `json:"connect"`
 }
 
 // EBGPAdd .
