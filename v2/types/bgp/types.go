@@ -19,6 +19,7 @@ package bgp
 // EBGP .
 type EBGP struct {
 	AllowasIn            int           `json:"allowas_in"`
+	Bfd                  string        `json:"bfd"`
 	BgpPassword          string        `json:"bgp_password"`
 	BgpPrefixes          string        `json:"bgp_prefixes"`
 	BgpState             string        `json:"bgp_state"`
@@ -72,6 +73,7 @@ type EBGP struct {
 	SwitchID             int           `json:"switch_id"`
 	SwitchName           string        `json:"switch_name"`
 	SwitchPortID         int           `json:"switch_port_id"`
+	Timers               Timers        `json:"timers"`
 	TermSwName           string        `json:"term_sw_name"`
 	TermSwitchID         int           `json:"term_switch_id"`
 	TerminateOnSwitch    string        `json:"terminate_on_switch"`
@@ -96,15 +98,22 @@ type EBGPPortShort struct {
 	Name   string `json:"name"`
 }
 
+type Timers struct {
+	Hello   string `json:"hello"`
+	Hold    string `json:"hold"`
+	Connect string `json:"connect"`
+}
+
 // EBGPAdd .
 type EBGPAdd struct {
 	AllowAsIn          int      `json:"allowAsIn"`
+	Bfd                *string  `json:"bfd,omitempty"`
 	BgpCommunity       string   `json:"bgpCommunity"`
 	BgpPassword        string   `json:"bgpPassword"`
 	DefaultOriginate   string   `json:"defaultOriginate"`
 	Description        string   `json:"description"`
 	Hardware           IDNone   `json:"hardware"`
-	InboundRouteMap    *int      `json:"inboundRouteMap,omitempty"`
+	InboundRouteMap    *int     `json:"inboundRouteMap,omitempty"`
 	IPFamily           string   `json:"ipFamily"`
 	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
@@ -113,7 +122,7 @@ type EBGPAdd struct {
 	Name               string   `json:"name"`
 	NeighborAS         int      `json:"neighborAS"`
 	NeighborAddress    string   `json:"neighborAddress"`
-	OutboundRouteMap   *int      `json:"outboundRouteMap,omitempty"`
+	OutboundRouteMap   *int     `json:"outboundRouteMap,omitempty"`
 	Port               IDName   `json:"port"`
 	PrefixInboundMax   string   `json:"prefixInboundMax"`
 	PrefixLength       int      `json:"prefixLength"`
@@ -122,6 +131,7 @@ type EBGPAdd struct {
 	PrependInbound     int      `json:"prependInbound"`
 	PrependOutbound    int      `json:"prependOutbound"`
 	RemoteIP           string   `json:"remoteIP"`
+	Timers             Timers   `json:"timers"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
 	Untagged           bool     `json:"untagged"`
@@ -136,12 +146,13 @@ type EBGPAdd struct {
 // EBGPUpdate .
 type EBGPUpdate struct {
 	AllowAsIn          int      `json:"allowAsIn"`
+	Bfd                *string  `json:"bfd,omitempty"`
 	BgpCommunity       string   `json:"bgpCommunity"`
 	BgpPassword        string   `json:"bgpPassword"`
 	DefaultOriginate   string   `json:"defaultOriginate"`
 	Description        string   `json:"description"`
 	Hardware           IDNone   `json:"hardware"`
-	InboundRouteMap    *int      `json:"inboundRouteMap,omitempty"`
+	InboundRouteMap    *int     `json:"inboundRouteMap,omitempty"`
 	IPFamily           string   `json:"ipFamily"`
 	LocalAsn           string   `json:"localAsn"`
 	LocalIP            string   `json:"localIP"`
@@ -150,7 +161,7 @@ type EBGPUpdate struct {
 	Name               string   `json:"name"`
 	NeighborAS         int      `json:"neighborAS"`
 	NeighborAddress    string   `json:"neighborAddress"`
-	OutboundRouteMap   *int      `json:"outboundRouteMap,omitempty"`
+	OutboundRouteMap   *int     `json:"outboundRouteMap,omitempty"`
 	Port               IDName   `json:"port"`
 	PrefixInboundMax   string   `json:"prefixInboundMax"`
 	PrefixLength       int      `json:"prefixLength"`
@@ -159,6 +170,7 @@ type EBGPUpdate struct {
 	PrependInbound     int      `json:"prependInbound"`
 	PrependOutbound    int      `json:"prependOutbound"`
 	RemoteIP           string   `json:"remoteIP"`
+	Timers             Timers   `json:"timers"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
 	Untagged           bool     `json:"untagged"`
