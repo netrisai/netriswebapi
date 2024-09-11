@@ -107,7 +107,7 @@ type Timers struct {
 // EBGPAdd .
 type EBGPAdd struct {
 	AllowAsIn          int      `json:"allowAsIn"`
-	Bfd                *string  `json:"bfd,omitempty"`
+	Bfd                string   `json:"bfd"`
 	BgpCommunity       string   `json:"bgpCommunity"`
 	BgpPassword        string   `json:"bgpPassword"`
 	DefaultOriginate   string   `json:"defaultOriginate"`
@@ -146,7 +146,7 @@ type EBGPAdd struct {
 // EBGPUpdate .
 type EBGPUpdate struct {
 	AllowAsIn          int      `json:"allowAsIn"`
-	Bfd                *string  `json:"bfd,omitempty"`
+	Bfd                string   `json:"bfd"`
 	BgpCommunity       string   `json:"bgpCommunity"`
 	BgpPassword        string   `json:"bgpPassword"`
 	DefaultOriginate   string   `json:"defaultOriginate"`
