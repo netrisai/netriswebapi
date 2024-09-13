@@ -63,8 +63,10 @@ type Timezone struct {
 }
 
 type FabricProps struct {
-	OptimiseBgpOverlay    bool `json:"optimiseBgpOverlay"`
-	UnnumberedBgpUnderlay bool `json:"unnumberedBgpUnderlay"`
+	OptimiseBgpOverlay       bool `json:"optimiseBgpOverlay"`
+	UnnumberedBgpUnderlay    bool `json:"unnumberedBgpUnderlay"`
+	AutomaticLinkAggregation bool `json:"automaticLinkAggregation"`
+	MCLag                    bool `json:"mclag"`
 }
 
 type GpuClusterProps struct {

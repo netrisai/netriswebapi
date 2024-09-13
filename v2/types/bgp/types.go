@@ -66,6 +66,7 @@ type EBGP struct {
 	PrependOutbound      int           `json:"prepend_outbound"`
 	RcircuitID           int           `json:"rcircuit_id"`
 	RemoteIP             string        `json:"remote_ip"`
+	RemovePrivateAs      string        `json:"removePrivateAs"`
 	RouteID              int           `json:"route_id"`
 	SiteID               int           `json:"site_id"`
 	SiteName             string        `json:"site_name"`
@@ -131,6 +132,7 @@ type EBGPAdd struct {
 	PrependInbound     int      `json:"prependInbound"`
 	PrependOutbound    int      `json:"prependOutbound"`
 	RemoteIP           string   `json:"remoteIP"`
+	RemovePrivateAs    string   `json:"removePrivateAs"`
 	Timers             Timers   `json:"timers"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
@@ -170,6 +172,7 @@ type EBGPUpdate struct {
 	PrependInbound     int      `json:"prependInbound"`
 	PrependOutbound    int      `json:"prependOutbound"`
 	RemoteIP           string   `json:"remoteIP"`
+	RemovePrivateAs    string   `json:"removePrivateAs"`
 	Timers             Timers   `json:"timers"`
 	Site               IDName   `json:"site"`
 	State              string   `json:"state"`
