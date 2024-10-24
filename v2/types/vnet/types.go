@@ -213,6 +213,7 @@ type VNetAdd struct {
 	Vlans        string           `json:"vlans"`
 	Vlan         interface{}      `json:"vlan"`
 	Tags         []string         `json:"tags"`
+	VxlanID      int              `json:"vxlanID"`
 	Vpc          *IDName          `json:"vpc,omitempty"`
 }
 
@@ -260,6 +261,7 @@ type VNetUpdate struct {
 	Vlans        string                  `json:"vlans"`
 	Vlan         interface{}             `json:"vlan"`
 	Tags         []string                `json:"tags"`
+	VxlanID      int                     `json:"vxlanID"`
 }
 
 type VNetUpdateGateway struct {
