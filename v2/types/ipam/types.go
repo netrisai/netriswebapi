@@ -107,3 +107,7 @@ type Subnet struct {
 	Tags           []string `json:"tags"`
 	Vpc            *IDName  `json:"vpc,omitempty"`
 }
+
+type dhcpLeaseDelete struct {
+	DHCPMacIDs []int `json:"dhcp_mac_ids"`
+}
