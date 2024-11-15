@@ -65,6 +65,14 @@ type Host struct {
 	Readonly    string      `json:"readonly"`
 	SubnetID    int         `json:"subnetID"`
 	Type        string      `json:"type"`
+	MAC         []HostMAC   `json:"mac"`
+}
+
+type HostMAC struct {
+	ID      int    `json:"id"`
+	Address string `json:"address"`
+	Source  string `json:"source"`
+	State   string `json:"deleted"`
 }
 
 type HostAnycast struct {
