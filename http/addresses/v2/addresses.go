@@ -37,11 +37,12 @@ const (
 
 	Links = "/api/v2/link"
 
-	IPAMBase       = "/api/v2/ipam"
-	IPAMSubnets    = "/api/v2/ipam/subnets"
-	IPAMHosts      = "/api/v2/ipam/hosts"
-	IPAMAllocation = "/api/v2/ipam/allocation"
-	IPAMSubnet     = "/api/v2/ipam/subnet"
+	IPAMBase                 = "/api/v2/ipam"
+	IPAMSubnets              = "/api/v2/ipam/subnets"
+	IPAMHosts                = "/api/v2/ipam/hosts"
+	IPAMAllocation           = "/api/v2/ipam/allocation"
+	IPAMSubnet               = "/api/v2/ipam/subnet"
+	IPAMHostsDHCPLeaseDelete = "/api/v2/ipam/hosts/delete-dhcp-lease"
 
 	Ports          = "/api/v2/ports"
 	PortExtensions = "/api/v2/ports/extensions"

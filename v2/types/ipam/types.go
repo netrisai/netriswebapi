@@ -104,3 +104,7 @@ type Subnet struct {
 	Tenant         IDName   `json:"tenant"`
 	Tags           []string `json:"tags"`
 }
+
+type dhcpLeaseDelete struct {
+	DHCPMacIDs []int `json:"dhcp_mac_ids"`
+}
