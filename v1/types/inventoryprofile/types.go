@@ -64,7 +64,7 @@ type Timezone struct {
 
 type FabricProps struct {
 	OptimiseBgpOverlay           bool `json:"optimiseBgpOverlay"`
-	optimiseBgpOverlayHypervisor bool `json:"optimiseBgpOverlayHypervisor"`
+	OptimiseBgpOverlayHypervisor bool `json:"optimiseBgpOverlayHypervisor"`
 	UnnumberedBgpUnderlay        bool `json:"unnumberedBgpUnderlay"`
 	AutomaticLinkAggregation     bool `json:"automaticLinkAggregation"`
 	MCLag                        bool `json:"mclag"`
