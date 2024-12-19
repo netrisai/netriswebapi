@@ -25,12 +25,14 @@ type Link struct {
 	Local         LinkIDName     `json:"local"`
 	Remote        LinkIDName     `json:"remote"`
 	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
+	Underlay      string         `json:"underlay"`
 }
 
 type Linkw struct {
 	Local         LinkIDName     `json:"local"`
 	Remote        LinkIDName     `json:"remote"`
 	MCLagPeerLink *MCLagPeerLink `json:"mclagPeerLink,omitempty"`
+	Underlay      string         `json:"underlay"`
 }
 
 type LinkIDName struct {
