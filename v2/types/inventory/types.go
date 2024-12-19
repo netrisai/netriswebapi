@@ -57,11 +57,13 @@ type HW struct {
 	Tenant           IDName        `json:"tenant"`
 	Timezone         string        `json:"timezone"`
 	Type             string        `json:"type"`
+	Tags             []string      `json:"tags"`
 	Uptime           string        `json:"uptime"`
 	UUID             string        `json:"uuid"`
 	CustomData       string        `json:"customData"`
 	SGFlavor         string        `json:"sgFlavor"`
 	SGRole           string        `json:"sgRole"`
+	SRVRole          string        `json:"srvRole"`
 }
 
 type HWASNNumber struct {
@@ -131,6 +133,7 @@ type HWSwitchAdd struct {
 	Tenant      IDName      `json:"tenant"`
 	UUID        string      `json:"uuid"`
 	Type        string      `json:"type"`
+	Tags        []string    `json:"tags"`
 	Breakout    string      `json:"breakout"`
 }
 
@@ -159,6 +162,7 @@ type HWSwitchUpdate struct {
 	Tenant          IDName      `json:"tenant"`
 	UUID            string      `json:"uuid"`
 	Type            string      `json:"type"`
+	Tags            []string    `json:"tags"`
 }
 
 /*
@@ -200,6 +204,7 @@ type HWSoftgate struct {
 	Tenant      IDName   `json:"tenant"`
 	SGFlavor    string   `json:"sgFlavor"`
 	SGRole      string   `json:"sgRole"`
+	Tags        []string `json:"tags"`
 }
 
 /*
@@ -218,6 +223,7 @@ type HWSoftgateUpdate struct {
 	Tenant      IDName   `json:"tenant"`
 	SGFlavor    string   `json:"sgFlavor"`
 	SGRole      string   `json:"sgRole"`
+	Tags        []string `json:"tags"`
 }
 
 /*
@@ -310,4 +316,6 @@ type HWServer struct {
 	Asn         interface{} `json:"asn"`
 	PortCount   int         `json:"portCount"`
 	CustomData  string      `json:"customData"`
+	Tags        []string    `json:"tags"`
+	SRVRole     string      `json:"srvRole"`
 }
