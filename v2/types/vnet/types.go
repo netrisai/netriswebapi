@@ -42,6 +42,7 @@ type VNet struct {
 	TenantID     int                `json:"tenantID"`
 	Vlan         int                `json:"vlan"`
 	Tags         []string           `json:"tags"`
+	PortTags     []VNetPortTag      `json:"portTags"`
 	Vpc          IDName             `json:"vpc"`
 }
 
@@ -57,6 +58,11 @@ type VNetGateway struct {
 	IPFamily       string          `json:"ipFamily"`
 	Prefix         string          `json:"prefix"`
 	Vlan           string          `json:"vlan"`
+}
+
+type VNetPortTag struct {
+	Name       string `json:"name"`
+	AccessMode bool   `json:"accessMode"`
 }
 
 type VNetGatewayDHCP struct {
@@ -96,6 +102,7 @@ type VNetDetailed struct {
 	VxlanID      int                       `json:"vxlanID"`
 	Vlan         int                       `json:"vlan"`
 	Tags         []string                  `json:"tags"`
+	PortTags     []VNetPortTag             `json:"portTags"`
 	Vpc          IDName                    `json:"vpc"`
 }
 
@@ -213,6 +220,7 @@ type VNetAdd struct {
 	Vlans        string           `json:"vlans"`
 	Vlan         interface{}      `json:"vlan"`
 	Tags         []string         `json:"tags"`
+	PortTags     []VNetPortTag    `json:"portTags"`
 	VxlanID      int              `json:"vxlanID"`
 	Vpc          *IDName          `json:"vpc,omitempty"`
 }
@@ -261,6 +269,7 @@ type VNetUpdate struct {
 	Vlans        string                  `json:"vlans"`
 	Vlan         interface{}             `json:"vlan"`
 	Tags         []string                `json:"tags"`
+	PortTags     []VNetPortTag           `json:"portTags"`
 	VxlanID      int                     `json:"vxlanID"`
 }
 
