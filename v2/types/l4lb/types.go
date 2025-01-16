@@ -18,13 +18,12 @@ package l4lb
 
 // LoadBalancer .
 type LoadBalancer struct {
-	ID         int    `json:"id"`
-	Name       string `json:"name"`
-	TenantID   int    `json:"tenantId"`
-	TenantName string `json:"tenantName"`
-	SiteID     int    `json:"siteId"`
-	SiteName   string `json:"siteName"`
-	Automatic  bool   `json:"automatic"`
+	ID        int    `json:"id"`
+	Name      string `json:"name"`
+	Tenant    IDName `json:"tenant"`
+	SiteID    int    `json:"siteId"`
+	SiteName  string `json:"siteName"`
+	Automatic bool   `json:"automatic"`
 
 	KubenetInfo LoadBalancerKubenetInfo `json:"kubenet_info"`
 
@@ -38,8 +37,9 @@ type LoadBalancer struct {
 
 	BackendIPs []LBBackend `json:"backendIps"`
 
-	CreatedDate  int `json:"createdDate"`
-	ModifiedDate int `json:"modifiedDate"`
+	CreatedDate  int    `json:"createdDate"`
+	ModifiedDate int    `json:"modifiedDate"`
+	Vpc          IDName `json:"vpc"`
 }
 
 // LoadBalancerLabel .
@@ -87,12 +87,11 @@ type LoadBalancerAdd struct {
 
 // LoadBalancerUpdate .
 type LoadBalancerUpdate struct {
-	Name       string `json:"name"`
-	TenantID   int    `json:"tenantId,omitempty"`
-	TenantName string `json:"tenantName"`
-	SiteID     int    `json:"siteId"`
-	SiteName   string `json:"siteName"`
-	Automatic  bool   `json:"automatic"`
+	Name      string `json:"name"`
+	Tenant    IDName `json:"tenant"`
+	SiteID    int    `json:"siteId"`
+	SiteName  string `json:"siteName"`
+	Automatic bool   `json:"automatic"`
 
 	Protocol string `json:"protocol"`
 	IP       string `json:"ip"`
@@ -106,6 +105,7 @@ type LoadBalancerUpdate struct {
 	RequestPath string `json:"requestPath"`
 
 	BackendIPs []LBBackend `json:"backendIps"`
+	Vpc        IDName      `json:"vpc"`
 }
 
 // LBBackend .
@@ -141,4 +141,9 @@ type LBHealthCheckHTTP struct {
 type LBHealthCheck struct {
 	TCP  LBHealthCheckTCP
 	HTTP LBHealthCheckHTTP
+}
+
+type IDName struct {
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
