@@ -83,7 +83,7 @@ type LoadBalancerAdd struct {
 	RequestPath string `json:"requestPath"`
 
 	Backend []LBAddBackend `json:"backendIps"`
-	Vpc          IDName `json:"vpc"`
+	Vpc     IDName         `json:"vpc"`
 }
 
 // LoadBalancerUpdate .
