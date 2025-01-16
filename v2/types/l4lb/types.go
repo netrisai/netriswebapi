@@ -65,10 +65,10 @@ type LoadBalancerKubenetInfo struct {
 type LoadBalancerAdd struct {
 	Name string `json:"name"`
 
-	Tenant    int  `json:"tenantId"`
-	SiteID    int  `json:"siteId"`
-	Automatic bool `json:"automatic"`
-	Internal  int  `json:"internal"`
+	Tenant    IDName `json:"tenant"`
+	SiteID    int    `json:"siteId"`
+	Automatic bool   `json:"automatic"`
+	Internal  int    `json:"internal"`
 
 	KubenetInfoString string `json:"kubenet_info"`
 
