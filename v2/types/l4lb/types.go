@@ -21,7 +21,7 @@ type LoadBalancer struct {
 	ID        int    `json:"id"`
 	Name      string `json:"name"`
 	Tenant    IDName `json:"tenant"`
-	SiteID    int    `json:"siteId"`
+	Site      IDName `json:"site"`
 	SiteName  string `json:"siteName"`
 	Automatic bool   `json:"automatic"`
 
@@ -66,7 +66,7 @@ type LoadBalancerAdd struct {
 	Name string `json:"name"`
 
 	Tenant    IDName `json:"tenant"`
-	SiteID    int    `json:"siteId"`
+	Site      IDName `json:"site"`
 	Automatic bool   `json:"automatic"`
 	Internal  int    `json:"internal"`
 
@@ -90,7 +90,7 @@ type LoadBalancerAdd struct {
 type LoadBalancerUpdate struct {
 	Name      string `json:"name"`
 	Tenant    IDName `json:"tenant"`
-	SiteID    int    `json:"siteId"`
+	Site      IDName `json:"site"`
 	SiteName  string `json:"siteName"`
 	Automatic bool   `json:"automatic"`
 
