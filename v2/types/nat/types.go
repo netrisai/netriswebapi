@@ -56,6 +56,7 @@ type NAT struct {
 		Status string `json:"status"`
 		Value  string `json:"value"`
 	} `json:"state"`
+	Vpc IDName `json:"vpc"`
 }
 
 type NATw struct {
@@ -74,6 +75,7 @@ type NATw struct {
 	SourceAddress      string    `json:"sourceAddress"`
 	SourcePort         string    `json:"sourcePort"`
 	State              string    `json:"state"`
+	Vpc                *IDName   `json:"vpc,omitempty"`
 }
 
 type IDName struct {
