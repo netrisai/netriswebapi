@@ -39,11 +39,12 @@ type IPAM struct {
 		Length int    `json:"length"`
 		Prefix string `json:"prefix"`
 	} `json:"subnet"`
-	Tenant      IDName      `json:"tenant"`
-	Type        string      `json:"type"`
-	Tags        []string    `json:"tags"`
-	Utilization Utilization `json:"utilization"`
-	Vpc         IDName      `json:"vpc"`
+	Tenant        IDName      `json:"tenant"`
+	Type          string      `json:"type"`
+	Tags          []string    `json:"tags"`
+	Utilization   Utilization `json:"utilization"`
+	Vpc           IDName      `json:"vpc"`
+	GlobalRouting bool        `json:"globalRouting"`
 }
 
 type IDName struct {
@@ -98,5 +99,5 @@ type Subnet struct {
 	Tenant         IDName   `json:"tenant"`
 	Tags           []string `json:"tags"`
 	Vpc            *IDName  `json:"vpc,omitempty"`
-	GlobalRouting  *bool     `json:"globalRouting,omitempty"`
+	GlobalRouting  *bool    `json:"globalRouting,omitempty"`
 }
