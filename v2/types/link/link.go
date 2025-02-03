@@ -94,7 +94,7 @@ func (c *Client) Add(link *Linkw) (reply http.HTTPReply, err error) {
 	return reply, nil
 }
 
-func (c *Client) Update(id int, link *Linkw) (reply http.HTTPReply, err error) {
+func (c *Client) Update(id int, link *LinkU) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(link)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateLink} %s", err)
