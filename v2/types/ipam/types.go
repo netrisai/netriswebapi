@@ -98,4 +98,5 @@ type Subnet struct {
 	Tenant         IDName   `json:"tenant"`
 	Tags           []string `json:"tags"`
 	Vpc            *IDName  `json:"vpc,omitempty"`
+	GlobalRouting  *bool     `json:"globalRouting,omitempty"`
 }
