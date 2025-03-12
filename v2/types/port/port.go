@@ -89,6 +89,20 @@ func (c *PortClient) GetBySwName(swname string) ([]*Port, error) {
 	return items, nil
 }
 
+func (c *PortClient) GetBySwId(swId int) ([]*Port, error) {
+	address := c.client.URL.String() + v2address.Ports + fmt.Sprintf("?switchID=%d", swId)
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBySwId} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBySwId} %s", err)
+	}
+	return items, nil
+}
+
 func (c *PortClient) GetByID(id int) (*Port, error) {
 	address := c.client.URL.String() + v2address.Ports + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
