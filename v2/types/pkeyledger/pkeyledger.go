@@ -64,32 +64,32 @@ func (c *Client) Get() ([]*Pkeyledger, error) {
 	return items, nil
 }
 
-func (c *Client) GetByUfmID(ufmID string) (*Pkeyledger, error) {
+func (c *Client) GetByUfmID(ufmID string) ([]*Pkeyledger, error) {
 	address := c.client.URL.String() + v2address.Pkeyledger + fmt.Sprintf("/?ufmID=%s", ufmID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPkeyledgerByUfmID} %s", err)
 	}
 
-	item, err := parseSingle(APIResult)
+	items, err := parse(APIResult)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPkeyledgerByUfmID} %s", err)
 	}
-	return item, nil
+	return items, nil
 }
 
-func (c *Client) GetByUfmAndPkeyID(ufmID string, pkeyID string) (*Pkeyledger, error) {
+func (c *Client) GetByUfmAndPkeyID(ufmID string, pkeyID string) ([]*Pkeyledger, error) {
 	address := c.client.URL.String() + v2address.Pkeyledger + fmt.Sprintf("?ufmID=%s&pkeyID=%s", ufmID, pkeyID)
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPkeyledgerByUfmAndPkeyID} %s", err)
 	}
 
-	item, err := parseSingle(APIResult)
+	items, err := parse(APIResult)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPkeyledgerByUfmAndPkeyID} %s", err)
 	}
-	return item, nil
+	return items, nil
 }
 
 func (c *Client) Add(pkeyledger *PkeyledgerW) (reply http.HTTPReply, err error) {
