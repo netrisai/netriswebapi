@@ -37,3 +37,8 @@ type PkeyledgerW struct {
 	ServersGuids []string    `json:"serversGuids"`
 	Custom       interface{} `json:"custom"`
 }
+
+type PkeyledgerU struct {
+	ServersGuids []string    `json:"serversGuids"`
+	Custom       interface{} `json:"custom"`
+}

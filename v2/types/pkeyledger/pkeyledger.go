@@ -107,7 +107,7 @@ func (c *Client) Add(pkeyledger *PkeyledgerW) (reply http.HTTPReply, err error) 
 	return reply, nil
 }
 
-func (c *Client) Update(ufmID string, pkeyID string, pkeyledger *PkeyledgerW) (reply http.HTTPReply, err error) {
+func (c *Client) Update(ufmID string, pkeyID string, pkeyledger *PkeyledgerU) (reply http.HTTPReply, err error) {
 	js, err := json.Marshal(pkeyledger)
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdatePkeyledger} %s", err)
