@@ -74,6 +74,8 @@ const (
 
 	VPC = "/api/v2/vpc"
 
+	Pkeyledger = "/api/v2/pkeyledger"
+
 	ServerClusterTemplate = "/api/v2/server-cluster-template"
 	ServerCluster         = "/api/v2/server-cluster"
 )
