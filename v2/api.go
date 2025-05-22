@@ -50,6 +50,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
 	"github.com/netrisai/netriswebapi/v2/types/vnetunmanaged"
 	"github.com/netrisai/netriswebapi/v2/types/vpc"
+	"github.com/netrisai/netriswebapi/v2/types/vpcpeerings"
 )
 
 type Clientset struct {
@@ -86,6 +87,7 @@ type Clientset struct {
 	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
 	version               *version.VersionClient
+	vpcPeerings           *vpcpeerings.Client
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -303,6 +305,13 @@ func (c *Clientset) VPC() *vpc.Client {
 		c.vpc = vpc.New(c.Client)
 	}
 	return c.vpc
+}
+
+func (c *Clientset) VPCPeerings() *vpcpeerings.Client {
+	if c.vpcPeerings == nil {
+		c.vpcPeerings = vpcpeerings.New(c.Client)
+	}
+	return c.vpcPeerings
 }
 
 func (c *Clientset) Pkeyledger() *pkeyledger.Client {

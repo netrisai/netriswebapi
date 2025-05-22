@@ -72,7 +72,8 @@ const (
 
 	Sites = "/api/v2/sites"
 
-	VPC = "/api/v2/vpc"
+	VPC         = "/api/v2/vpc"
+	VPCPeerings = "/api/v2/vpc-peering"
 
 	Pkeyledger = "/api/v2/pkeyledger"
 
