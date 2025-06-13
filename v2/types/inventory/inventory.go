@@ -64,6 +64,20 @@ func (c *InventoryClient) Get() ([]*HW, error) {
 	return items, nil
 }
 
+func (c *InventoryClient) GetSkipHealth() ([]*HW, error) {
+	address := c.client.URL.String() + v2address.InventoryBase + "?showHealth=false"
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetInventory} %s", err)
+	}
+
+	items, err := parseInventories(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetInventory} %s", err)
+	}
+	return items, nil
+}
+
 func (c *InventoryClient) GetByID(id int) (*HW, error) {
 	address := c.client.URL.String() + v2address.InventoryBase + "/" + strconv.Itoa(id)
 	APIResult, err := c.client.Get(address)
