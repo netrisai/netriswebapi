@@ -92,6 +92,20 @@ func (c *InventoryClient) GetByID(id int) (*HW, error) {
 	return hw, nil
 }
 
+func (c *InventoryClient) GetHwInstallAgent(id int) (*string, error) {
+	address := c.client.URL.String() + v2address.InventoryBase + "/" + strconv.Itoa(id) + "/curl"
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetHwInstallAgent} %s", err)
+	}
+	var dataString *string
+	err = http.Decode(APIResult.Data, &dataString)
+	if err != nil {
+		return nil, fmt.Errorf("{GetHwInstallAgent} %s", err)
+	}
+	return dataString, nil
+}
+
 func (c *InventoryClient) Delete(kind string, id int) (reply http.HTTPReply, err error) {
 	if !(kind == "switch" || kind == "controller" || kind == "softgate" || kind == "equinix_metal_server" || kind == "phoenixnap_bmc_server" || kind == "server") {
 		return reply, fmt.Errorf("Invalid hardware type. Available values : switch, controller, softgate, equinix_metal_server, phoenixnap_bmc_server, server")
