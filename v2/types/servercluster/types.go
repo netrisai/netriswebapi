@@ -21,30 +21,36 @@ type IDName struct {
 	Name string `json:"name"`
 }
 
+type Servers struct {
+	ID     int    `json:"id"`
+	Name   string `json:"name"`
+	Shared bool   `json:"shared"`
+}
+
 type ServerCluster struct {
-	ID                 int      `json:"id"`
-	Name               string   `json:"name"`
-	Admin              IDName   `json:"admin"`
-	Site               IDName   `json:"site"`
-	VPC                IDName   `json:"vpc"`
-	SrvClusterTemplate IDName   `json:"srvClusterTemplate"`
-	Tags               []string `json:"tags"`
-	Servers            []IDName `json:"servers"`
-	ModifiedDate       int      `json:"modifiedDate"`
-	CreatedDate        int      `json:"createdDate"`
+	ID                 int       `json:"id"`
+	Name               string    `json:"name"`
+	Admin              IDName    `json:"admin"`
+	Site               IDName    `json:"site"`
+	VPC                IDName    `json:"vpc"`
+	SrvClusterTemplate IDName    `json:"srvClusterTemplate"`
+	Tags               []string  `json:"tags"`
+	Servers            []Servers `json:"servers"`
+	ModifiedDate       int       `json:"modifiedDate"`
+	CreatedDate        int       `json:"createdDate"`
 }
 
 type ServerClusterW struct {
-	Name               string   `json:"name"`
-	Admin              IDName   `json:"admin"`
-	Site               IDName   `json:"site"`
-	VPC                IDName   `json:"vpc"`
-	SrvClusterTemplate IDName   `json:"srvClusterTemplate"`
-	Tags               []string `json:"tags"`
-	Servers            []IDName `json:"servers"`
+	Name               string    `json:"name"`
+	Admin              IDName    `json:"admin"`
+	Site               IDName    `json:"site"`
+	VPC                IDName    `json:"vpc"`
+	SrvClusterTemplate IDName    `json:"srvClusterTemplate"`
+	Tags               []string  `json:"tags"`
+	Servers            []Servers `json:"servers"`
 }
 
 type ServerClusterU struct {
-	Tags    []string `json:"tags"`
-	Servers []IDName `json:"servers"`
+	Tags    []string  `json:"tags"`
+	Servers []Servers `json:"servers"`
 }
