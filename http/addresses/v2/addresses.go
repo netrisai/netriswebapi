@@ -79,4 +79,6 @@ const (
 
 	ServerClusterTemplate = "/api/v2/server-cluster-template"
 	ServerCluster         = "/api/v2/server-cluster"
+
+	LoginWhitelist = "/api/loginwhitelist"
 )
