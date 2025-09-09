@@ -69,5 +69,6 @@ const (
 
 	Sites = "/api/v2/sites"
 
-	VPC = "/api/v2/vpc"
+	VPC            = "/api/v2/vpc"
+	LoginWhitelist = "/api/loginwhitelist"
 )
