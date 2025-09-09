@@ -38,6 +38,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/user"
 	"github.com/netrisai/netriswebapi/v1/types/userrole"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
+	"github.com/netrisai/netriswebapi/v2/types/loginwhitelist"
 )
 
 type Clientset struct {
@@ -62,6 +63,7 @@ type Clientset struct {
 	routemap         *routemap.Client
 	acl2             *acl2.Client
 	graphboards      *graphboards.Client
+	loginwhitelist   *loginwhitelist.LoginWhitelistClient
 }
 
 func (c *Clientset) Site() *site.SiteClient {
@@ -202,6 +204,13 @@ func (c *Clientset) GraphBoards() *graphboards.Client {
 		c.graphboards = graphboards.New(c.Client)
 	}
 	return c.graphboards
+}
+
+func (c *Clientset) LoginWhitelist() *loginwhitelist.LoginWhitelistClient {
+	if c.loginwhitelist == nil {
+		c.loginwhitelist = loginwhitelist.New(c.Client)
+	}
+	return c.loginwhitelist
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
