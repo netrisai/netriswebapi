@@ -27,6 +27,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/inventory"
 	"github.com/netrisai/netriswebapi/v1/types/inventoryprofile"
 	"github.com/netrisai/netriswebapi/v1/types/l4lb"
+	"github.com/netrisai/netriswebapi/v1/types/loginwhitelist"
 	"github.com/netrisai/netriswebapi/v1/types/permission"
 	"github.com/netrisai/netriswebapi/v1/types/port"
 	"github.com/netrisai/netriswebapi/v1/types/portgroup"
@@ -38,7 +39,6 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/user"
 	"github.com/netrisai/netriswebapi/v1/types/userrole"
 	"github.com/netrisai/netriswebapi/v1/types/vnet"
-	"github.com/netrisai/netriswebapi/v2/types/loginwhitelist"
 )
 
 type Clientset struct {
