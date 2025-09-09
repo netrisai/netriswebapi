@@ -101,3 +101,7 @@ type Subnet struct {
 	Vpc            *IDName  `json:"vpc,omitempty"`
 	GlobalRouting  *bool    `json:"globalRouting,omitempty"`
 }
+
+type dhcpLeaseDelete struct {
+	DHCPMacIDs []int `json:"dhcp_mac_ids"`
+}
