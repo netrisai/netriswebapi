@@ -38,6 +38,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/ipreservation"
 	"github.com/netrisai/netriswebapi/v2/types/l4lb"
 	"github.com/netrisai/netriswebapi/v2/types/link"
+	"github.com/netrisai/netriswebapi/v2/types/loginwhitelist"
 	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/pkeyledger"
 	"github.com/netrisai/netriswebapi/v2/types/port"
@@ -86,6 +87,7 @@ type Clientset struct {
 	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
 	version               *version.VersionClient
+	loginwhitelist        *loginwhitelist.LoginWhitelistClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -310,6 +312,13 @@ func (c *Clientset) Pkeyledger() *pkeyledger.Client {
 		c.pkeyledger = pkeyledger.New(c.Client)
 	}
 	return c.pkeyledger
+}
+
+func (c *Clientset) LoginWhitelist() *loginwhitelist.LoginWhitelistClient {
+	if c.loginwhitelist == nil {
+		c.loginwhitelist = loginwhitelist.New(c.Client)
+	}
+	return c.loginwhitelist
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {
