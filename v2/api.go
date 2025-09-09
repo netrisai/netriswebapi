@@ -38,7 +38,6 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/ipreservation"
 	"github.com/netrisai/netriswebapi/v2/types/l4lb"
 	"github.com/netrisai/netriswebapi/v2/types/link"
-	"github.com/netrisai/netriswebapi/v2/types/loginwhitelist"
 	"github.com/netrisai/netriswebapi/v2/types/nat"
 	"github.com/netrisai/netriswebapi/v2/types/port"
 	"github.com/netrisai/netriswebapi/v2/types/roh"
@@ -79,7 +78,6 @@ type Clientset struct {
 	vlanreservation  *vlanreservation.Client
 	ipreservation    *ipreservation.Client
 	vpc              *vpc.Client
-	loginwhitelist   *loginwhitelist.LoginWhitelistClient
 }
 
 func (c *Clientset) VNet() *vnet.VNetClient {
@@ -276,13 +274,6 @@ func (c *Clientset) VPC() *vpc.Client {
 		c.vpc = vpc.New(c.Client)
 	}
 	return c.vpc
-}
-
-func (c *Clientset) LoginWhitelist() *loginwhitelist.LoginWhitelistClient {
-	if c.loginwhitelist == nil {
-		c.loginwhitelist = loginwhitelist.New(c.Client)
-	}
-	return c.loginwhitelist
 }
 
 func Client(address, login, password string, timeout int) (*Clientset, error) {

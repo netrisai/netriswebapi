@@ -69,4 +69,6 @@ const (
 	Routes = "/api/routes"
 
 	RouteMaps = "/api/ebgproutemaps"
+
+	LoginWhitelist = "/api/loginwhitelist"
 )
