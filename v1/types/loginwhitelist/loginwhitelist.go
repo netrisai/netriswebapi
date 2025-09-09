@@ -21,7 +21,7 @@ import (
 	"fmt"
 
 	"github.com/netrisai/netriswebapi/http"
-	v2address "github.com/netrisai/netriswebapi/http/addresses/v2"
+	v1address "github.com/netrisai/netriswebapi/http/addresses/v1"
 )
 
 type LoginWhitelistClient struct {
@@ -34,7 +34,7 @@ func New(c *http.HTTPCred) *LoginWhitelistClient {
 
 // Get retrieves all login whitelist entries
 func (c *LoginWhitelistClient) Get() ([]*LoginWhitelistEntry, error) {
-	address := c.client.URL.String() + v2address.LoginWhitelist
+	address := c.client.URL.String() + v1address.LoginWhitelist
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetLoginWhitelist} %s", err)
@@ -56,7 +56,7 @@ func (c *LoginWhitelistClient) Add(entry *LoginWhitelistAdd) (reply http.HTTPRep
 		return reply, err
 	}
 
-	address := c.client.URL.String() + v2address.LoginWhitelist
+	address := c.client.URL.String() + v1address.LoginWhitelist
 	reply, err = c.client.Post(address, js)
 	if err != nil {
 		return reply, err
@@ -71,7 +71,7 @@ func (c *LoginWhitelistClient) Update(entry *LoginWhitelistUpdate) (reply http.H
 	if err != nil {
 		return http.HTTPReply{}, fmt.Errorf("{UpdateLoginWhitelist} %s", err)
 	}
-	address := c.client.URL.String() + v2address.LoginWhitelist
+	address := c.client.URL.String() + v1address.LoginWhitelist
 	reply, err = c.client.Put(address, js)
 	if err != nil {
 		return reply, fmt.Errorf("{UpdateLoginWhitelist} %s", err)
@@ -88,7 +88,7 @@ func (c *LoginWhitelistClient) Delete(id int) (reply http.HTTPReply, err error) 
 		return reply, err
 	}
 
-	address := c.client.URL.String() + v2address.LoginWhitelist
+	address := c.client.URL.String() + v1address.LoginWhitelist
 	reply, err = c.client.Delete(address, js)
 	if err != nil {
 		return reply, err
