@@ -236,3 +236,22 @@ func (c *IPAMClient) DeleteByPrefix(kind, prefix string) (reply http.HTTPReply, 
 
 	return reply, nil
 }
+
+func (c *IPAMClient) DeleteDHCPLease(ids []int) (reply http.HTTPReply, err error) {
+	if len(ids) == 0 {
+		return reply, fmt.Errorf("Delete DHCP Lease: Provide IDs")
+	}
+
+	payload, err := json.Marshal(dhcpLeaseDelete{DHCPMacIDs: ids})
+	if err != nil {
+		return reply, fmt.Errorf("Delete DHCP Lease: %s", err)
+	}
+
+	address := c.client.URL.String() + v2address.IPAMHostsDHCPLeaseDelete
+	reply, err = c.client.Delete(address, payload)
+	if err != nil {
+		return reply, err
+	}
+
+	return reply, nil
+}
