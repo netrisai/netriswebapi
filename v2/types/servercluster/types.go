@@ -27,17 +27,52 @@ type Servers struct {
 	Shared bool   `json:"shared"`
 }
 
+type GatewayPrefix struct {
+	Prefix string `json:"prefix"`
+}
+
+type VNet struct {
+	ID           int             `json:"id"`
+	Name         string          `json:"name"`
+	IPv4Gateways []GatewayPrefix `json:"ipv4Gateways"`
+	IPv6Gateways []GatewayPrefix `json:"ipv6Gateways"`
+}
+
+type Allocation struct {
+	ID     int    `json:"id"`
+	Prefix string `json:"prefix"`
+}
+
+type Subnet struct {
+	ID     int    `json:"id"`
+	Prefix string `json:"prefix"`
+}
+
+type Resources struct {
+	VNets       []VNet       `json:"vnets"`
+	Allocations []Allocation `json:"allocations"`
+	Subnets     []Subnet     `json:"subnets"`
+}
+
+type StatusInfo struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
 type ServerCluster struct {
-	ID                 int       `json:"id"`
-	Name               string    `json:"name"`
-	Admin              IDName    `json:"admin"`
-	Site               IDName    `json:"site"`
-	VPC                IDName    `json:"vpc"`
-	SrvClusterTemplate IDName    `json:"srvClusterTemplate"`
-	Tags               []string  `json:"tags"`
-	Servers            []Servers `json:"servers"`
-	ModifiedDate       int       `json:"modifiedDate"`
-	CreatedDate        int       `json:"createdDate"`
+	ID                 int         `json:"id"`
+	Name               string      `json:"name"`
+	State              string      `json:"state"`
+	Status             StatusInfo  `json:"status"`
+	Admin              IDName      `json:"admin"`
+	Site               IDName      `json:"site"`
+	VPC                IDName      `json:"vpc"`
+	SrvClusterTemplate IDName      `json:"srvClusterTemplate"`
+	Tags               []string    `json:"tags"`
+	Servers            []Servers   `json:"servers"`
+	Resources          Resources   `json:"resources"`
+	ModifiedDate       int         `json:"modifiedDate"`
+	CreatedDate        int         `json:"createdDate"`
 }
 
 type ServerClusterW struct {
