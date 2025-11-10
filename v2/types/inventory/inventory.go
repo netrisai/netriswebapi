@@ -17,7 +17,6 @@ limitations under the License.
 package inventory
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/url"
 	"strconv"
@@ -43,8 +42,7 @@ func New(c *http.HTTPCred) *InventoryClient {
 
 func parseInventories(APIResult *http.APIResponse) ([]*HW, error) {
 	var items []*HW
-	normalized := normalizeCustomData(APIResult.Data)
-	err := http.Decode(normalized, &items)
+	err := http.Decode(APIResult.Data, &items)
 	if err != nil {
 		return items, fmt.Errorf("{parseInventories} %s", err)
 	}
@@ -58,36 +56,6 @@ func parseInventory(APIResult *http.APIResponse) (*HW, error) {
 		return items, fmt.Errorf("{parseInventories} %s", err)
 	}
 	return items, nil
-}
-
-func normalizeCustomData(data interface{}) interface{} {
-	switch v := data.(type) {
-	case []interface{}:
-		for _, item := range v {
-			if m, ok := item.(map[string]interface{}); ok {
-				normalizeCustomDataField(m)
-			}
-		}
-	case map[string]interface{}:
-		normalizeCustomDataField(v)
-	}
-	return data
-}
-
-func normalizeCustomDataField(item map[string]interface{}) {
-	raw, ok := item["customData"]
-	if !ok || raw == nil {
-		return
-	}
-	if _, ok := raw.(string); ok {
-		return
-	}
-	bytes, err := json.Marshal(raw)
-	if err != nil {
-		item["customData"] = ""
-		return
-	}
-	item["customData"] = string(bytes)
 }
 
 func (c *InventoryClient) Get() ([]*HW, error) {
