@@ -29,10 +29,18 @@ type InventoryClient struct {
 	client *http.HTTPCred
 }
 
+type HardwareType string
+
+const (
+	HardwareTypeServer   HardwareType = "server"
+	HardwareTypeSoftgate HardwareType = "softgate"
+	HardwareTypeSwitch   HardwareType = "switch"
+)
+
 type InventoryGetParams struct {
 	ShowHealth bool
 	ShowCustom bool
-	Type       string
+	Type       HardwareType
 	Sites      []int64
 }
 
@@ -86,10 +94,12 @@ func (c *InventoryClient) GetWithParams(params InventoryGetParams) ([]*HW, error
 	}
 
 	if params.Type != "" {
-		if params.Type != "server" && params.Type != "softgate" && params.Type != "switch" {
+		switch params.Type {
+		case HardwareTypeServer, HardwareTypeSoftgate, HardwareTypeSwitch:
+			query.Set("type", string(params.Type))
+		default:
 			return nil, fmt.Errorf("{GetWithParams} invalid type %q (allowed: server, softgate, switch)", params.Type)
 		}
-		query.Set("type", params.Type)
 	}
 
 	for _, siteID := range params.Sites {
