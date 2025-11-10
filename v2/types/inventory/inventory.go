@@ -18,6 +18,7 @@ package inventory
 
 import (
 	"fmt"
+	"net/url"
 	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -26,6 +27,21 @@ import (
 
 type InventoryClient struct {
 	client *http.HTTPCred
+}
+
+type HardwareType string
+
+const (
+	HardwareTypeServer   HardwareType = "server"
+	HardwareTypeSoftgate HardwareType = "softgate"
+	HardwareTypeSwitch   HardwareType = "switch"
+)
+
+type InventoryGetParams struct {
+	ShowHealth bool
+	ShowCustom bool
+	Type       HardwareType
+	Sites      []int64
 }
 
 func New(c *http.HTTPCred) *InventoryClient {
@@ -61,6 +77,49 @@ func (c *InventoryClient) Get() ([]*HW, error) {
 	if err != nil {
 		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
+	return items, nil
+}
+
+func (c *InventoryClient) GetWithParams(params InventoryGetParams) ([]*HW, error) {
+	address := c.client.URL.String() + v2address.InventoryBase
+
+	query := url.Values{}
+
+	if params.ShowHealth {
+		query.Set("showHealth", strconv.FormatBool(true))
+	}
+
+	if params.ShowCustom {
+		query.Set("showCustom", strconv.FormatBool(true))
+	}
+
+	if params.Type != "" {
+		switch params.Type {
+		case HardwareTypeServer, HardwareTypeSoftgate, HardwareTypeSwitch:
+			query.Set("type", string(params.Type))
+		default:
+			return nil, fmt.Errorf("{GetWithParams} invalid type %q (allowed: server, softgate, switch)", params.Type)
+		}
+	}
+
+	for _, siteID := range params.Sites {
+		query.Add("filterBySites[]", strconv.FormatInt(siteID, 10))
+	}
+
+	if encoded := query.Encode(); encoded != "" {
+		address += "?" + encoded
+	}
+
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithParams} %s", err)
+	}
+
+	items, err := parseInventories(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithParams} %s", err)
+	}
+
 	return items, nil
 }
 
