@@ -455,11 +455,6 @@ import netris "github.com/netrisai/netriswebapi/v1"
 client, err := netris.Client(address, username, password, timeout)
 ```
 
-**Use when:**
-- Legacy ACL management needed
-- User and permission management
-- Older Netris controller versions
-
 ## Error Handling
 
 All API responses follow a consistent structure:
