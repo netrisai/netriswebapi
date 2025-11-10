@@ -17,7 +17,9 @@ limitations under the License.
 package inventory
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/url"
 	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -28,13 +30,21 @@ type InventoryClient struct {
 	client *http.HTTPCred
 }
 
+type InventoryGetParams struct {
+	ShowHealth bool
+	ShowCustom bool
+	Type       string
+	Sites      []int64
+}
+
 func New(c *http.HTTPCred) *InventoryClient {
 	return &InventoryClient{c}
 }
 
 func parseInventories(APIResult *http.APIResponse) ([]*HW, error) {
 	var items []*HW
-	err := http.Decode(APIResult.Data, &items)
+	normalized := normalizeCustomData(APIResult.Data)
+	err := http.Decode(normalized, &items)
 	if err != nil {
 		return items, fmt.Errorf("{parseInventories} %s", err)
 	}
@@ -50,6 +60,36 @@ func parseInventory(APIResult *http.APIResponse) (*HW, error) {
 	return items, nil
 }
 
+func normalizeCustomData(data interface{}) interface{} {
+	switch v := data.(type) {
+	case []interface{}:
+		for _, item := range v {
+			if m, ok := item.(map[string]interface{}); ok {
+				normalizeCustomDataField(m)
+			}
+		}
+	case map[string]interface{}:
+		normalizeCustomDataField(v)
+	}
+	return data
+}
+
+func normalizeCustomDataField(item map[string]interface{}) {
+	raw, ok := item["customData"]
+	if !ok || raw == nil {
+		return
+	}
+	if _, ok := raw.(string); ok {
+		return
+	}
+	bytes, err := json.Marshal(raw)
+	if err != nil {
+		item["customData"] = ""
+		return
+	}
+	item["customData"] = string(bytes)
+}
+
 func (c *InventoryClient) Get() ([]*HW, error) {
 	address := c.client.URL.String() + v2address.InventoryBase
 	APIResult, err := c.client.Get(address)
@@ -61,6 +101,47 @@ func (c *InventoryClient) Get() ([]*HW, error) {
 	if err != nil {
 		return nil, fmt.Errorf("{GetInventory} %s", err)
 	}
+	return items, nil
+}
+
+func (c *InventoryClient) GetWithParams(params InventoryGetParams) ([]*HW, error) {
+	address := c.client.URL.String() + v2address.InventoryBase
+
+	query := url.Values{}
+
+	if params.ShowHealth {
+		query.Set("showHealth", strconv.FormatBool(true))
+	}
+
+	if params.ShowCustom {
+		query.Set("showCustom", strconv.FormatBool(true))
+	}
+
+	if params.Type != "" {
+		if params.Type != "server" && params.Type != "softgate" && params.Type != "switch" {
+			return nil, fmt.Errorf("{GetWithParams} invalid type %q (allowed: server, softgate, switch)", params.Type)
+		}
+		query.Set("type", params.Type)
+	}
+
+	for _, siteID := range params.Sites {
+		query.Add("filterBySites[]", strconv.FormatInt(siteID, 10))
+	}
+
+	if encoded := query.Encode(); encoded != "" {
+		address += "?" + encoded
+	}
+
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithParams} %s", err)
+	}
+
+	items, err := parseInventories(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetWithParams} %s", err)
+	}
+
 	return items, nil
 }
 
