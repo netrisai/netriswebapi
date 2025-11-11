@@ -40,6 +40,7 @@ const (
 type InventoryGetParams struct {
 	ShowHealth bool
 	ShowCustom bool
+	ShowLinks  bool
 	Type       HardwareType
 	Sites      []int64
 }
@@ -91,6 +92,10 @@ func (c *InventoryClient) GetWithParams(params InventoryGetParams) ([]*HW, error
 
 	if params.ShowCustom {
 		query.Set("showCustom", strconv.FormatBool(true))
+	}
+
+	if params.ShowLinks {
+		query.Set("showLinks", strconv.FormatBool(true))
 	}
 
 	if params.Type != "" {
