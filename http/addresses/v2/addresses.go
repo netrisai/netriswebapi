@@ -76,7 +76,8 @@ const (
 	VPC         = "/api/v2/vpc"
 	VPCPeerings = "/api/v2/vpc-peering"
 
-	Pkeyledger = "/api/v2/pkeyledger"
+	Pkeyledger   = "/api/v2/pkeyledger"
+	NVLinkledger = "/api/v2/nvlinkledger"
 
 	ServerClusterTemplate = "/api/v2/server-cluster-template"
 	ServerCluster         = "/api/v2/server-cluster"
