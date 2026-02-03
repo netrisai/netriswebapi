@@ -42,8 +42,11 @@ func parse(APIResult *http.APIResponse) ([]*IPAM, error) {
 	return items, nil
 }
 
-func (c *IPAMClient) Get() ([]*IPAM, error) {
+func (c *IPAMClient) Get(filterByVpc ...string) ([]*IPAM, error) {
 	address := c.client.URL.String() + v2address.IPAMBase
+	if len(filterByVpc) > 0 && filterByVpc[0] != "" {
+		address += fmt.Sprintf("?filterByVpc=%s", filterByVpc[0])
+	}
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetIPAM} %s", err)
