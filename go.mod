@@ -1,10 +1,10 @@
 module github.com/netrisai/netriswebapi
 
-go 1.18
+go 1.26
 
 require (
-	github.com/mitchellh/mapstructure v1.4.1
-	github.com/sirupsen/logrus v1.8.1
+	github.com/mitchellh/mapstructure v1.5.0
+	github.com/sirupsen/logrus v1.9.4
 )
 
-require golang.org/x/sys v0.0.0-20191026070338-33540a1f6037 // indirect
+require golang.org/x/sys v0.41.0 // indirect

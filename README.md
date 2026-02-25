@@ -40,7 +40,7 @@ go get github.com/netrisai/netriswebapi/v1
 
 ### Requirements
 
-- Go 1.18 or higher
+- Go 1.26 or higher
 - Network access to Netris controller
 - Valid Netris credentials
 
