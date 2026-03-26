@@ -16,6 +16,8 @@ limitations under the License.
 
 package inventory
 
+import "encoding/json"
+
 /*
 Inventory Structure for GET requests
 */
@@ -64,6 +66,27 @@ type HW struct {
 	SGFlavor         string        `json:"sgFlavor"`
 	SGRole           string        `json:"sgRole"`
 	SRVRole          string        `json:"srvRole"`
+	DPUs             *[]DPU        `json:"dpus"`
+}
+
+func (h *HW) HwtoHwServer() *HWServer {
+	return &HWServer{
+		Description: h.Description,
+		Links:       h.Links,
+		MainAddress: h.MainAddress,
+		MgmtAddress: h.MgmtAddress,
+		Name:        h.Name,
+		Profile:     h.Profile,
+		Site:        h.Site,
+		UUID:        h.UUID,
+		Tenant:      h.Tenant,
+		Asn:         h.Asn,
+		PortCount:   h.PortCount,
+		CustomData:  h.CustomData,
+		Tags:        h.Tags,
+		SRVRole:     h.SGRole,
+		DPUs:        h.DPUs,
+	}
 }
 
 type HWASNNumber struct {
@@ -318,4 +341,54 @@ type HWServer struct {
 	CustomData  string      `json:"customData"`
 	Tags        []string    `json:"tags"`
 	SRVRole     string      `json:"srvRole"`
+	DPUs        *[]DPU      `json:"dpus,omitempty"`
+}
+
+type DPU struct {
+	ID           int64        `json:"id,omitempty"`
+	Index        int          `json:"index"`
+	VfCount      int          `json:"vfCount"`
+	Asn          DPUAsn       `json:"asnNumber"`
+	SerialNumber string       `json:"serialNumber"`
+	MainAddr     string       `json:"mainAddress"`
+	MgmtAddr     string       `json:"mgmtAddress"`
+	Portmap      []DpuPortMap `json:"portmap"`
+	Profile      IDName       `json:"profile"`
+}
+
+type DpuPortMap struct {
+	PortNumber int         `json:"dpuPortNumber"`
+	PortType   string      `json:"type"`
+	SrvPort    SrvPortType `json:"srvPort"`
+}
+
+type SrvPortType struct {
+	ID   int    `json:"id,omitempty"`
+	Port string `json:"port"`
+}
+
+func (s SrvPortType) MarshalJSON() ([]byte, error) {
+	/* POST/PUT: just the string */
+	return json.Marshal(s.Port)
+}
+
+func (s *SrvPortType) UnmarshalJSON(data []byte) error {
+	type alias SrvPortType
+	var obj alias
+	if err := json.Unmarshal(data, &obj); err == nil {
+		*s = SrvPortType(obj)
+		return nil
+	}
+
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		return err
+	}
+	s.Port = str
+	return nil
+}
+
+type DPUAsn struct {
+	ID  int64  `json:"id,omitempty"`
+	ASN string `json:"asn"`
 }
