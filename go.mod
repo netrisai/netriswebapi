@@ -1,4 +1,4 @@
-module github.com/netrisai/netriswebapi/v4
+module github.com/netrisai/netriswebapi
 
 go 1.26
 
