@@ -97,6 +97,30 @@ func (c *BGPClient) GetBySites(sites []int) ([]*EBGP, error) {
 	return items, nil
 }
 
+func (c *BGPClient) GetBySitesAndVPCs(sites []int, vpcs []int) ([]*EBGP, error) {
+	siteList := ""
+	for _, s := range sites {
+		siteList += fmt.Sprintf("filterBySites[]=%d&", s)
+	}
+
+	vpcList := ""
+	for _, v := range vpcs {
+		vpcList += fmt.Sprintf("filterByVpc=%d&", v)
+	}
+
+	address := c.client.URL.String() + v2address.BGP + "?useSites=true&" + siteList + vpcList
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBySitesAndVPCs} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetBySitesAndVPCs} %s", err)
+	}
+	return items, nil
+}
+
 func (c *BGPClient) GetSites() ([]*EBGPSite, error) {
 	address := c.client.URL.String() + v2address.BGPSites
 	APIResult, err := c.client.Get(address)
