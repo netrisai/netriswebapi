@@ -86,7 +86,6 @@ type SNMPv2Props struct {
 	Enabled   bool     `json:"enabled"`
 	Community string   `json:"community"`
 	Ipv4List  []string `json:"ipv4_list"`
-	Ipv6List  []string `json:"ipv6_list,omitempty"`
 	Contact   string   `json:"contact"`
 	Location  string   `json:"location"`
 }
