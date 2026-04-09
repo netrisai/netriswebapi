@@ -30,6 +30,8 @@ type Profile struct {
 	Timezone        string          `json:"timezone"`
 	FabricProps     FabricProps     `json:"fabricProps"`
 	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
+	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
+	ZTPProps        ZTPProps        `json:"ztpProps"`
 }
 
 type CustomRule struct {
@@ -54,6 +56,8 @@ type ProfileW struct {
 	Timezone        Timezone        `json:"timezone"`
 	FabricProps     FabricProps     `json:"fabricProps"`
 	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
+	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
+	ZTPProps        ZTPProps        `json:"ztpProps"`
 }
 
 type Timezone struct {
@@ -76,4 +80,18 @@ type GpuClusterProps struct {
 	CongestionControl    bool `json:"congestionControl"`
 	AsicMonitoring       bool `json:"asicMonitoring"`
 	AggregateL3VpnPrefix bool `json:"aggregateL3VpnPrefix"`
+}
+
+type SNMPv2Props struct {
+	Enabled   bool     `json:"enabled"`
+	Community string   `json:"community"`
+	Ipv4List  []string `json:"ipv4_list"`
+	Ipv6List  []string `json:"ipv6_list,omitempty"`
+	Contact   string   `json:"contact"`
+	Location  string   `json:"location"`
+}
+
+type ZTPProps struct {
+	NOSImage string `json:"nosImage"`
+	Password string `json:"password"`
 }
