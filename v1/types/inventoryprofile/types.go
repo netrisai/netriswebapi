@@ -75,11 +75,12 @@ type FabricProps struct {
 }
 
 type GpuClusterProps struct {
-	Roce                 bool `json:"roce"`
-	RoceAdaptiveRouting  bool `json:"roceAdaptiveRouting"`
-	CongestionControl    bool `json:"congestionControl"`
-	AsicMonitoring       bool `json:"asicMonitoring"`
-	AggregateL3VpnPrefix bool `json:"aggregateL3VpnPrefix"`
+	Roce                 bool   `json:"roce"`
+	RoceAdaptiveRouting  bool   `json:"roceAdaptiveRouting"`
+	CongestionControl    bool   `json:"congestionControl"`
+	AsicMonitoring       bool   `json:"asicMonitoring"`
+	RefArch              string `json:"refArch"`
+	AggregateL3VpnPrefix bool   `json:"aggregateL3VpnPrefix"`
 }
 
 type SNMPv2Props struct {
