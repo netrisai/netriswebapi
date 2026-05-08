@@ -91,4 +91,5 @@ type APIResponseMessage struct {
 type APIResponseMeta struct {
 	APIVersion string `json:"apiVersion"`
 	StatusCode int    `json:"statusCode"`
+	TotalDocs  int    `json:"totalDocs"`
 }

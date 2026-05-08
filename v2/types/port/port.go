@@ -82,8 +82,9 @@ func (c *PortClient) GetBySites(sites []int) ([]*Port, error) {
 	return items, nil
 }
 
-func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, error) {
+func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, int, error) {
 	params := url.Values{}
+	total := 0
 
 	if len(opts.Sites) > 0 {
 		params.Set("useSites", "true")
@@ -104,14 +105,17 @@ func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, error) {
 	address := c.client.URL.String() + v2address.Ports + "?" + params.Encode()
 	APIResult, err := c.client.Get(address)
 	if err != nil {
-		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+		return nil, total, fmt.Errorf("{GetPortsBySites} %s", err)
 	}
 
 	items, err := parse(APIResult)
 	if err != nil {
-		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+		return nil, total, fmt.Errorf("{GetPortsBySites} %s", err)
 	}
-	return items, nil
+
+	total = APIResult.Meta.TotalDocs
+
+	return items, total, nil
 }
 
 func (c *PortClient) GetBySwName(swname string) ([]*Port, error) {
