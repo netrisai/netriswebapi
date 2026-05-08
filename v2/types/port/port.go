@@ -19,6 +19,7 @@ package port
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -27,6 +28,12 @@ import (
 
 type PortClient struct {
 	client *http.HTTPCred
+}
+
+type GetPortsOptions struct {
+	Sites []int
+	Page  *int
+	Limit *int
 }
 
 func New(c *http.HTTPCred) *PortClient {
@@ -63,6 +70,38 @@ func (c *PortClient) GetBySites(sites []int) ([]*Port, error) {
 	}
 
 	address := c.client.URL.String() + v2address.Ports + "?useSites=true&" + siteList
+	APIResult, err := c.client.Get(address)
+	if err != nil {
+		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+	}
+
+	items, err := parse(APIResult)
+	if err != nil {
+		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
+	}
+	return items, nil
+}
+
+func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, error) {
+	params := url.Values{}
+
+	if len(opts.Sites) > 0 {
+		params.Set("useSites", "true")
+	}
+
+	for _, s := range opts.Sites {
+		params.Add("filterBySites[]", strconv.Itoa(s))
+	}
+
+	if opts.Page != nil {
+		params.Set("page", strconv.Itoa(*opts.Page))
+	}
+
+	if opts.Limit != nil {
+		params.Set("limit", strconv.Itoa(*opts.Limit))
+	}
+
+	address := c.client.URL.String() + v2address.Ports + "?" + params.Encode()
 	APIResult, err := c.client.Get(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetPortsBySites} %s", err)
