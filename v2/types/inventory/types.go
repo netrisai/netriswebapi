@@ -66,6 +66,7 @@ type HW struct {
 	SGFlavor         string        `json:"sgFlavor"`
 	SGRole           string        `json:"sgRole"`
 	SRVRole          string        `json:"srvRole"`
+	SWRole           string        `json:"swRole"`
 	DPUs             *[]DPU        `json:"dpus"`
 }
 
@@ -158,6 +159,7 @@ type HWSwitchAdd struct {
 	Type        string      `json:"type"`
 	Tags        []string    `json:"tags"`
 	Breakout    string      `json:"breakout"`
+	SwRole      string      `json:"swRole"`
 }
 
 type HWLink struct {
@@ -186,6 +188,7 @@ type HWSwitchUpdate struct {
 	UUID            string      `json:"uuid"`
 	Type            string      `json:"type"`
 	Tags            []string    `json:"tags"`
+	SwRole          string      `json:"swRole"`
 }
 
 /*
