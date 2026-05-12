@@ -67,11 +67,12 @@ type Timezone struct {
 }
 
 type FabricProps struct {
-	OptimiseBgpOverlay           bool `json:"optimiseBgpOverlay"`
-	OptimiseBgpOverlayHypervisor bool `json:"optimiseBgpOverlayHypervisor"`
-	UnnumberedBgpUnderlay        bool `json:"unnumberedBgpUnderlay"`
-	AutomaticLinkAggregation     bool `json:"automaticLinkAggregation"`
-	MCLag                        bool `json:"mclag"`
+	OptimiseBgpOverlay           bool   `json:"optimiseBgpOverlay"`
+	OptimiseBgpOverlayHypervisor bool   `json:"optimiseBgpOverlayHypervisor"`
+	UnnumberedBgpUnderlay        bool   `json:"unnumberedBgpUnderlay"`
+	AutomaticLinkAggregation     bool   `json:"automaticLinkAggregation"`
+	MCLag                        bool   `json:"mclag"`
+	FabricType                   string `json:"fabricType"`
 }
 
 type GpuClusterProps struct {
