@@ -80,6 +80,7 @@ type GpuClusterProps struct {
 	RoceAdaptiveRouting  bool   `json:"roceAdaptiveRouting"`
 	CongestionControl    bool   `json:"congestionControl"`
 	AsicMonitoring       bool   `json:"asicMonitoring"`
+	Hwmp                 bool   `json:"hwmp"`
 	RefArch              string `json:"refArch"`
 	AggregateL3VpnPrefix bool   `json:"aggregateL3VpnPrefix"`
 }
