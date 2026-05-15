@@ -25,6 +25,7 @@ type VNet struct {
 	Gateways     []VNetGateway      `json:"gateways"`
 	ID           int                `json:"id"`
 	Internal     int                `json:"internal"`
+	IPFamily     string             `json:"ipFamily"`
 	MacAddress   string             `json:"macAddress"`
 	ModifiedDate int                `json:"modifiedDate"`
 	Name         string             `json:"name"`
@@ -86,6 +87,7 @@ type VNetDetailed struct {
 	GuestTenants []VNetDetailedGuestTenant `json:"guestTenants"`
 	ID           int                       `json:"id"`
 	Internal     int                       `json:"internal"`
+	IPFamily     string                    `json:"ipFamily"`
 	MacAddress   string                    `json:"macAddress"`
 	ModifiedDate int                       `json:"modifiedDate"`
 	Name         string                    `json:"name"`
@@ -211,6 +213,7 @@ type VNetAdd struct {
 	Sites        []VNetAddSite    `json:"sites"`
 	Gateways     []VNetAddGateway `json:"gateways"`
 	GuestTenants []VNetAddTenant  `json:"guestTenants"`
+	IPFamily     string           `json:"ipFamily"`
 	NativeVlan   int              `json:"nativeVlan"`
 	Ports        []VNetAddPort    `json:"ports"`
 	Provisioning bool             `json:"provisioning"`
@@ -260,6 +263,7 @@ VNet Structure for PUT requests
 type VNetUpdate struct {
 	Gateways     []VNetUpdateGateway     `json:"gateways"`
 	GuestTenants []VNetUpdateGuestTenant `json:"guestTenants"`
+	IPFamily     string                  `json:"ipFamily"`
 	Name         string                  `json:"name"`
 	NativeVlan   int                     `json:"nativeVlan"`
 	Ports        []VNetUpdatePort        `json:"ports"`
