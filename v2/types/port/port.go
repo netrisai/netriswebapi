@@ -31,9 +31,11 @@ type PortClient struct {
 }
 
 type GetPortsOptions struct {
-	Sites []int
-	Page  *int
-	Limit *int
+	Sites      []int
+	SwitchID   int
+	FilterPort string
+	Page       *int
+	Limit      *int
 }
 
 func New(c *http.HTTPCred) *PortClient {
@@ -85,6 +87,14 @@ func (c *PortClient) GetBySites(sites []int) ([]*Port, error) {
 func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, int, error) {
 	params := url.Values{}
 	total := 0
+
+	if opts.SwitchID > 0 {
+		params.Set("switchID", fmt.Sprintf("%d", opts.SwitchID))
+	}
+
+	if opts.FilterPort != "" {
+		params.Set("filterPort", opts.FilterPort)
+	}
 
 	if len(opts.Sites) > 0 {
 		params.Set("useSites", "true")
