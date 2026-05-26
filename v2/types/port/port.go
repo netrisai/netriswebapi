@@ -34,6 +34,7 @@ type GetPortsOptions struct {
 	Sites      []int
 	SwitchID   int
 	FilterPort string
+	PortName   string
 	Page       *int
 	Limit      *int
 }
@@ -94,6 +95,10 @@ func (c *PortClient) GetByParams(opts GetPortsOptions) ([]*Port, int, error) {
 
 	if opts.FilterPort != "" {
 		params.Set("filterPort", opts.FilterPort)
+	}
+
+	if opts.PortName != "" {
+		params.Set("portName", opts.PortName)
 	}
 
 	if len(opts.Sites) > 0 {
