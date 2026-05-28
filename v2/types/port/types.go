@@ -55,6 +55,7 @@ type Port struct {
 	Used             bool                 `json:"used"`
 	Info             PortInfo             `json:"info"`
 	MCLagId          int                  `json:"mclagId"`
+	Fec              string               `json:"fec"`
 }
 
 type PortInfo struct {
@@ -109,6 +110,7 @@ type PortUpdate struct {
 	Speed       string               `json:"speed"`
 	Tenant      IDName               `json:"tenant"`
 	Status      string               `json:"status"`
+	Fec         string               `json:"fec,omitempty"`
 }
 
 type PortUpdateExtenstion struct {
