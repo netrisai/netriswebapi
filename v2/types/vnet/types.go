@@ -58,10 +58,10 @@ VNetDhcpRelay configures DHCP Relay for a V-Net. Enabling DHCP Relay disables
 DHCP configuration under Gateways.
 */
 type VNetDhcpRelay struct {
-	Enabled       bool   `json:"enabled"`
-	Vpc           IDName `json:"vpc"`
-	PrimaryAddr   string `json:"primaryAddr"`
-	SecondaryAddr string `json:"secondaryAddr"`
+	Enabled       bool    `json:"enabled"`
+	Vpc           *IDName `json:"vpc"`
+	PrimaryAddr   *string `json:"primaryAddr"`
+	SecondaryAddr *string `json:"secondaryAddr"`
 }
 
 type VNetGateway struct {
