@@ -32,6 +32,7 @@ type Profile struct {
 	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
 	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
 	ZTPProps        ZTPProps        `json:"ztpProps"`
+	NetQProps       NetQProps       `json:"netqProps"`
 }
 
 type CustomRule struct {
@@ -58,6 +59,13 @@ type ProfileW struct {
 	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
 	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
 	ZTPProps        ZTPProps        `json:"ztpProps"`
+	NetQProps       NetQProps       `json:"netqProps"`
+}
+
+type NetQProps struct {
+	Enabled     bool     `json:"enabled"`
+	ServerAddrs []string `json:"serverAddrs"`
+	ServerPort  int32    `json:"serverPort"`
 }
 
 type Timezone struct {
