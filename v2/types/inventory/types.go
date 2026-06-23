@@ -66,8 +66,9 @@ type HW struct {
 	SGFlavor         string        `json:"sgFlavor"`
 	SGRole           string        `json:"sgRole"`
 	SRVRole          string        `json:"srvRole"`
-	SWRole           string        `json:"swRole"`
-	DPUs             *[]DPU        `json:"dpus"`
+	SWRole                string        `json:"swRole"`
+	EnableEvpnRouteServer bool          `json:"enableEvpnRouteServer"`
+	DPUs                  *[]DPU        `json:"dpus"`
 }
 
 func (h *HW) HwtoHwServer() *HWServer {
@@ -158,8 +159,9 @@ type HWSwitchAdd struct {
 	UUID        string      `json:"uuid"`
 	Type        string      `json:"type"`
 	Tags        []string    `json:"tags"`
-	Breakout    string      `json:"breakout"`
-	SwRole      string      `json:"swRole"`
+	Breakout              string      `json:"breakout"`
+	SwRole                string      `json:"swRole"`
+	EnableEvpnRouteServer bool        `json:"enableEvpnRouteServer"`
 }
 
 type HWLink struct {
@@ -187,8 +189,9 @@ type HWSwitchUpdate struct {
 	Tenant          IDName      `json:"tenant"`
 	UUID            string      `json:"uuid"`
 	Type            string      `json:"type"`
-	Tags            []string    `json:"tags"`
-	SwRole          string      `json:"swRole"`
+	Tags                  []string    `json:"tags"`
+	SwRole                string      `json:"swRole"`
+	EnableEvpnRouteServer bool        `json:"enableEvpnRouteServer"`
 }
 
 /*
