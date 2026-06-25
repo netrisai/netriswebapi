@@ -80,6 +80,7 @@ type FabricProps struct {
 	UnnumberedBgpUnderlay        bool   `json:"unnumberedBgpUnderlay"`
 	AutomaticLinkAggregation     bool   `json:"automaticLinkAggregation"`
 	MCLag                        bool   `json:"mclag"`
+	ServerBasedESI               bool   `json:"serverBasedESI"`
 	FabricType                   string `json:"fabricType"`
 }
 
