@@ -46,6 +46,7 @@ type VNet struct {
 	PortTags     []VNetPortTag      `json:"portTags"`
 	Vpc          IDName             `json:"vpc"`
 	DhcpRelay    *VNetDhcpRelay     `json:"dhcpRelay"`
+	Dhcpv6Relay  *VNetDhcpv6Relay   `json:"dhcpv6Relay"`
 }
 
 type IDName struct {
@@ -58,6 +59,16 @@ VNetDhcpRelay configures DHCP Relay for a V-Net. Enabling DHCP Relay disables
 DHCP configuration under Gateways.
 */
 type VNetDhcpRelay struct {
+	Enabled       bool    `json:"enabled"`
+	Vpc           *IDName `json:"vpc"`
+	PrimaryAddr   *string `json:"primaryAddr"`
+	SecondaryAddr *string `json:"secondaryAddr"`
+}
+
+/*
+VNetDhcpv6Relay configures DHCPv6 Relay for a V-Net.
+*/
+type VNetDhcpv6Relay struct {
 	Enabled       bool    `json:"enabled"`
 	Vpc           *IDName `json:"vpc"`
 	PrimaryAddr   *string `json:"primaryAddr"`
@@ -119,6 +130,7 @@ type VNetDetailed struct {
 	PortTags     []VNetPortTag             `json:"portTags"`
 	Vpc          IDName                    `json:"vpc"`
 	DhcpRelay    *VNetDhcpRelay            `json:"dhcpRelay"`
+	Dhcpv6Relay  *VNetDhcpv6Relay          `json:"dhcpv6Relay"`
 }
 
 type VNetDetailedGateway struct {
@@ -240,6 +252,7 @@ type VNetAdd struct {
 	VxlanID      int              `json:"vxlanID"`
 	Vpc          *IDName          `json:"vpc,omitempty"`
 	DhcpRelay    *VNetDhcpRelay   `json:"dhcpRelay,omitempty"`
+	Dhcpv6Relay  *VNetDhcpv6Relay `json:"dhcpv6Relay,omitempty"`
 }
 
 type VNetAddGateway struct {
@@ -290,6 +303,7 @@ type VNetUpdate struct {
 	PortTags     []VNetPortTag           `json:"portTags"`
 	VxlanID      int                     `json:"vxlanID"`
 	DhcpRelay    *VNetDhcpRelay          `json:"dhcpRelay,omitempty"`
+	Dhcpv6Relay  *VNetDhcpv6Relay        `json:"dhcpv6Relay,omitempty"`
 }
 
 type VNetUpdateGateway struct {
