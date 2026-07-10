@@ -47,6 +47,7 @@ type VNet struct {
 	Vpc          IDName             `json:"vpc"`
 	DhcpRelay    *VNetDhcpRelay     `json:"dhcpRelay"`
 	Dhcpv6Relay  *VNetDhcpv6Relay   `json:"dhcpv6Relay"`
+	IPv6ND       *VNetIPv6ND        `json:"ipv6ND"`
 }
 
 type IDName struct {
@@ -73,6 +74,42 @@ type VNetDhcpv6Relay struct {
 	Vpc           *IDName `json:"vpc"`
 	PrimaryAddr   *string `json:"primaryAddr"`
 	SecondaryAddr *string `json:"secondaryAddr"`
+}
+
+type VNetIPv6ND struct {
+	RouterAdvertisement *VNetIPv6NDRouterAdvertisement `json:"routerAdvertisement"`
+	PrefixAdvertisement *VNetIPv6NDPrefixAdvertisement `json:"prefixAdvertisement"`
+	RDNSS               *VNetIPv6NDRDNSS               `json:"rdnss"`
+}
+
+type VNetIPv6NDSeconds struct {
+	Seconds *int `json:"seconds"`
+}
+
+type VNetIPv6NDLifetime struct {
+	Seconds  *int `json:"seconds"`
+	Infinite bool `json:"infinite"`
+}
+
+type VNetIPv6NDRouterAdvertisement struct {
+	Mode                  string             `json:"mode"`
+	RouterLifetime        *VNetIPv6NDSeconds `json:"routerLifetime"`
+	AdvertisementInterval *VNetIPv6NDSeconds `json:"advertisementInterval"`
+	ManagedConfig         bool               `json:"managedConfig"`
+	OtherConfig           bool               `json:"otherConfig"`
+}
+
+type VNetIPv6NDPrefixAdvertisement struct {
+	Enabled           bool               `json:"enabled"`
+	PreferredLifetime *VNetIPv6NDSeconds `json:"preferredLifetime"`
+	ValidLifetime     *VNetIPv6NDSeconds `json:"validLifetime"`
+	Autoconfig        bool               `json:"autoconfig"`
+}
+
+type VNetIPv6NDRDNSS struct {
+	Enabled    bool                `json:"enabled"`
+	DNSServers []string            `json:"dnsServers"`
+	Lifetime   *VNetIPv6NDLifetime `json:"lifetime"`
 }
 
 type VNetGateway struct {
@@ -131,6 +168,7 @@ type VNetDetailed struct {
 	Vpc          IDName                    `json:"vpc"`
 	DhcpRelay    *VNetDhcpRelay            `json:"dhcpRelay"`
 	Dhcpv6Relay  *VNetDhcpv6Relay          `json:"dhcpv6Relay"`
+	IPv6ND       *VNetIPv6ND               `json:"ipv6ND"`
 }
 
 type VNetDetailedGateway struct {
@@ -253,6 +291,7 @@ type VNetAdd struct {
 	Vpc          *IDName          `json:"vpc,omitempty"`
 	DhcpRelay    *VNetDhcpRelay   `json:"dhcpRelay,omitempty"`
 	Dhcpv6Relay  *VNetDhcpv6Relay `json:"dhcpv6Relay,omitempty"`
+	IPv6ND       *VNetIPv6ND      `json:"ipv6ND,omitempty"`
 }
 
 type VNetAddGateway struct {
@@ -304,6 +343,7 @@ type VNetUpdate struct {
 	VxlanID      int                     `json:"vxlanID"`
 	DhcpRelay    *VNetDhcpRelay          `json:"dhcpRelay,omitempty"`
 	Dhcpv6Relay  *VNetDhcpv6Relay        `json:"dhcpv6Relay,omitempty"`
+	IPv6ND       *VNetIPv6ND             `json:"ipv6ND,omitempty"`
 }
 
 type VNetUpdateGateway struct {
