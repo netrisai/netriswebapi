@@ -40,6 +40,10 @@ const (
 
 	Links = "/api/v2/link"
 
+	TopologyBase   = "/api/v2/topology"
+	TopologyImport = "/api/v2/topology/import"
+	TopologyPath   = "/api/v2/topology/path"
+
 	IPAMBase                 = "/api/v2/ipam"
 	IPAMSubnets              = "/api/v2/ipam/subnets"
 	IPAMHosts                = "/api/v2/ipam/hosts"

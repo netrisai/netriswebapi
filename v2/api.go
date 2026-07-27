@@ -46,6 +46,7 @@ import (
 	"github.com/netrisai/netriswebapi/v2/types/servercluster"
 	"github.com/netrisai/netriswebapi/v2/types/serverclustertemplate"
 	"github.com/netrisai/netriswebapi/v2/types/site"
+	"github.com/netrisai/netriswebapi/v2/types/topology"
 	"github.com/netrisai/netriswebapi/v2/types/version"
 	"github.com/netrisai/netriswebapi/v2/types/vlanreservation"
 	"github.com/netrisai/netriswebapi/v2/types/vnet"
@@ -88,6 +89,7 @@ type Clientset struct {
 	pkeyledger            *pkeyledger.Client
 	servercluster         *servercluster.Client
 	serverclustertemplate *serverclustertemplate.Client
+	topology              *topology.Client
 	version               *version.VersionClient
 	vpcPeerings           *vpcpeerings.Client
 }
@@ -111,6 +113,13 @@ func (c *Clientset) ServerClusterTemplate() *serverclustertemplate.Client {
 		c.serverclustertemplate = serverclustertemplate.New(c.Client)
 	}
 	return c.serverclustertemplate
+}
+
+func (c *Clientset) Topology() *topology.Client {
+	if c.topology == nil {
+		c.topology = topology.New(c.Client)
+	}
+	return c.topology
 }
 
 func (c *Clientset) Inventory() *inventory.InventoryClient {
