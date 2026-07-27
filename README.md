@@ -154,6 +154,7 @@ The V2 API provides enhanced functionality and more resources:
 | **Cluster Templates** | Server cluster templates | `client.ServerClusterTemplate()` |
 | **Ports** | Switch port configuration | `client.Port()` |
 | **Links** | Network link management | `client.Link()` |
+| **Topology** | UFM topology import and path queries | `client.Topology()` |
 | **DHCP** | DHCP option sets | `client.DHCP()` |
 | **IP Reservations** | IP address reservations | `client.IPReservation()` |
 | **VLAN Reservations** | VLAN reservations | `client.VLANReservation()` |
@@ -240,6 +241,29 @@ reply, err = siteClient.Update(siteDetail.ID, siteDetail)
 
 // Delete site
 reply, err = siteClient.Delete(siteDetail.ID)
+```
+
+### UFM Topology
+
+```go
+import "github.com/netrisai/netriswebapi/v2/types/topology"
+
+topologyClient := client.Topology()
+
+// Import UFM link records into one fabric namespace
+result, err := topologyClient.ImportUFMTopology("ufm-lab", []*topology.UFMImportLink{
+    {
+        SourceGUID:      "server-guid",
+        DestinationGUID: "switch-guid",
+        SourcePortName:  "server-port_mlx5_0",
+    },
+})
+
+// Query equal-cost shortest paths between two Netris-managed servers
+paths, err := topologyClient.GetUFMPath("server-a", "server-b")
+
+// Query uplink paths for one server
+uplinks, err := topologyClient.GetUFMPath("server-a")
 ```
 
 ### VPC Operations
@@ -632,4 +656,3 @@ For issues, questions, or contributions, please visit the [GitHub repository](ht
 ## Additional Resources
 
 - [Netris Documentation](https://www.netris.io/docs/)
-
