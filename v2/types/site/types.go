@@ -23,7 +23,6 @@ type Site struct {
 	PublicAsn             int                    `json:"publicAsn"`
 	RohAsn                int                    `json:"rohAsn"`
 	RohProfile            *RohProfile            `json:"rohProfile,omitempty"`
-	SiteMesh              IDName                 `json:"siteMesh"`
 	SwitchFabric          string                 `json:"switchFabric"`
 	SwitchFabricProviders *SwitchFabricProviders `json:"switchFabricProviders,omitempty"`
 	VlanRange             string                 `json:"vlanRange"`
