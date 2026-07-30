@@ -16,9 +16,17 @@ limitations under the License.
 
 package servercluster
 
+import "encoding/json"
+
 type IDName struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
+}
+
+type SrvClusterTemplateRef struct {
+	ID    int        `json:"id"`
+	Name  string     `json:"name"`
+	VLANs []VNetVLAN `json:"vlans,omitempty"`
 }
 
 type Servers struct {
@@ -54,35 +62,82 @@ type Resources struct {
 	Subnets     []Subnet     `json:"subnets"`
 }
 
+type VNetVLAN struct {
+	Postfix string `json:"postfix"`
+	VLANID  int    `json:"vlanID"`
+}
+
+type VPCMapping struct {
+	ID      int    `json:"id"`
+	Group   string `json:"group,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Postfix string `json:"postfix"`
+}
+
 type StatusInfo struct {
 	Label string `json:"label"`
 	Value string `json:"value"`
 }
 
 type ServerCluster struct {
-	ID                 int         `json:"id"`
-	Name               string      `json:"name"`
-	State              string      `json:"state"`
-	Status             StatusInfo  `json:"status"`
-	Admin              IDName      `json:"admin"`
-	Site               IDName      `json:"site"`
-	VPC                IDName      `json:"vpc"`
-	SrvClusterTemplate IDName      `json:"srvClusterTemplate"`
-	Tags               []string    `json:"tags"`
-	Servers            []Servers   `json:"servers"`
-	Resources          Resources   `json:"resources"`
-	ModifiedDate       int         `json:"modifiedDate"`
-	CreatedDate        int         `json:"createdDate"`
+	ID                 int                   `json:"id"`
+	Name               string                `json:"name"`
+	State              string                `json:"state"`
+	Status             StatusInfo            `json:"status"`
+	Admin              IDName                `json:"admin"`
+	Site               IDName                `json:"site"`
+	VPC                IDName                `json:"vpc"`
+	VPCList            []VPCMapping          `json:"vpcList"`
+	SrvClusterTemplate SrvClusterTemplateRef `json:"srvClusterTemplate"`
+	Tags               []string              `json:"tags"`
+	Servers            []Servers             `json:"servers"`
+	Resources          Resources             `json:"resources"`
+	ModifiedDate       int                   `json:"modifiedDate"`
+	CreatedDate        int                   `json:"createdDate"`
 }
 
 type ServerClusterW struct {
-	Name               string    `json:"name"`
-	Admin              IDName    `json:"admin"`
-	Site               IDName    `json:"site"`
-	VPC                IDName    `json:"vpc"`
-	SrvClusterTemplate IDName    `json:"srvClusterTemplate"`
-	Tags               []string  `json:"tags"`
-	Servers            []Servers `json:"servers"`
+	Name                    string       `json:"name"`
+	Admin                   IDName       `json:"admin"`
+	Site                    IDName       `json:"site"`
+	VPC                     IDName       `json:"vpc"`
+	VPCList                 []VPCMapping `json:"vpcList,omitempty"`
+	SrvClusterTemplate      IDName       `json:"srvClusterTemplate"`
+	SrvClusterTemplateVLANs []VNetVLAN   `json:"-"`
+	Tags                    []string     `json:"tags"`
+	Servers                 []Servers    `json:"servers"`
+}
+
+func (s ServerClusterW) MarshalJSON() ([]byte, error) {
+	template := SrvClusterTemplateRef{
+		ID:   s.SrvClusterTemplate.ID,
+		Name: s.SrvClusterTemplate.Name,
+	}
+	if len(s.SrvClusterTemplateVLANs) > 0 {
+		template.VLANs = s.SrvClusterTemplateVLANs
+	}
+
+	type serverClusterW struct {
+		Name               string                `json:"name"`
+		Admin              IDName                `json:"admin"`
+		Site               IDName                `json:"site"`
+		VPC                IDName                `json:"vpc"`
+		VPCList            []VPCMapping          `json:"vpcList,omitempty"`
+		SrvClusterTemplate SrvClusterTemplateRef `json:"srvClusterTemplate"`
+		Tags               []string              `json:"tags"`
+		Servers            []Servers             `json:"servers"`
+	}
+
+	return json.Marshal(serverClusterW{
+		Name:               s.Name,
+		Admin:              s.Admin,
+		Site:               s.Site,
+		VPC:                s.VPC,
+		VPCList:            s.VPCList,
+		SrvClusterTemplate: template,
+		Tags:               s.Tags,
+		Servers:            s.Servers,
+	})
 }
 
 type ServerClusterU struct {
