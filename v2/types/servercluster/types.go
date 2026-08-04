@@ -20,7 +20,7 @@ import "encoding/json"
 
 type IDName struct {
 	ID   int    `json:"id"`
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 type SrvClusterTemplateRef struct {
@@ -31,8 +31,8 @@ type SrvClusterTemplateRef struct {
 
 type Servers struct {
 	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Shared bool   `json:"shared"`
+	Name   string `json:"name,omitempty"`
+	Shared bool   `json:"shared,omitempty"`
 }
 
 type GatewayPrefix struct {
@@ -100,7 +100,7 @@ type ServerClusterW struct {
 	Name                    string       `json:"name"`
 	Admin                   IDName       `json:"admin"`
 	Site                    IDName       `json:"site"`
-	VPC                     IDName       `json:"vpc"`
+	VPC                     *IDName      `json:"vpc,omitempty"`
 	VPCList                 []VPCMapping `json:"vpcList,omitempty"`
 	SrvClusterTemplate      IDName       `json:"srvClusterTemplate"`
 	SrvClusterTemplateVLANs []VNetVLAN   `json:"-"`
@@ -121,7 +121,7 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 		Name               string                `json:"name"`
 		Admin              IDName                `json:"admin"`
 		Site               IDName                `json:"site"`
-		VPC                IDName                `json:"vpc"`
+		VPC                *IDName               `json:"vpc,omitempty"`
 		VPCList            []VPCMapping          `json:"vpcList,omitempty"`
 		SrvClusterTemplate SrvClusterTemplateRef `json:"srvClusterTemplate"`
 		Tags               []string              `json:"tags"`
