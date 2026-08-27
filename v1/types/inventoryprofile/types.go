@@ -17,22 +17,23 @@ limitations under the License.
 package inventoryprofile
 
 type Profile struct {
-	CreatedDate     int             `json:"created_date"`
-	CustomRules     []CustomRule    `json:"customRules"`
-	Description     string          `json:"description"`
-	DNSServers      string          `json:"dns_servers"`
-	ID              int             `json:"id"`
-	Ipv4SSH         string          `json:"ipv4_ssh"`
-	Ipv6SSH         string          `json:"ipv6_ssh"`
-	ModifiedDate    int             `json:"modified_date"`
-	Name            string          `json:"name"`
-	NTPServers      string          `json:"ntp_servers"`
-	Timezone        string          `json:"timezone"`
-	FabricProps     FabricProps     `json:"fabricProps"`
-	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
-	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
-	ZTPProps        ZTPProps        `json:"ztpProps"`
-	NetQProps       NetQProps       `json:"netqProps"`
+	CreatedDate        int                `json:"created_date"`
+	CustomRules        []CustomRule       `json:"customRules"`
+	Description        string             `json:"description"`
+	DNSServers         string             `json:"dns_servers"`
+	ID                 int                `json:"id"`
+	Ipv4SSH            string             `json:"ipv4_ssh"`
+	Ipv6SSH            string             `json:"ipv6_ssh"`
+	ModifiedDate       int                `json:"modified_date"`
+	Name               string             `json:"name"`
+	NTPServers         string             `json:"ntp_servers"`
+	Timezone           string             `json:"timezone"`
+	FabricProps        FabricProps        `json:"fabricProps"`
+	GpuClusterProps    GpuClusterProps    `json:"gpuClusterProps"`
+	SNMPv2Props        SNMPv2Props        `json:"snmpv2Props"`
+	ZTPProps           ZTPProps           `json:"ztpProps"`
+	NetQProps          NetQProps          `json:"netqProps"`
+	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
 }
 
 type CustomRule struct {
@@ -46,20 +47,21 @@ type CustomRule struct {
 }
 
 type ProfileW struct {
-	CustomRules     []CustomRule    `json:"customRules"`
-	Description     string          `json:"description"`
-	DNSServers      string          `json:"dns_servers"`
-	ID              int             `json:"id"`
-	Ipv4List        string          `json:"ipv4_list"`
-	Ipv6List        string          `json:"ipv6_list"`
-	Name            string          `json:"name"`
-	NTPServers      string          `json:"ntp_servers"`
-	Timezone        Timezone        `json:"timezone"`
-	FabricProps     FabricProps     `json:"fabricProps"`
-	GpuClusterProps GpuClusterProps `json:"gpuClusterProps"`
-	SNMPv2Props     SNMPv2Props     `json:"snmpv2Props"`
-	ZTPProps        ZTPProps        `json:"ztpProps"`
-	NetQProps       NetQProps       `json:"netqProps"`
+	CustomRules        []CustomRule       `json:"customRules"`
+	Description        string             `json:"description"`
+	DNSServers         string             `json:"dns_servers"`
+	ID                 int                `json:"id"`
+	Ipv4List           string             `json:"ipv4_list"`
+	Ipv6List           string             `json:"ipv6_list"`
+	Name               string             `json:"name"`
+	NTPServers         string             `json:"ntp_servers"`
+	Timezone           Timezone           `json:"timezone"`
+	FabricProps        FabricProps        `json:"fabricProps"`
+	GpuClusterProps    GpuClusterProps    `json:"gpuClusterProps"`
+	SNMPv2Props        SNMPv2Props        `json:"snmpv2Props"`
+	ZTPProps           ZTPProps           `json:"ztpProps"`
+	NetQProps          NetQProps          `json:"netqProps"`
+	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
 }
 
 type NetQProps struct {
@@ -105,4 +107,17 @@ type SNMPv2Props struct {
 type ZTPProps struct {
 	NOSImage string `json:"nosImage"`
 	Password string `json:"password"`
+}
+
+type SyslogDestinations struct {
+	Enabled    bool           `json:"enabled"`
+	UseRfc5424 bool           `json:"useRfc5424"`
+	Servers    []SyslogServer `json:"servers"`
+}
+
+type SyslogServer struct {
+	Host     string `json:"host"`
+	Port     int32  `json:"port"`
+	Protocol string `json:"protocol"`
+	Severity string `json:"severity"`
 }
