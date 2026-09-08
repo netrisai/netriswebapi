@@ -34,6 +34,7 @@ type Profile struct {
 	ZTPProps           ZTPProps           `json:"ztpProps"`
 	NetQProps          NetQProps          `json:"netqProps"`
 	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
+	AAAProps           AAAProps           `json:"aaa"`
 }
 
 type CustomRule struct {
@@ -62,6 +63,7 @@ type ProfileW struct {
 	ZTPProps           ZTPProps           `json:"ztpProps"`
 	NetQProps          NetQProps          `json:"netqProps"`
 	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
+	AAAProps           AAAProps           `json:"aaa"`
 }
 
 type NetQProps struct {
@@ -120,4 +122,27 @@ type SyslogServer struct {
 	Port     int32  `json:"port"`
 	Protocol string `json:"protocol"`
 	Severity string `json:"severity"`
+}
+
+type AAAProps struct {
+	AuthOrder []string       `json:"authOrder"`
+	Radius    RadiusProps    `json:"radius"`
+	Local     LocalAuthProps `json:"local"`
+}
+
+type RadiusProps struct {
+	Enabled bool `json:"enabled"`
+	PriorityServers []RadiusServer `json:"priorityServers"`
+}
+
+type RadiusServer struct {
+	Host     string `json:"host"`
+	Port     int32  `json:"port"`
+	Priority int32  `json:"priority"`
+	AuthType string `json:"authType"`
+	Secret   string `json:"secret,omitempty"`
+}
+
+type LocalAuthProps struct {
+	Enabled bool `json:"enabled"`
 }
