@@ -89,7 +89,6 @@ type Allocation struct {
 	Description string  `json:"description"`
 	Name        string  `json:"name"`
 	Prefix      string  `json:"prefix"`
-	Tenant      IDName  `json:"tenant"`
 	Vpc         *IDName `json:"vpc,omitempty"`
 }
 
