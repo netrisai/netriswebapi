@@ -35,6 +35,7 @@ type Profile struct {
 	NetQProps          NetQProps          `json:"netqProps"`
 	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
 	AAAProps           AAAProps           `json:"aaa"`
+	LanzProps          LanzProps          `json:"lanzProps"`
 }
 
 type CustomRule struct {
@@ -64,6 +65,7 @@ type ProfileW struct {
 	NetQProps          NetQProps          `json:"netqProps"`
 	SyslogDestinations SyslogDestinations `json:"syslogDestinations"`
 	AAAProps           AAAProps           `json:"aaa"`
+	LanzProps          LanzProps          `json:"lanzProps"`
 }
 
 type NetQProps struct {
@@ -145,4 +147,17 @@ type RadiusServer struct {
 
 type LocalAuthProps struct {
 	Enabled bool `json:"enabled"`
+}
+
+type LanzProps struct {
+	Enabled                 bool     `json:"enabled"`
+	HighThreshold           int32    `json:"highThreshold"`
+	LowThreshold            int32    `json:"lowThreshold"`
+	UpdateInterval          int32    `json:"updateInterval"`
+	LogToSyslog             bool     `json:"logToSyslog"`
+	CPUHighThreshold        int32    `json:"cpuHighThreshold"`
+	CPULowThreshold         int32    `json:"cpuLowThreshold"`
+	StreamingEnabled        bool     `json:"streamingEnabled"`
+	StreamingAllowedClients []string `json:"streamingAllowedClients"`
+	StreamingMaxClients     int32    `json:"streamingMaxClients"`
 }
