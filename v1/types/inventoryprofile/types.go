@@ -151,13 +151,13 @@ type LocalAuthProps struct {
 
 type LanzProps struct {
 	Enabled                 bool     `json:"enabled"`
-	HighThreshold           int32    `json:"highThreshold"`
-	LowThreshold            int32    `json:"lowThreshold"`
-	UpdateInterval          int32    `json:"updateInterval"`
+	HighThreshold           *int32   `json:"highThreshold"`
+	LowThreshold            *int32   `json:"lowThreshold"`
+	UpdateInterval          *int32   `json:"updateInterval"`
 	LogToSyslog             bool     `json:"logToSyslog"`
-	CPUHighThreshold        int32    `json:"cpuHighThreshold"`
-	CPULowThreshold         int32    `json:"cpuLowThreshold"`
+	CPUHighThreshold        *int32   `json:"cpuHighThreshold"`
+	CPULowThreshold         *int32   `json:"cpuLowThreshold"`
 	StreamingEnabled        bool     `json:"streamingEnabled"`
 	StreamingAllowedClients []string `json:"streamingAllowedClients"`
-	StreamingMaxClients     int32    `json:"streamingMaxClients"`
+	StreamingMaxClients     *int32   `json:"streamingMaxClients"`
 }
