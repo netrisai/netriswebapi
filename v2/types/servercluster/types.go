@@ -24,9 +24,11 @@ type IDName struct {
 }
 
 type SrvClusterTemplateRef struct {
-	ID    int        `json:"id"`
-	Name  string     `json:"name"`
-	VLANs []VNetVLAN `json:"vlans,omitempty"`
+	ID           int                 `json:"id"`
+	Name         string              `json:"name"`
+	VLANs        []VNetVLAN          `json:"vlans,omitempty"`
+	IPv4Gateways []VNetGatewayAssign `json:"ipv4Gateways,omitempty"`
+	IPv6Gateways []VNetGatewayAssign `json:"ipv6Gateways,omitempty"`
 }
 
 type Servers struct {
@@ -67,6 +69,13 @@ type VNetVLAN struct {
 	VLANID  int    `json:"vlanID"`
 }
 
+// VNetGatewayAssign is a manually assigned gateway (CIDR, e.g. 10.10.10.1/24)
+// for a template V-Net whose gateway is set to "specify".
+type VNetGatewayAssign struct {
+	Postfix string `json:"postfix"`
+	Address string `json:"address"`
+}
+
 type VPCMapping struct {
 	ID      int    `json:"id"`
 	Group   string `json:"group,omitempty"`
@@ -97,15 +106,17 @@ type ServerCluster struct {
 }
 
 type ServerClusterW struct {
-	Name                    string       `json:"name"`
-	Admin                   IDName       `json:"admin"`
-	Site                    IDName       `json:"site"`
-	VPC                     IDName       `json:"vpc"`
-	VPCList                 []VPCMapping `json:"vpcList,omitempty"`
-	SrvClusterTemplate      IDName       `json:"srvClusterTemplate"`
-	SrvClusterTemplateVLANs []VNetVLAN   `json:"-"`
-	Tags                    []string     `json:"tags"`
-	Servers                 []Servers    `json:"servers"`
+	Name                           string              `json:"name"`
+	Admin                          IDName              `json:"admin"`
+	Site                           IDName              `json:"site"`
+	VPC                            IDName              `json:"vpc"`
+	VPCList                        []VPCMapping        `json:"vpcList,omitempty"`
+	SrvClusterTemplate             IDName              `json:"srvClusterTemplate"`
+	SrvClusterTemplateVLANs        []VNetVLAN          `json:"-"`
+	SrvClusterTemplateIPv4Gateways []VNetGatewayAssign `json:"-"`
+	SrvClusterTemplateIPv6Gateways []VNetGatewayAssign `json:"-"`
+	Tags                           []string            `json:"tags"`
+	Servers                        []Servers           `json:"servers"`
 }
 
 func (s ServerClusterW) MarshalJSON() ([]byte, error) {
@@ -115,6 +126,12 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 	}
 	if len(s.SrvClusterTemplateVLANs) > 0 {
 		template.VLANs = s.SrvClusterTemplateVLANs
+	}
+	if len(s.SrvClusterTemplateIPv4Gateways) > 0 {
+		template.IPv4Gateways = s.SrvClusterTemplateIPv4Gateways
+	}
+	if len(s.SrvClusterTemplateIPv6Gateways) > 0 {
+		template.IPv6Gateways = s.SrvClusterTemplateIPv6Gateways
 	}
 
 	type serverClusterW struct {
