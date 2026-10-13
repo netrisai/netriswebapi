@@ -45,7 +45,10 @@ func (c *Client) Get() ([]*DynamicVPCGroup, error) {
 		return nil, fmt.Errorf("{GetDynamicVPCGroup} %s", err)
 	}
 	var items []*DynamicVPCGroup
-	if err := json.Unmarshal(data, &items); err != nil || items == nil {
+	if err := json.Unmarshal(data, &items); err != nil {
+		return nil, fmt.Errorf("{GetDynamicVPCGroup} %s", err)
+	}
+	if items == nil {
 		return nil, fmt.Errorf("{GetDynamicVPCGroup} invalid response data")
 	}
 	for _, item := range items {
@@ -71,25 +74,26 @@ func (c *Client) GetByID(id int) (*DynamicVPCGroup, error) {
 		return nil, fmt.Errorf("{GetDynamicVPCGroupByID} %s", err)
 	}
 	var item *DynamicVPCGroup
-	if err := json.Unmarshal(data, &item); err != nil || item == nil || item.ID <= 0 {
+	if err := json.Unmarshal(data, &item); err != nil {
+		return nil, fmt.Errorf("{GetDynamicVPCGroupByID} %s", err)
+	}
+	if item == nil || item.ID <= 0 {
 		return nil, fmt.Errorf("{GetDynamicVPCGroupByID} invalid response data")
 	}
 	return item, nil
 }
 
 func parse(reply http.HTTPReply) (json.RawMessage, error) {
-	if reply.StatusCode != nethttp.StatusOK {
-		return nil, fmt.Errorf("HTTP status %d", reply.StatusCode)
-	}
 	var result struct {
 		Data      json.RawMessage `json:"data"`
 		IsSuccess bool            `json:"isSuccess"`
+		Message   string          `json:"message"`
 	}
 	if err := json.Unmarshal(reply.Data, &result); err != nil {
-		return nil, fmt.Errorf("invalid API response")
+		return nil, fmt.Errorf("HTTP status %d: invalid API response: %s", reply.StatusCode, err)
 	}
-	if !result.IsSuccess {
-		return nil, fmt.Errorf("API request failed")
+	if reply.StatusCode != nethttp.StatusOK || !result.IsSuccess {
+		return nil, fmt.Errorf("HTTP status %d: %s", reply.StatusCode, result.Message)
 	}
 	return result.Data, nil
 }
