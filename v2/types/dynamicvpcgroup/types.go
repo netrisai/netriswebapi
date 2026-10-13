@@ -100,20 +100,20 @@ type ServerWrite struct {
 }
 
 type DynamicVPCGroupAdd struct {
-	Name          string         `json:"name"`
-	ResourceGroup IDName         `json:"resourceGroup"`
-	RadiusServer  string         `json:"radiusServer"`
-	Tags          []string       `json:"tags,omitempty"`
-	Members       []MemberWrite  `json:"members"`
-	Servers       *[]ServerWrite `json:"servers,omitempty"`
+	Name          string        `json:"name"`
+	ResourceGroup IDName        `json:"resourceGroup"`
+	RadiusServer  string        `json:"radiusServer"`
+	Tags          []string      `json:"tags,omitempty"`
+	Members       []MemberWrite `json:"members"`
+	Servers       []ServerWrite `json:"servers,omitempty"`
 }
 
-// Members replaces the full member/user list; nil Servers preserves servers.
+// Members replaces the full member/user list; empty Servers preserves servers.
 type DynamicVPCGroupUpdate struct {
-	Name    string         `json:"name"`
-	Tags    []string       `json:"tags"`
-	Members []MemberWrite  `json:"members"`
-	Servers *[]ServerWrite `json:"servers,omitempty"`
+	Name    string        `json:"name"`
+	Tags    []string      `json:"tags"`
+	Members []MemberWrite `json:"members"`
+	Servers []ServerWrite `json:"servers,omitempty"`
 }
 
 // Nil Tags preserves tags; a non-nil empty slice clears them.
