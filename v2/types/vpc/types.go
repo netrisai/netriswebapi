@@ -17,6 +17,7 @@ limitations under the License.
 package vpc
 
 type VPC struct {
+	VrfName      string        `json:"vrfName"`
 	ID           int           `json:"id"`
 	Name         string        `json:"name"`
 	AdminTenant  AdminTenant   `json:"adminTenant"`

@@ -21,6 +21,10 @@ VNet Structure for GET requests
 */
 
 type VNet struct {
+	L3VPN           bool                `json:"l3vpn"`
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
+	DynamicVrf      bool                `json:"dynamicVrf"`
+
 	CreatedDate  int                `json:"createdDate"`
 	Gateways     []VNetGateway      `json:"gateways"`
 	ID           int                `json:"id"`
@@ -142,6 +146,10 @@ VNet Structure for GET by id request
 */
 
 type VNetDetailed struct {
+	L3VPN           bool                `json:"l3vpn"`
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
+	DynamicVrf      bool                `json:"dynamicVrf"`
+
 	CreatedDate  int                       `json:"createdDate"`
 	Gateways     []VNetDetailedGateway     `json:"gateways"`
 	GuestTenants []VNetDetailedGuestTenant `json:"guestTenants"`
@@ -272,6 +280,9 @@ VNet Structure for POST requests
 */
 
 type VNetAdd struct {
+	L3VPN           *bool               `json:"l3vpn,omitempty"`
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup,omitempty"`
+
 	Name         string           `json:"name"`
 	Sites        []VNetAddSite    `json:"sites"`
 	Gateways     []VNetAddGateway `json:"gateways"`
@@ -327,6 +338,8 @@ VNet Structure for PUT requests
 */
 
 type VNetUpdate struct {
+	L3VPN *bool `json:"l3vpn,omitempty"`
+
 	Gateways     []VNetUpdateGateway     `json:"gateways"`
 	GuestTenants []VNetUpdateGuestTenant `json:"guestTenants"`
 	IPFamily     string                  `json:"ipFamily"`
@@ -374,4 +387,10 @@ type VNetUpdatePort struct {
 type VNetUpdateSite struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
+}
+
+type DynamicVPCGroupRef struct {
+	ID        int    `json:"id"`
+	Name      string `json:"name,omitempty"`
+	DisplayID string `json:"displayId,omitempty"`
 }
