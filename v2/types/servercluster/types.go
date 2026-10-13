@@ -40,6 +40,9 @@ type GatewayPrefix struct {
 }
 
 type VNet struct {
+	VPC             IDName              `json:"vpc"`
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
+
 	ID           int             `json:"id"`
 	Name         string          `json:"name"`
 	IPv4Gateways []GatewayPrefix `json:"ipv4Gateways"`
@@ -68,6 +71,8 @@ type VNetVLAN struct {
 }
 
 type VPCMapping struct {
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup,omitempty"`
+
 	ID      int    `json:"id"`
 	Group   string `json:"group,omitempty"`
 	Name    string `json:"name,omitempty"`
@@ -80,6 +85,8 @@ type StatusInfo struct {
 }
 
 type ServerCluster struct {
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
+
 	ID                 int                   `json:"id"`
 	Name               string                `json:"name"`
 	State              string                `json:"state"`
@@ -97,6 +104,8 @@ type ServerCluster struct {
 }
 
 type ServerClusterW struct {
+	DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup,omitempty"`
+
 	Name                    string       `json:"name"`
 	Admin                   IDName       `json:"admin"`
 	Site                    IDName       `json:"site"`
@@ -118,21 +127,29 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 	}
 
 	type serverClusterW struct {
+		DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup,omitempty"`
+
 		Name               string                `json:"name"`
 		Admin              IDName                `json:"admin"`
 		Site               IDName                `json:"site"`
-		VPC                IDName                `json:"vpc"`
+		VPC                *IDName               `json:"vpc,omitempty"`
 		VPCList            []VPCMapping          `json:"vpcList,omitempty"`
 		SrvClusterTemplate SrvClusterTemplateRef `json:"srvClusterTemplate"`
 		Tags               []string              `json:"tags"`
 		Servers            []Servers             `json:"servers"`
 	}
 
+	vpc := &s.VPC
+	if s.DynamicVPCGroup != nil {
+		vpc = nil
+	}
+
 	return json.Marshal(serverClusterW{
+		DynamicVPCGroup:    s.DynamicVPCGroup,
 		Name:               s.Name,
 		Admin:              s.Admin,
 		Site:               s.Site,
-		VPC:                s.VPC,
+		VPC:                vpc,
 		VPCList:            s.VPCList,
 		SrvClusterTemplate: template,
 		Tags:               s.Tags,
@@ -143,4 +160,21 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 type ServerClusterU struct {
 	Tags    []string  `json:"tags"`
 	Servers []Servers `json:"servers"`
+}
+
+type DynamicVPCGroupRef struct {
+	ID        int    `json:"id"`
+	Name      string `json:"name,omitempty"`
+	DisplayID string `json:"displayId,omitempty"`
+}
+
+func (m VPCMapping) MarshalJSON() ([]byte, error) {
+	if m.DynamicVPCGroup != nil {
+		return json.Marshal(struct {
+			Postfix         string              `json:"postfix"`
+			DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
+		}{Postfix: m.Postfix, DynamicVPCGroup: m.DynamicVPCGroup})
+	}
+	type vpcMapping VPCMapping
+	return json.Marshal(vpcMapping(m))
 }
