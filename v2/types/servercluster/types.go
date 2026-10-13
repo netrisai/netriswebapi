@@ -127,7 +127,7 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 	}
 
 	type serverClusterW struct {
-		DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup,omitempty"`
+		DynamicVPCGroup *IDName `json:"dynamicVpcGroup,omitempty"`
 
 		Name               string                `json:"name"`
 		Admin              IDName                `json:"admin"`
@@ -140,12 +140,17 @@ func (s ServerClusterW) MarshalJSON() ([]byte, error) {
 	}
 
 	vpc := &s.VPC
+	var dynamicVPCGroup *IDName
 	if s.DynamicVPCGroup != nil {
 		vpc = nil
+		dynamicVPCGroup = &IDName{
+			ID:   s.DynamicVPCGroup.ID,
+			Name: s.DynamicVPCGroup.Name,
+		}
 	}
 
 	return json.Marshal(serverClusterW{
-		DynamicVPCGroup:    s.DynamicVPCGroup,
+		DynamicVPCGroup:    dynamicVPCGroup,
 		Name:               s.Name,
 		Admin:              s.Admin,
 		Site:               s.Site,
@@ -171,9 +176,15 @@ type DynamicVPCGroupRef struct {
 func (m VPCMapping) MarshalJSON() ([]byte, error) {
 	if m.DynamicVPCGroup != nil {
 		return json.Marshal(struct {
-			Postfix         string              `json:"postfix"`
-			DynamicVPCGroup *DynamicVPCGroupRef `json:"dynamicVpcGroup"`
-		}{Postfix: m.Postfix, DynamicVPCGroup: m.DynamicVPCGroup})
+			Postfix         string `json:"postfix"`
+			DynamicVPCGroup IDName `json:"dynamicVpcGroup"`
+		}{
+			Postfix: m.Postfix,
+			DynamicVPCGroup: IDName{
+				ID:   m.DynamicVPCGroup.ID,
+				Name: m.DynamicVPCGroup.Name,
+			},
+		})
 	}
 	type vpcMapping VPCMapping
 	return json.Marshal(vpcMapping(m))
