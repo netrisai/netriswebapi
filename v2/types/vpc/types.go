@@ -18,6 +18,9 @@ package vpc
 
 type VPC struct {
 	VrfName      string        `json:"vrfName"`
+	VNI          *int          `json:"vni"`
+	VNIMode      string        `json:"vniMode"`
+	RouteTargets *RouteTargets `json:"routeTargets"`
 	ID           int           `json:"id"`
 	Name         string        `json:"name"`
 	AdminTenant  AdminTenant   `json:"adminTenant"`
@@ -39,8 +42,37 @@ type AdminTenant struct {
 }
 
 type VPCw struct {
-	Name        string        `json:"name"`
-	AdminTenant AdminTenant   `json:"adminTenant"`
-	GuestTenant []GuestTenant `json:"guestTenant"`
-	Tags        []string      `json:"tags"`
+	Name         string             `json:"name"`
+	AdminTenant  AdminTenant        `json:"adminTenant"`
+	GuestTenant  []GuestTenant      `json:"guestTenant"`
+	Tags         []string           `json:"tags"`
+	VNI          interface{}        `json:"vni,omitempty"`
+	RouteTargets *RouteTargetsWrite `json:"routeTargets,omitempty"`
+}
+
+type RouteTargets struct {
+	Import []RouteTarget `json:"import"`
+	Export []RouteTarget `json:"export"`
+}
+
+type RouteTarget struct {
+	ID         int            `json:"id"`
+	Value      string         `json:"value"`
+	Type       string         `json:"type"`
+	VPCPeering *VPCPeeringRef `json:"vpcPeering"`
+}
+
+type VPCPeeringRef struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+type RouteTargetsWrite struct {
+	Import *[]RouteTargetWrite `json:"import,omitempty"`
+	Export *[]RouteTargetWrite `json:"export,omitempty"`
+}
+
+type RouteTargetWrite struct {
+	ID    int    `json:"id,omitempty"`
+	Value string `json:"value"`
 }

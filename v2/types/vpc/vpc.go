@@ -19,6 +19,7 @@ package vpc
 import (
 	"encoding/json"
 	"fmt"
+	nethttp "net/http"
 	"strconv"
 
 	"github.com/netrisai/netriswebapi/http"
@@ -65,16 +66,33 @@ func (c *Client) Get() ([]*VPC, error) {
 	return items, nil
 }
 
+// GetByID returns nil only when the API responds with HTTP 404.
 func (c *Client) GetByID(id int) (*VPC, error) {
 	address := c.client.URL.String() + v2address.VPC + "/" + strconv.Itoa(id)
-	APIResult, err := c.client.Get(address)
+	reply, err := c.client.GetRequest(address)
 	if err != nil {
 		return nil, fmt.Errorf("{GetVPCByID} %s", err)
+	}
+	if reply.StatusCode == nethttp.StatusNotFound {
+		return nil, nil
+	}
+	if reply.StatusCode != nethttp.StatusOK {
+		return nil, fmt.Errorf("{GetVPCByID} HTTP status %d: %s", reply.StatusCode, reply.Data)
+	}
+	APIResult, err := reply.Parse()
+	if err != nil {
+		return nil, fmt.Errorf("{GetVPCByID} %s", err)
+	}
+	if APIResult == nil || !APIResult.IsSuccess {
+		return nil, fmt.Errorf("{GetVPCByID} invalid API response: %s", reply.Data)
 	}
 
 	item, err := parseSingle(APIResult)
 	if err != nil {
 		return nil, fmt.Errorf("{GetVPCByID} %s", err)
+	}
+	if item == nil || item.ID <= 0 {
+		return nil, fmt.Errorf("{GetVPCByID} invalid response data")
 	}
 	return item, nil
 }
