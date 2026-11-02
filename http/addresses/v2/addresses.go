@@ -77,6 +77,8 @@ const (
 
 	Sites = "/api/v2/sites"
 
+	DynamicVPCGroup = "/api/v2/dynamic-vpc-group"
+
 	VPC         = "/api/v2/vpc"
 	VPCPeerings = "/api/v2/vpc-peering"
 

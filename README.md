@@ -143,6 +143,7 @@ The V2 API provides enhanced functionality and more resources:
 |----------|-------------|---------------|
 | **Sites** | Network site management | `client.Site()` |
 | **VPC** | Virtual Private Cloud management | `client.VPC()` |
+| **Dynamic VPC Groups** | VPC groups and RADIUS configuration | `client.DynamicVPCGroup()` |
 | **VPC Peerings** | VPC peering connections | `client.VPCPeering()` |
 | **VNet** | Virtual Network management | `client.VNet()` |
 | **IPAM** | IP Address Management (allocations, subnets, hosts) | `client.IPAM()` |
@@ -302,6 +303,29 @@ reply, err = vpcClient.Update(vpcDetail.ID, vpcDetail)
 // Delete VPC
 reply, err = vpcClient.Delete(vpcDetail.ID)
 ```
+
+### Dynamic VPC Groups
+
+```go
+import "github.com/netrisai/netriswebapi/v2/types/dynamicvpcgroup"
+
+groupClient := client.DynamicVPCGroup()
+
+group := &dynamicvpcgroup.DynamicVPCGroupAdd{
+    Name:          "dynamic-access",
+    ResourceGroup: dynamicvpcgroup.IDName{ID: 1},
+    RadiusServer:  "netris-hosted",
+    Members: []dynamicvpcgroup.MemberWrite{
+        {VPC: dynamicvpcgroup.IDName{ID: 10}},
+        {VPC: dynamicvpcgroup.IDName{ID: 11}},
+    },
+}
+reply, err := groupClient.Add(group)
+```
+
+`Update` requires the full member/user list, including IDs for existing users.
+Users omitted from the list are removed. Empty passwords and server secrets keep
+existing credentials.
 
 ### Inventory Management
 

@@ -33,6 +33,7 @@ import (
 	"github.com/netrisai/netriswebapi/v1/types/userrole"
 	"github.com/netrisai/netriswebapi/v2/types/bgp"
 	"github.com/netrisai/netriswebapi/v2/types/dhcp"
+	"github.com/netrisai/netriswebapi/v2/types/dynamicvpcgroup"
 	"github.com/netrisai/netriswebapi/v2/types/inventory"
 	"github.com/netrisai/netriswebapi/v2/types/ipam"
 	"github.com/netrisai/netriswebapi/v2/types/ipreservation"
@@ -85,6 +86,7 @@ type Clientset struct {
 	vlanreservation       *vlanreservation.Client
 	ipreservation         *ipreservation.Client
 	vpc                   *vpc.Client
+	dynamicvpcgroup       *dynamicvpcgroup.Client
 	nvlinkledger          *nvlinkledger.Client
 	pkeyledger            *pkeyledger.Client
 	servercluster         *servercluster.Client
@@ -316,6 +318,13 @@ func (c *Clientset) VPC() *vpc.Client {
 		c.vpc = vpc.New(c.Client)
 	}
 	return c.vpc
+}
+
+func (c *Clientset) DynamicVPCGroup() *dynamicvpcgroup.Client {
+	if c.dynamicvpcgroup == nil {
+		c.dynamicvpcgroup = dynamicvpcgroup.New(c.Client)
+	}
+	return c.dynamicvpcgroup
 }
 
 func (c *Clientset) VPCPeerings() *vpcpeerings.Client {

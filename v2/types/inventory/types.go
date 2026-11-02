@@ -24,6 +24,7 @@ Inventory Structure for GET requests
 
 type HW struct {
 	Asn              int           `json:"asn"`
+	AsnMode          string        `json:"asnMode"`
 	AsnID            int           `json:"asnID"`
 	AsnNumber        HWASNNumber   `json:"asnNumber"`
 	ConductorVersion string        `json:"conductorVersion"`
