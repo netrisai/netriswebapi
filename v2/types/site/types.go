@@ -17,6 +17,7 @@ limitations under the License.
 package site
 
 type Site struct {
+	DefaultRtAsn          *int                   `json:"defaultRtAsn,omitempty"`
 	AclPolicy             string                 `json:"aclPolicy"`
 	ID                    int                    `json:"id,omitempty"`
 	Name                  string                 `json:"name"`
